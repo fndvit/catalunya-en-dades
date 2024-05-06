@@ -1,0 +1,71 @@
+@import url("observablehq:default.css");
+@import url("observablehq:theme-air.css");
+
+:root {
+  --sans-serif: "neue-haas-grotesk-display", sans-serif;
+  --serif: merriweather, serif;
+  --theme-background: #fdfdfd;
+
+  /* 
+  --theme-background: #f3f3f3;
+  --theme-background-alt: #f3f3f3;
+  --theme-foreground-alt: #007EBB;
+  --theme-foreground-muted: #505050;
+  --theme-foreground-faint: #f3f3f3;
+  --theme-foreground-fainter: #f3f3f3;
+  --theme-foreground-faintest: #f3f3f3;
+  --theme-foreground-focus: #f3f3f3; */
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--sans-serif);
+  font-weight: 600;
+}
+
+h1 { font-size: 4.2rem; }
+h2 { 
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+  font-size: 2.1rem;
+  font-weight: 400;
+}
+
+main p, main li { 
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 1.8rem;
+}
+
+li { font-weight: 500; }
+
+.card h1, .card h2 { font-weight: 600;}
+.card h3, label { font-weight: 500;}
+
+.card h1 { font-size: 1.5rem;}
+.card h2 { 
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--theme-foreground);
+}
+.card h3 { font-size: 1rem;}
+.card h4 { font-size: .85rem;}
+
+.halo {
+  -webkit-font-smoothing: antialiased;
+  text-shadow:
+  .5px .5px .5px #fff,
+  -.5px -.5px .5px #fff,  
+  .5px -.5px .5px #fff,
+  -.5px .5px .5px #fff,
+  .5px .5px .5px #fff,
+  .5px .5px 1px #fff,
+  -.5px -.5px 1px #fff,  
+  .5px -.5px 1px #fff,
+  -.5px .5px 1px #fff,
+  .5px .5px 1px #fff,
+  .5px .5px 3px #ffffff33,
+  -.5px -.5px 3px #ffffff33,  
+  .5px -.5px 3px #ffffff33,
+  -.5px .5px 3px #ffffff33,
+  .5px .5px 3px #ffffff33;
+}
