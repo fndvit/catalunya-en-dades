@@ -5,7 +5,9 @@
   --sans-serif: "neue-haas-grotesk-display", sans-serif;
   --serif: merriweather, serif;
   --theme-background: #fdfdfd;
-
+  --theme-background-alt: #f0f0f0;
+  --theme-foreground-muted: #6C6C6C;
+  
   /* 
   --theme-background: #f3f3f3;
   --theme-background-alt: #f3f3f3;

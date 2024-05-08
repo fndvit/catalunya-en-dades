@@ -54,9 +54,6 @@ export default {
   
   </style>
   <div style="display: flex; align-items: center; gap: 0.5rem; height: 2.2rem; margin: -1.5rem -2rem 2rem -2rem; padding: 0.5rem 2rem; border-bottom: solid 1px var(--theme-foreground-faintest); font: 500 16px var(--sans-serif);">
-    <a href="https://www.fundaciovit.org/" target="_self" rel="" style="display: flex; align-items: center;">
-    <img class="logo" aria-roledescription="logo" aria-label="logo de la Fundació Visualització per a la Transparència ViT" width="659px" height="370px" src="https://static1.squarespace.com/static/5e5b7eebeb83b746b6481a2d/t/5eb5257ba6decf483335e112/1602266305881/?format=1500w" alt="logo de la Fundació Visualització per a la Transparència ViT">
-    </a>
     <div style="display: flex; flex-grow: 1; justify-content: space-between; align-items: center;">
       <b>
         <a href="" target="_self" rel="">
