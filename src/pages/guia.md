@@ -53,7 +53,13 @@ const remap = d3.scaleLinear(d3.extent(divorces), d3.extent(margarine));
 ```
 
 # Una petita guia
-- **Redisseny per a la millora**: Començar amb les mateixes preguntes que una visualització existent i plantejar solucions visuals millorades. Contextualitzar amb aixó: https://medium.com/@hint_fm/design-and-redesign-4ab77206cf9
+Primer de tot cal reconeixer que el simple fet que hi hagi dades obertes sobre un tema ja és una gran notícia... Doncs el fet de que hi hagi dades acompanyada d'una visualització que ajudi els ciutadans a entendre-les i explorar-les és ja notícia increïble!!
+
+Per tant, quan redissenyeu els panells de dades obertes, us recomanem que **seguiu principis que respectin el disseny original alhora que milloreu la seva claredat i la usabilitat**. En fer-ho, honorem la intenció i l'esforç dels dissenyadors originals i defensem un enfocament respectuós i reflexiu de la crítica i la millora.
+
+En què es tradueix això? **Començeu per les mateixes preguntes que el panell o l'informe original, però responeu amb propostes visuals millorades**. Això significa centrar-se en els estats actuals de les dades, la seva distribució, afegir tendències contextuals ... Per exemple, si el original utilitza gràfics de barres, podríeu considerar l'ús de visualitzacions més avançades que puguin mostrar múltiples variables simultàniament o transmetre informació més matisada sense aclaparar l'usuari.
+
+**Veiem aquests redissenys com una evolució i no com un reemplaçament**, preservant l'essència de l'original alhora que empenyem els límits del que és possible.
 
 ## Recomenacions pràctiques
 Organitza el panell de dades amb un **fluix narratiu lògic**. Comença amb una visió general o resum a dalt, donant context, i continua amb la informació més detallada a sota. Això ajuda els usuaris a comprendre el context general abans d'endinsar-se en els detalls específics.
@@ -72,7 +78,7 @@ Organitza el panell de dades amb un **fluix narratiu lògic**. Comença amb una 
 </div>
 
 ---
-TK TK Visual hierarchy
+Igualment, estructura el panell de manera que la importància visual reflecteixi la importància informativa de cada element. En general, la informació més important hauria d'estar en targetes més grans i prominents, atraient l'atenció immediata. Una **bona jerarquia visual** ajuda a guiar els usuaris intuïtivament a través del panell, millorant la seva comprensió i interacció.
 
 ---
 Crida l'atenció a les **mètriques i tendències més importants** utilitzant indicadors visuals com ara fonts en negreta o mides més grans. Destacar aquestes dades facilita que els usuaris trobin la informació clau més aviat.
@@ -179,10 +185,24 @@ Cada gràfic ha de tenir **títol clar i descriptiu**, així com una **llegenda 
 
 Els gràfics de dalt són una broma, compte amb les [correlacions espúries](https://www.tylervigen.com/spurious/correlation/5920_per-capita-consumption-of-margarine_correlates-with_the-divorce-rate-in-maine) (mireu el blog d'en Tyler Vigen) i sisplau [no feu servir doble eix](https://blog.datawrapper.de/dualaxis/).
 
-## Elements de disseny
-  - Paletes de colors: esquemes de colors, *stroke* més fosc per ajudar a la accessibilitat ...
+---
+I **no oblideu les taules**! Són una eina molt valuosa per presentar dades de manera organitzada i accessible. Quan permeten la cerca, faciliten als usuaris trobar informació específica ràpidament, i enriquides amb *sparklines* poden proporcionar una visió ràpida de les tendències sense necessitat de gràfics separats.
 
-  <pre data-copy>npm init <span class="win">"</span>@observablehq<span class="win">"</span></pre>
+## Guía d'estil
+*Observable Framework* ja ofereix tots els elements de disseny que necessiteu per formatar el vostre panell. [Llegeix sobre aixó aquí.](https://observablehq.com/framework/markdown)
 
-  - Capes visuals: instruccions per crear mapes.
-  - Taules cercables: Consells sobre la implementació de taules interactives i cercables per a una exploració detallada de les dades.
+Els estils de lletra ja estan predefinits al projecte. La iniciativa va de desbloquejar dades obertes mitjançant la visualització, no de genialitats tipogràfiques, no cal afegir nous tipus o estils de lletra.
+
+# Títol h1
+---
+## Títol h2
+---
+### Títol h3
+---
+#### Títol h4
+---
+
+Text de paràgraf a l'informe
+
+const cat = ["#3b5fc0,"#ffd754","#c7c1bf","#a160af","#ff9c38","#5ca34b","#f794b9","#61b0ff","#ed393f","#a87a54"];
+const blues = 

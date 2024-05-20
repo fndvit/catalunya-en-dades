@@ -14,7 +14,7 @@ export default {
     {name: "La iniciativa", path: "/pages/iniciativa"},
     {name: "Vols participar?", path: "/pages/participa"},
     {name: "Alguns examples", path: "/pages/exemples"},
-    {name: "Una petita guia visual", path: "/pages/guia-visual"},
+    {name: "Una petita guia", path: "/pages/guia"},
     {name: "Qüestions tècniques", path: "/pages/preguntes-tecniques"},
     {name: "El nostre equip", path: "/pages/equip"},
     {name: "Codi de conducta", path: "/pages/codi-de-conducta"},
