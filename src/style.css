@@ -71,3 +71,15 @@ li { font-weight: 500; }
   -.5px .5px 3px #ffffff33,
   .5px .5px 3px #ffffff33;
 }
+
+.note {
+  border-left: none;
+  border-radius: .3rem;
+  font-size:1rem;
+  color: var(--theme-foreground-muted);
+}
+.note::before{
+  content:"📓 Nota";
+  margin-bottom:.5rem;
+}
+

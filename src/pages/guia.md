@@ -38,26 +38,37 @@ toc: true
 
 .caption {
   font-size: .8rem;
+  line-height: 1.35;
+  font-family: var(--sans-serif);
   color: var(--theme-foreground-alt);
 }
 
 </style>
 
 ```js
+import chroma from "npm:chroma-js";
+const temperature = FileAttachment("/data/temperature.json").json();
 
 const margarine = [8.2,7,6.5,5.3,5.2,4,4.6,4.5,4.2,3.7,];
 const divorces = [5,4.7,4.6,4.4,4.3,4.1,4.2,4.2,4.2,4.1,];
 
 const remap = d3.scaleLinear(d3.extent(divorces), d3.extent(margarine));
 
+const catScale = ["#3b5fc0","#ffd754","#c7c1bf","#a160af","#ff9c38","#5ca34b","#f794b9","#61b0ff","#ed393f","#a87a54"];
+
+```
+
+```js
+temperature.map( d=> d.day = new Date(d.date));
+
 ```
 
 # Una petita guia
-Primer de tot cal reconeixer que el simple fet que hi hagi dades obertes sobre un tema ja és una gran notícia... Doncs el fet de que hi hagi dades acompanyada d'una visualització que ajudi els ciutadans a entendre-les i explorar-les és ja notícia increïble!!
+Primer de tot cal reconeixer que el simple fet que hi hagi dades obertes sobre un tema ja és una gran notícia... Doncs el fet de que hi hagi dades acompanyades d'una visualització que ens ajudi a entendre-les i explorar-les és ja notícia increïble!!
 
-Per tant, quan redissenyeu els panells de dades obertes, us recomanem que **seguiu principis que respectin el disseny original alhora que milloreu la seva claredat i la usabilitat**. En fer-ho, honorem la intenció i l'esforç dels dissenyadors originals i defensem un enfocament respectuós i reflexiu de la crítica i la millora.
+Per tant, si la vostra proposta es basa en redissenyar un panell de dades obertes, us recomanem que **seguiu principis que respectin el disseny original alhora que milloreu la seva claredat i la usabilitat**. En fer-ho, honorem la intenció i l'esforç dels dissenyadors originals i defensem un enfocament respectuós i reflexiu de la crítica i la millora.
 
-En què es tradueix això? **Començeu per les mateixes preguntes que el panell o l'informe original, però responeu amb propostes visuals millorades**. Això significa centrar-se en els estats actuals de les dades, la seva distribució, afegir tendències contextuals ... Per exemple, si el original utilitza gràfics de barres, podríeu considerar l'ús de visualitzacions més avançades que puguin mostrar múltiples variables simultàniament o transmetre informació més matisada sense aclaparar l'usuari.
+En què es tradueix això? **Començeu per les mateixes preguntes que el panell o l'informe original, però responeu amb propostes visuals millorades**. Això significa centrar-se en els estats actuals de les dades, la seva distribució, afegir tendències contextuals ... Per exemple, si el original utilitza gràfics de barres, podríeu considerar l'ús de visualitzacions que puguin mostrar múltiples variables simultàniament o transmetre informació més matisada sense aclaparar la gent.
 
 **Veiem aquests redissenys com una evolució i no com un reemplaçament**, preservant l'essència de l'original alhora que empenyem els límits del que és possible.
 
@@ -95,8 +106,22 @@ Evita sobrecarregar les targetes amb massa informació. Cada targeta ha de centr
 ---
 Assegura't que la **relació d'aspecte dels teus gràfics** no distorsiona els patrons de les dades. Gràfics massa amples o massa estrets poden portar a interpretacions errònies. El format 4×3 (apaïsat) o 3×4 (vertical) potser son els més comuns i prudents, però també pots fer servir l'1×1 pels diagrames de dispersió, o formats més extrems: molt vertical si son moltes barres horitzontal apilades, molt apaïsat si es una serie temporal molt llarga i detallada.
 <div class="grid grid-cols-4">
-  <div class="card example wrong grid-colspan-3"><h1>10</h1></div>
-  <div class="card example right grid-colspan-1"><h1>20</h1></div>
+  <div class="card example wrong grid-colspan-3">
+  ${resize((width) => 
+    Plot.barY(
+      penguins,
+      Plot.groupX({ y: "count" }, { x: "island", fill: "species" })).plot({ width, color: { legend: true } })
+  )}
+
+  </div>
+  <div class="card example right grid-colspan-1">
+   ${resize((width) => 
+    Plot.barY(
+      penguins,
+      Plot.groupX({ y: "count" }, { x: "island", fill: "species" })).plot({ width, color: { legend: true } })
+  )}
+
+  </div>
 </div>
 
 ---
@@ -189,20 +214,198 @@ Els gràfics de dalt són una broma, compte amb les [correlacions espúries](htt
 I **no oblideu les taules**! Són una eina molt valuosa per presentar dades de manera organitzada i accessible. Quan permeten la cerca, faciliten als usuaris trobar informació específica ràpidament, i enriquides amb *sparklines* poden proporcionar una visió ràpida de les tendències sense necessitat de gràfics separats.
 
 ## Guía d'estil
-*Observable Framework* ja ofereix tots els elements de disseny que necessiteu per formatar el vostre panell. [Llegeix sobre aixó aquí.](https://observablehq.com/framework/markdown)
+*Observable Framework* ja ofereix tots els elements de disseny que necessiteu per formatar el vostre panell. [Llegiu sobre aixó aquí.](https://observablehq.com/framework/markdown)
 
-Els estils de lletra ja estan predefinits al projecte. La iniciativa va de desbloquejar dades obertes mitjançant la visualització, no de genialitats tipogràfiques, no cal afegir nous tipus o estils de lletra.
+Els estils de lletra ja estan predefinits al projecte. *La iniciativa va de desbloquejar dades obertes mitjançant la visualització, no de genialitats tipogràfiques: no cal afegir nous tipus o estils de lletra.*
 
-# Títol h1
+### Headings, paragraphs and labels
+
 ---
-## Títol h2
+
+<h1>Títol h1</h1>
+
 ---
-### Títol h3
+<h2>Títol h2</h2>
+
 ---
-#### Títol h4
+
+<h3>Títol h3</h3>
+
+---
+
+<h3>Títol h4</h4>
+
 ---
 
 Text de paràgraf a l'informe
 
-const cat = ["#3b5fc0,"#ffd754","#c7c1bf","#a160af","#ff9c38","#5ca34b","#f794b9","#61b0ff","#ed393f","#a87a54"];
-const blues = 
+---
+
+<p class="caption">Text a fonts i notes</p>
+
+---
+
+### Colors
+L'**escala categòrica** s'utilitza per representar dades que cauen en categories discretes i no relacionades entre si. Aquest tipus d'escala és ideal per comparar grups diferents, com ara tipus de productes, noms de departaments, o categories de serveis, on cada categoria és visualment distingida per colors o formes diferents.
+
+Com veus, com màxim, tens 10 colors. I ja son molts. Si tens més categories, caldries que les combinesis en un grup *"Altres"* o fer servir *small multiples* (o *facets*).
+
+```js
+const blue = "#3b5fc0", yellow = "#ffd754", grey = "#c7c1bf", purple = "#a160af", orange = "#ff9c38", green = "#5ca34b", pink = "#f794b9", sky = "#61b0ff", red = "#ed393f", brown = "#a87a54";
+const cat = [blue, yellow, grey, purple, orange, green, pink, sky, red, brown];
+const blues = [chroma(sky).brighten(2).hex(),chroma(blue).darken(1).hex()];
+const greys = [chroma(grey).brighten(1).hex(),chroma(grey).darken(3).hex()];
+const bupu = [chroma(sky).brighten(2).desaturate(.3).hex(),chroma(purple).darken(2).saturate(2).hex()];
+const purd = [chroma(purple).brighten(2.4).desaturate(.5).hex(), chroma(red).darken(2.4).saturate(1).hex()];
+const rdpu = [chroma(pink).brighten(1.5).hex(), chroma(purple).darken(2).saturate(2).hex()];
+```
+
+```js echo
+cat
+```
+
+Aquestes **escala seqüencials** s'aplican a dades que tenen un ordre natural o progressiu, típicament quantitats o rangs. Aquesta escala utilitza un gradient de colors, generalment des de colors clars a fosc, per representar l'increment o decrement d'un valor, facilitant la visualització de tendències o patrons dins d'un conjunt de dades.
+
+```js
+resize((width) =>
+  Plot.plot({
+    width:width > 640 ? 640 : width,
+    x: {type: "band", domain: "ABCDEFGHIJ"},
+    color: {
+      domain: "ABCDEFGHIJ",
+      range: cat
+    },
+    marks: [
+      Plot.cell("ABCDEFGHIJ", {x: Plot.identity, fill: Plot.identity, stroke: (d,i) => chroma(catScale[i]).darken(.8).hex() })
+    ]
+  }))
+```
+
+```js echo
+blues
+```
+
+```js
+resize((width) =>
+  Plot.plot({
+    width:width > 640 ? 640 : width,
+    height: 80,
+    color: { 
+      type:"linear",
+      range: blues
+    },
+    x:{interval: "year"},
+    y:{ticks: ""},
+    marks: [
+      Plot.rectY(
+        temperature,
+        { x: "day", fill: "value" }
+      )
+    ]
+  })
+)
+```
+
+```js echo
+greys
+```
+
+```js
+resize((width) =>
+  Plot.plot({
+    width:width > 640 ? 640 : width,
+    height: 80,
+    color: { 
+      type:"linear",
+      range: greys
+    },
+    x:{interval: "year"},
+    y:{ticks: ""},
+    marks: [
+      Plot.rectY(
+        temperature,
+        { x: "day", fill: "value" }
+      )
+    ]
+  })
+)
+```
+
+```js echo
+bupu
+```
+
+```js
+resize((width) =>
+  Plot.plot({
+    width:width > 640 ? 640 : width,
+    height: 80,
+    color: { 
+      type:"linear",
+      range: bupu
+    },
+    x:{interval: "year"},
+    y:{ticks: ""},
+    marks: [
+      Plot.rectY(
+        temperature,
+        { x: "day", fill: "value" }
+      )
+    ]
+  })
+)
+```
+
+```js echo
+purd
+```
+
+```js
+resize((width) =>
+  Plot.plot({
+    width:width > 640 ? 640 : width,
+    height: 80,
+    color: { 
+      type:"linear",
+      range: purd,
+      interpolate: "hcl"
+    },
+    x:{interval: "year"},
+    y:{ticks: ""},
+    marks: [
+      Plot.rectY(
+        temperature,
+        { x: "day", fill: "value" }
+      )
+    ]
+  })
+)
+```
+
+```js echo
+rdpu
+```
+
+```js
+resize((width) =>
+  Plot.plot({
+    width:width > 640 ? 640 : width,
+    height: 80,
+    color: { 
+      type:"linear",
+      range: rdpu,
+      interpolate: "hcl"
+    },
+    x:{interval: "year"},
+    y:{ticks: ""},
+    marks: [
+      Plot.rectY(
+        temperature,
+        { x: "day", fill: "value" }
+      )
+    ]
+  })
+)
+```
+
+Aquestes **escalas divergents** son útils per visualitzar dades que oscil·len entorn d'un punt mitjà o valor crític, com desviacions o diferències respecte a una mitjana. Utilitza dos colors contrastants que esdevenen més intensos a mesura que s'allunyen del punt central, permetent una interpretació ràpida de les àrees on les dades divergeixen significativament del valor de referència.
