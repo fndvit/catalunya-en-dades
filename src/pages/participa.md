@@ -10,6 +10,14 @@ La competició no està oberta a professionals establerts o persones que ja tene
 
 TK TK Fill this form Google Form link
 
+## Premis
+La iniciativa vol incentivar i reconèixer l'excel·lència i la creativitat en les visualització de dades obertes, així que per animar-vos a tots a participar i presentar les vostres millors idees i projectes, a partir de setembre, donarem **🏅premis mensuals de €500** per reconèixer les millors aportacions.
+
+Els guanyadors mensuals es converteixen automàticament en finalistes. Els jutges també podran incloure altres presentacions que considerin destacables.
+ Això significa que tindran l'oportunitat de competir pel **🏆 gran premi final de €2.500**.
+
+L'equip de la ViT seleccionarà els guanyadors mensuals; mentre que el premi final serà atorgat per un guardonat equip internacional de jutges.
+
 ## Mentories
 L'equip de la Fundació ViT inclou especialistes en dades obertes, dataviz i disseny interactiu, visualització científica, ètica de la IA, aprenentatge automàtic... i està liderat pels multipremiats experts [Karma Peiró](https://ca.wikipedia.org/wiki/Karma_Peir%C3%B3) i [Xaquín G.V.](https://explorers.nationalgeographic.org/directory/xaquin-veira-gonzalez)
 
@@ -25,14 +33,6 @@ En aquesta reunió parlarem de dubtes, consideracions i problemes específics qu
 En aquesta última reunió revisarem tota la feina feta, enfocant-nos en els últims detalls i ajustos necessaris per completar el projecte. Cal que abans de la reunió hàgiu integrat tot el codi a la branca, assegurant-vos que funcioni correctament.
 
 Una vegada s'hagin fet els ajustos finals necessaris, es farà la *pull request* per incloure l'informe o el panell de dades al projecte.
-
-## Premis
-La iniciativa vol incentivar i reconèixer l'excel·lència i la creativitat en les visualització de dades obertes, així que per animar-vos a tots a participar i presentar les vostres millors idees i projectes, a partir de setembre, donarem **🏅premis mensuals de €500** per reconèixer les millors aportacions.
-
-Els guanyadors mensuals es converteixen automàticament en finalistes. Els jutges també podran incloure altres presentacions que considerin destacables.
- Això significa que tindran l'oportunitat de competir pel **🏆 gran premi final de €2.500**.
-
-L'equip de la ViT seleccionarà els guanyadors mensuals; mentre que el premi final serà atorgat per un guardonat equip internacional de jutges.
 
 ## Per on començar
 El millor punt d'inici es el propi [portal de dades obertes de Catalunya](https://analisi.transparenciacatalunya.cat/browse?limitTo=datasets) per explorar els conjunts de dades disponibles. N'hi ha 825 conjunts de dades.
