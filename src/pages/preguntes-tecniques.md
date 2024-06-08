@@ -51,6 +51,7 @@ const lineChartProvince = (width, height, province, color) => Plot.plot({
   },
   y: {
     grid: true,
+    domain: [5,11],
     label: "Taxa d'atur (%)"
   }
 });
@@ -61,7 +62,7 @@ const MAPBOX_TOKEN = "pk.eyJ1IjoiZm5kdml0IiwiYSI6ImNseDR5dDV5dTBmeWMyaXNjemRkbDA
 # Qüestions tècniques
 ---
 ## Gràfics amb Plot
-Plot és una biblioteca de JavaScript desenvolupada per Observable per a la visualització de dades, especialment dissenyada per accelerar l'anàlisi exploratòria de dades. Ofereix una interfície concisa i expressiva que permet crear gràfics sofisticats amb menys codi. Plot està construït sobre d3, però simplifica moltes de les seves operacions per facilitar-ne l'ús.
+[*Plot*](https://observablehq.com/plot/what-is-plot) és una biblioteca de *JavaScript* desenvolupada per *Observable* per a la visualització de dades, especialment dissenyada per accelerar l'anàlisi exploratòria de dades. Ofereix una interfície concisa i expressiva que permet crear gràfics sofisticats amb menys codi. *Plot* està construït sobre [d3](https://d3js.org/), però simplifica moltes de les seves operacions per facilitar-ne l'ús.
 
 ### Exemple de codi per a gràfic de línies
 Aquest exemple visualitza dades anuals d'atur per província a Catalunya.
@@ -99,17 +100,23 @@ const lineChart = (width) => Plot.plot({
 });
 ```
 
-Normalment, utilitzareu els **gràfics dins de targetes** en un panell de dades. Llegiu més sobre les [nostres guies sobre com estructurar panells per a aquest projecte](./guia.md) i sobre com funcionen les [*grids* a Observable Framework](https://observablehq.com/framework/markdown#grids).
+Normalment, utilitzareu els **gràfics dins de targetes** en un panell de dades. Llegiu més sobre les [nostres guies sobre com estructurar panells per a aquest projecte](./guia.md) i sobre com funcionen les [*grids* a *Observable Framework*](https://observablehq.com/framework/markdown#grids).
 
 A sota es mostra un exemple de quatre *cards* per a les quatre províncies.
 
 ```html echo
-<div class="grid grid-cols-2" style="grid-auto-rows: 240px;">
+<div class="grid grid-cols-4" style="grid-auto-rows: 240px;">
   <div class="card">
     ${resize((width, height) => lineChartProvince(width, height, "Barcelona", blue))}
   </div>
   <div class="card">
+    ${resize((width, height) => lineChartProvince(width, height, "Tarragona", purple))}
+  </div>
+  <div class="card">
     ${resize((width, height) => lineChartProvince(width, height, "Girona", yellow))}
+  </div>
+  <div class="card">
+    ${resize((width, height) => lineChartProvince(width, height, "Lleida", grey))}
   </div>
 </div>
 ```
@@ -117,10 +124,10 @@ A sota es mostra un exemple de quatre *cards* per a les quatre províncies.
 Més examples de gràfics aqui.
 
 ## Mapes amb Mapbox
-Mapbox és una eina poderosa per integrar mapes interactius en aplicacions web. En aquesta secció, explorarem com utilitzar Mapbox amb Observable Framework per crear mapes detallats i interactius. Això inclou l'ús de choropleths per mostrar dades geoespacials.
+[*Mapbox*](https://www.mapbox.com/) és una llibreria per produïr mapes interactius en aplicacions web. En aquesta secció, explorarem com utilitzar *Mapbox* a *Observable Framework* per crear, per example, mapes coroplètics per mostrar dades geoespacials.
 
 ### Exemple de codi per a un mapa bàsic
-Aquest exemple mostra com integrar un mapa bàsic de Mapbox dins d'una pàgina d'Observable.
+Aquest exemple mostra com integrar un **mapa bàsic de Mapbox** dins d'*Observable*.
 
 ```js echo
 const simple = display(document.createElement("div"));
@@ -139,8 +146,8 @@ const map = new mapboxgl.Map({
 invalidation.then(() => map.remove());
 ```
 
-## Exemple de codi per a un mapa de coropletes
-Aquest exemple mostra com crear un mapa coroplèric, que fa servir color per representar la variable estadística al mapa. En aquest cas es visualitzen dades d'atur per provincia.
+### Exemple de codi per a un mapa de coropletes
+Aquest exemple mostra com crear un mapa coroplètic, que fa servir **color per representar la variable estadística al mapa**. En aquest cas es visualitzen dades d'atur per provincia.
 
 ```js echo
 const choropleth = display(document.createElement("div"));
@@ -148,49 +155,153 @@ choropleth.style = "height: 540px;";
 
 const map = new mapboxgl.Map({
   container: choropleth,
-  style: 'mapbox://styles/mapbox/light-v10',
   accessToken: MAPBOX_TOKEN,
+  style: 'mapbox://styles/fndvit/clvnpq95k01jg01qz1px52jzf',
   center: [2.1745, 41.65],
   zoom: 6.8
 });
 
+const unemploymentData = [
+  { province: "Barcelona", rate: 8 },
+  { province: "Girona", rate: 6 },
+  { province: "Lleida", rate: 5 },
+  { province: "Tarragona", rate: 7 }
+];
+
+const createColorExpression = (data) => {
+  const colorExpression = [
+    "step",
+    ["get", "rate"],
+    "#f0f0f0",
+    5,
+    "#fec3b8",
+    6,
+    "#c289a8",
+    7,
+    "#885198",
+    8,
+    "#4c1787"
+  ];
+
+  const matchExpression = ["match", ["get", "name"]];
+
+  data.forEach((entry) => {
+    matchExpression.push(entry.province, entry.rate);
+  });
+
+  matchExpression.push(0);
+
+  colorExpression[1] = matchExpression;
+
+  return colorExpression;
+};
+
 map.on('load', function () {
-  map.addSource('atur', {
+  map.addSource('unemployment', {
     type: 'geojson',
-    data: 'https://raw.githubusercontent.com/codeforamerica/click_that_hood/master/public/data/spain-provinces.geojson' // URL a les dades GeoJSON
+    data: 'https://raw.githubusercontent.com/codeforamerica/click_that_hood/master/public/data/spain-provinces.geojson'
   });
 
   map.addLayer({
-    id: 'atur',
+    id: 'unemployment-layer',
     type: 'fill',
-    source: 'atur',
+    source: 'unemployment',
     paint: {
-      'fill-color': [
-        'interpolate',
-        ['linear'],
-        ['get', 'unemployment_rate'], // Nom de la propietat que conté la taxa d'atur
-        0, '#f8d5cc',
-        10, '#f4bfb6',
-        20, '#f1a8a5',
-        30, '#ee8f9a',
-        40, '#ec739b',
-        50, '#dd5ca8',
-        60, '#c44cc0',
-        70, '#9f43d7',
-        80, '#6e40e6'
-      ],
-      'fill-opacity': 0.75
+      'fill-color': createColorExpression(unemploymentData),
+      'fill-opacity': 0.5,
+      "fill-outline-color": createColorExpression(unemploymentData)
     }
-  },
-  "waterway-label"
-  );
+  }, "waterway");
 });
 
 ```
 
-- **Carregadors de dades**: Codi d'exemple per carregar diversos formats de dades (CSV, JSON, APIs).
-- **Exemple de codi de gràfics**: Fragments i plantilles per a tipus comuns de gràfics utilitzant Plot.
-- **Exemple de codi de mapes**: Exemples d'integració de mapes interactius en Mapbox.
-- **Gestió del codi**:
-  - Bones pràctiques per mantenir el codi ordenat i ben comentat.
-  - Guia pas a pas sobre com crear i enviar Pull Requests (PRs) per a projectes col·laboratius.
+## Carregadors de dades
+Els carregadors de dades (*data loaders*) permeten generar instantànies de dades pre-processades durant el procés de construcció del projecte. Aquests carregadors poden ser escrits en qualsevol llenguatge de programació i són útils per accedir, transformar i preparar dades per a la seva visualització.
+
+### Avantatges dels carregadors de dades
+* **Poliglotisme:** Pots utilitzar qualsevol llenguatge de programació que prefereixis, com Python, R, SQL, JavaScript, entre altres. Això facilita que equips diversos treballin amb les eines amb les quals estan més còmodes.
+* **Rendiment:** Els carregadors de dades poden processar grans quantitats de dades en temps de construcció, la qual cosa redueix el temps de càrrega del client. Això resulta en pàgines més ràpides.
+* **Optimització:** Permeten filtrar, agregar i minimitzar les dades enviades al client, millorant la seguretat i privacitat de les dades mostrades.
+
+### Exemple de Codi: Carregador de Dades en JavaScript
+Suposem que volem carregar dades dels embassaments a Catalunya des d'un fitxer CSV.
+
+```js run=false
+const response = await fetch("https://analisi.transparenciacatalunya.cat/resource/gn9e-3qhr.json?$limit=32877");
+if (!response.ok) throw new Error(`fetch failed: ${response.status}`);
+const json = await response.json();
+
+const data = json.map((d) => {
+  const capacity = (100 * d.volum_embassat) / d.percentatge_volum_embassat;
+  const date = new Date(d.dia);
+  const pct = +d.percentatge_volum_embassat;
+  const level = +d.volum_embassat;
+  return { date, pct, level, capacity };
+}).sort( (a,b) => a.date - b.date);
+
+process.stdout.write(JSON.stringify(data));
+```
+
+```js
+const response = await fetch("https://analisi.transparenciacatalunya.cat/resource/gn9e-3qhr.json?$limit=32877");
+if (!response.ok) throw new Error(`fetch failed: ${response.status}`);
+const json = await response.json();
+
+const embassaments = json.map((d) => {
+  const capacity = (100 * d.volum_embassat) / d.percentatge_volum_embassat;
+  const date = new Date(d.dia);
+  const pct = +d.percentatge_volum_embassat;
+  const level = +d.volum_embassat;
+  return { date, pct, level, capacity };
+}).sort( (a,b) => a.date - b.date);
+```
+
+Aquest carregador de dades obté dades des d'una API, les transforma al format adequat i genera un fitxer JSON amb les dades dels embassaments.
+
+### Com utilitzar els carregadors de dades
+Un cop el carregador de dades ha generat el fitxer, pots accedir-hi des del client utilitzant `FileAttachment`.
+
+```js run=false
+const embassaments = FileAttachment("data/dades.json").json();
+```
+
+`FileAttachment` retorna una `Promise`, podeu utilitzar les dades en un bloc de codi diferent només trucant `embassaments`.
+
+```js echo
+embassaments
+```
+
+Per a més informació i exemples sobre com escriure carregadors de dades en diferents llenguatges, pots visitar [la documentació d'*Observable Framework*](https://observablehq.com/framework/loaders).
+
+## Gestió del codi 
+Per mantenir el projectes ordenat i comprensible —donat que es un projecte col·laboratiu— us agraïm que tingueu en compte aquestes bones pràctiques per mantenir el codi ben organitzat i ben comentat, així com una guia pas a pas sobre com crear i enviar *Pull Requests* (PRs).
+
+### Bones pràctiques per escriure'l
+- **Nomenclatura consistent:** Utilitza noms descriptius i coherents per a variables, funcions i arxius. Això fa que el codi sigui més llegible i fàcil de mantenir.
+- **Comentaris eficients:** Afegeix comentaris només quan sigui necessari per explicar el perquè d'alguna cosa, no el què. Els bons comentaris expliquen les decisions i intencions del codi.
+- **Estructura Clara:** Organitza el codi en blocs lògics i utilitza l'indentació adequada. Divideix el codi en mòduls o fitxers segons la seva funcionalitat.
+- **Refactorització Regular:** Refactoritza el codi regularment per millorar la seva claredat i eficiència sense canviar el seu comportament extern.
+
+### Com col·laborar i enviar *Pull Requests* (PRs)
+Per enviar la vostra proposta, vosaltres (o nosaltres) haureu creat un *Issue* a *GitHub*. Aquest *Issue* tindrà assignada una **branca primària**.
+
+Per exemple, si heu proposat un panell de dades sobre ['Consum d'energia elèctrica per municipis i sectors de Catalunya'](https://analisi.transparenciacatalunya.cat/Energia/Consum-d-energia-el-ctrica-per-municipis-i-sectors/8idm-becu/about_data):
+
+- N'hi haurà una branca anomenada `consum-electric`,
+- per a cada *feature*, afegireu el nom `consum-electric/barchart`;
+- i si formes part d'un equip, podeu optar per afegir-ne inicials per cadescú `consum-electric/barchart-xgv`.
+
+De totes maneres, sigueu breus, concises i utilitzeu sempre `kebab-case`.
+
+Les *Pull Requests* són una part crucial del flux de treball col·laboratiu. Aqui us presentem una guia pas a pas per crear i enviar una PR.
+
+- **Clona el repositori**
+- **Canvia a la branca del teu projecte:** Abans de fer canvis, crea una nova branca per a la teva *feature* seguint [l'estructura que vam explicar a dalt](#com-col·laborar-i-enviar-pull-requests-(prs)). 
+- **Fes els teus canvis i fes *commit*:** Fes els canvis necessaris al codi i fes un commit amb un missatge descriptiu.
+- **Puja els canvis a GitHub**
+- **Crea una *Pull Request* cap la teva branca de projecte:** Ves al repositori a GitHub i crea una PR des de la teva branca —on has implementat la teva *feature*— cap a la branca primària del teu panell de dades. 
+- **I després una altra cap a `dev`:** Després de la última reunió de [mentoria](participa#mentories), crea una PR desde la branca primària del teu panell de dades cap a la branca `dev`. Afegeix una descripció clara dels canvis realitzats i qualsevol informació rellevant per a la revisió.
+- **Revisió i *merge*:** Sol·licita als revisors que es mirin el teu PR. Fes els canvis sol·licitats si és necessari. Un cop el PR sigui aprovat, podrà ser fusionat a la branca `dev` del repositori original. (Només els mantenidors poden fer PR de `dev` a `main`)
+
+Us recomanem fer servir [*GitHub Desktop*](https://desktop.github.com/) per gestionar l'accés al repositori o directament des de [*Visual Studio Code*](https://code.visualstudio.com/docs/sourcecontrol/github).
