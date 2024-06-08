@@ -15,7 +15,7 @@ export default {
     {name: "Vols participar?", path: "/pages/participa"},
     {name: "Una petita guia", path: "/pages/guia"},
     {name: "Qüestions tècniques", path: "/pages/preguntes-tecniques"},
-    {name: "Un caso d'estudi", path: "/pages/exemples"},
+    {name: "Un cas d'estudi", path: "/pages/exemples"},
     {name: "El nostre equip", path: "/pages/equip"},
     {name: "Codi de conducta", path: "/pages/codi-de-conducta"},
     {name: "Sponsors", path: "/pages/sponsors"},
