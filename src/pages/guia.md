@@ -248,8 +248,6 @@ Text de paràgraf a l'informe
 ### Colors
 L'**escala categòrica** s'utilitza per representar dades que cauen en categories discretes i no relacionades entre si. Aquest tipus d'escala és ideal per comparar grups diferents, com ara tipus de productes, noms de departaments, o categories de serveis, on cada categoria és visualment distingida per colors o formes diferents.
 
-Com veus, com màxim, tens 10 colors. I ja son molts. Si tens més categories, caldries que les combinesis en un grup *"Altres"* o fer servir *small multiples* (o *facets*).
-
 ```js
 const blue = "#3b5fc0", yellow = "#ffd754", grey = "#c7c1bf", purple = "#a160af", orange = "#ff9c38", green = "#5ca34b", pink = "#f794b9", sky = "#61b0ff", red = "#ed393f", brown = "#a87a54";
 const cat = [blue, yellow, grey, purple, orange, green, pink, sky, red, brown];
@@ -258,13 +256,14 @@ const greys = [chroma(grey).brighten(1).hex(),chroma(grey).darken(3).hex()];
 const bupu = [chroma(sky).brighten(2).desaturate(.3).hex(),chroma(purple).darken(2).saturate(2).hex()];
 const purd = [chroma(purple).brighten(2.4).desaturate(.5).hex(), chroma(red).darken(2.4).saturate(1).hex()];
 const rdpu = [chroma(pink).brighten(1.5).hex(), chroma(purple).darken(2).saturate(2).hex()];
+const buylrd = [chroma(blue).darken(1.2).saturate(2).hex(),chroma(yellow).brighten(1.8).desaturate(1.8).hex(),chroma(red).darken(1.2).saturate(2).hex()];
 ```
+
+Com veus, com màxim, tens 10 colors. I ja son molts. Si tens més categories, caldries que les combinesis en un grup *"Altres"* o fer servir *small multiples* (o *facets*).
 
 ```js echo
 cat
 ```
-
-Aquestes **escala seqüencials** s'aplican a dades que tenen un ordre natural o progressiu, típicament quantitats o rangs. Aquesta escala utilitza un gradient de colors, generalment des de colors clars a fosc, per representar l'increment o decrement d'un valor, facilitant la visualització de tendències o patrons dins d'un conjunt de dades.
 
 ```js
 resize((width) =>
@@ -280,6 +279,8 @@ resize((width) =>
     ]
   }))
 ```
+
+Aquestes **escales seqüencials** s'aplican a dades que tenen un ordre natural o progressiu, típicament quantitats o rangs. Aquesta escala utilitza un gradient de colors, generalment des de colors clars a fosc, per representar l'increment o decrement d'un valor, facilitant la visualització de tendències o patrons dins d'un conjunt de dades.
 
 ```js echo
 blues
@@ -409,3 +410,31 @@ resize((width) =>
 ```
 
 Aquestes **escalas divergents** son útils per visualitzar dades que oscil·len entorn d'un punt mitjà o valor crític, com desviacions o diferències respecte a una mitjana. Utilitza dos colors contrastants que esdevenen més intensos a mesura que s'allunyen del punt central, permetent una interpretació ràpida de les àrees on les dades divergeixen significativament del valor de referència.
+
+```js echo
+buylrd
+```
+
+```js
+resize((width) =>
+  Plot.plot({
+    width:width > 640 ? 640 : width,
+    height: 80,
+    color: { 
+      type:"diverging",
+      domain: [d3.min(temperature, d => d.value), d3.max(temperature, d => d.value)],
+      range: [chroma(blue).darken(1.2).saturate(2),chroma(yellow).brighten(1.8).desaturate(1.8),chroma(red).darken(1.2).saturate(2)],
+    },
+    x:{interval: "year"},
+    y:{ticks: ""},
+    marks: [
+      Plot.rectY(
+        temperature,
+        { x: "day", fill: "value" }
+      )
+    ]
+  })
+)
+```
+
+Com veieu, podeu **crear les escales seqüencials o divergents a partir dels nostres colors a l'escala catagòrica** 😇 —o fer servir els [esquemes de color per defecte](https://observablehq.com/plot/features/scales#color-scales) a *Plot*.
