@@ -60,7 +60,6 @@ const MAPBOX_TOKEN = "pk.eyJ1IjoiZm5kdml0IiwiYSI6ImNseDR5dDV5dTBmeWMyaXNjemRkbDA
 ```
 
 # Qüestions tècniques
----
 ## Gràfics amb Plot
 [*Plot*](https://observablehq.com/plot/what-is-plot) és una biblioteca de *JavaScript* desenvolupada per *Observable* per a la visualització de dades, especialment dissenyada per accelerar l'anàlisi exploratòria de dades. Ofereix una interfície concisa i expressiva que permet crear gràfics sofisticats amb menys codi. *Plot* està construït sobre [d3](https://d3js.org/), però simplifica moltes de les seves operacions per facilitar-ne l'ús.
 

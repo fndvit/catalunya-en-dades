@@ -4,7 +4,6 @@ toc: true
 ---
 
 # Codi de conducta per a contribuïdors
----
 ## El nostre compromís
 
 En l'interès de fomentar un ambient obert i acollidor, nosaltres com a contribuïdors i mantenidors ens comprometem a fer de la participació en el nostre projecte i la nostra comunitat una experiència lliure d'assetjament per a tothom, independentment de l'edat, grandària corporal, discapacitat, ètnia, identitat i expressió de gènere, nivell d'experiència, educació, estatus socioeconòmic, nacionalitat, aparença personal, raça, religió, o identitat i orientació sexual.
