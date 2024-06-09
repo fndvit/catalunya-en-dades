@@ -449,6 +449,9 @@ Com veieu, podeu **crear les escales seqüencials o divergents a partir dels nos
 
 ## Disseny inclusiu
 TK TK About ditching checking "accessibility requirements" for a different workflow
+
 TK TK Rethink your display instead of adding patterns or other stuff 
+
 TK TK Always ensure contrast 
+
 TK TK References Amy Cesal and Frank Elavsky

@@ -282,7 +282,7 @@ Els carregadors de dades (*data loaders*) permeten generar instantànies de dade
 * **Rendiment:** Els carregadors de dades poden processar grans quantitats de dades en temps de construcció, la qual cosa redueix el temps de càrrega del client. Això resulta en pàgines més ràpides.
 * **Optimització:** Permeten filtrar, agregar i minimitzar les dades enviades al client, millorant la seguretat i privacitat de les dades mostrades.
 
-### Exemple de Codi: Carregador de Dades en JavaScript
+### Exemple de codi per a un carregador de dades en *JavaScript*
 Suposem que volem carregar dades dels embassaments a Catalunya des de [l'API del Portal de Transparència de Catalunya](https://analisi.transparenciacatalunya.cat/Medi-Ambient/Quantitat-d-aigua-als-embassaments-de-les-Conques-/gn9e-3qhr/about_data).
 
 ```js run=false
@@ -318,13 +318,13 @@ const embassaments = json.map((d) => {
 Aquest carregador de dades obté dades des d'una API, les transforma al format adequat i genera un fitxer *JSON* amb les dades dels embassaments.
 
 ### Com utilitzar els carregadors de dades
-Un cop el carregador de dades ha generat el fitxer, pots accedir-hi des del client utilitzant `FileAttachment`.
+Si el carregador aquest es diu per exemple `embassaments.json.js`, haurà generat un fitxer `embassaments.json`: ara pots accedir-hi des del client utilitzant `FileAttachment`.
 
 ```js run=false
 const embassaments = FileAttachment("data/dades.json").json();
 ```
 
-`FileAttachment` retorna una `Promise`, podeu utilitzar les dades en un bloc de codi diferent només trucant `embassaments`.
+`FileAttachment` retorna una `Promise`, podeu utilitzar les dades en un bloc de codi diferent només cridant `embassaments`.
 
 ```js echo
 embassaments
