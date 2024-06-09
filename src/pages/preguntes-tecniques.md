@@ -146,7 +146,7 @@ invalidation.then(() => map.remove());
 ```
 
 ### Exemple de codi per a un mapa de coropletes
-Aquest exemple mostra com crear un mapa coroplètic, que fa servir **color per representar la variable estadística al mapa**. En aquest cas es visualitzen dades d'atur per provincia.
+Aquest exemple mostra com crear un mapa coroplètic, que fa servir **color per representar la variable estadística al mapa**. En aquest cas es visualitzen dades d'atur per província.
 
 ```js echo
 const choropleth = display(document.createElement("div"));
@@ -274,12 +274,12 @@ embassaments
 Per a més informació i exemples sobre com escriure carregadors de dades en diferents llenguatges, pots visitar [la documentació d'*Observable Framework*](https://observablehq.com/framework/loaders).
 
 ## Gestió del codi 
-Per mantenir el projectes ordenat i comprensible —donat que es un projecte col·laboratiu— us agraïm que tingueu en compte aquestes bones pràctiques per mantenir el codi ben organitzat i ben comentat, així com una guia pas a pas sobre com crear i enviar *Pull Requests* (PRs).
+Per mantenir el projectes ordenat i comprensible —donat que és un projecte col·laboratiu— us agraïm que tingueu en compte aquestes bones pràctiques per mantenir el codi ben organitzat i ben comentat, així com una guia pas a pas sobre com crear i enviar *Pull Requests* (PRs).
 
 ### Bones pràctiques per escriure'l
 - **Nomenclatura consistent:** Utilitza noms descriptius i coherents per a variables, funcions i arxius. Això fa que el codi sigui més llegible i fàcil de mantenir.
 - **Comentaris eficients:** Afegeix comentaris només quan sigui necessari per explicar el perquè d'alguna cosa, no el què. Els bons comentaris expliquen les decisions i intencions del codi.
-- **Estructura Clara:** Organitza el codi en blocs lògics i utilitza l'indentació adequada. Divideix el codi en mòduls o fitxers segons la seva funcionalitat.
+- **Estructura Clara:** Organitza el codi en blocs lògics i utilitza la indentació adequada. Divideix el codi en mòduls o fitxers segons la seva funcionalitat.
 - **Refactorització Regular:** Refactoritza el codi regularment per millorar la seva claredat i eficiència sense canviar el seu comportament extern.
 
 ### Com col·laborar i enviar *Pull Requests* (PRs)
@@ -293,7 +293,7 @@ Per exemple, si heu proposat un panell de dades sobre ['Consum d'energia elèctr
 
 De totes maneres, sigueu breus, concises i utilitzeu sempre `kebab-case`.
 
-Les *Pull Requests* són una part crucial del flux de treball col·laboratiu. Aqui us presentem una guia pas a pas per crear i enviar una PR.
+Les *Pull Requests* són una part crucial del flux de treball col·laboratiu. Aquí us presentem una guia pas a pas per crear i enviar una PR.
 
 - **Clona el repositori**
 - **Canvia a la branca del teu projecte:** Abans de fer canvis, crea una nova branca per a la teva *feature* seguint [l'estructura que vam explicar a dalt](#com-col·laborar-i-enviar-pull-requests-(prs)). 
