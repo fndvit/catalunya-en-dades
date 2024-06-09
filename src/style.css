@@ -74,6 +74,10 @@ li { font-weight: 500; }
   .5px .5px 3px #ffffff33;
 }
 
+#observablehq-toc nav div {
+  display: none;
+}
+
 .note {
   border-left: none;
   border-radius: .3rem;
