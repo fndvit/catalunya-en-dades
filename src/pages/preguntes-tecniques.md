@@ -76,7 +76,7 @@ TK TK Veuràs aixó
 <pre data-copy="none"><b class="green">Observable Framework</b> v1.8.0
 ↳ <u><a href="http://127.0.0.1:3000/" style="color: inherit;">http://127.0.0.1:3000/</a></u></pre>
 
-### Una nou panell, una nova branca a GitHub, una nova pàgina
+### Un nou panell, una nova branca a GitHub, una nova pàgina
 Per enviar la vostra proposta, vosaltres (o nosaltres) haureu creat un *Issue* a *GitHub*. Aquest *Issue* tindrà assignada una **branca primària**.
 
 Per exemple, si heu proposat un panell de dades sobre ['Consum d'energia elèctrica per municipis i sectors de Catalunya'](https://analisi.transparenciacatalunya.cat/Energia/Consum-d-energia-el-ctrica-per-municipis-i-sectors/8idm-becu/about_data):
@@ -88,6 +88,7 @@ Per exemple, si heu proposat un panell de dades sobre ['Consum d'energia elèctr
 Sigueu breus, concises i utilitzeu sempre `kebab-case`.
 
 ### Estructura del teu projecte
+TK TK Review what we should do here, does this structure make sense? It keeps all projects contained in folders ... It might be good?
 
 ```
 .

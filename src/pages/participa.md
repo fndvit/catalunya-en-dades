@@ -3,12 +3,12 @@ title: About the initiative
 toc: true
 ---
 
-# Com Participar
+# Vols participar?
 La iniciativa està dirigida a **persones que encara estan aprenent i desenvolupant les seves habilitats en ciència de dades, comunicació de dades, visualització, disseny d'interfícies i camps relacionats**. Això inclou estudiants actuals, persones que s'estan formant de manera autodidacta, i gent que hagi començat recentment a explorar aquest camp. D'aquesta manera, volem fomentar la participació d'aquells que estan en les primeres etapes del seu aprenentatge, independentment de l'edat o el camí educatiu seguit, per crear un entorn just i de suport per als nous talents.
 
 La competició no està oberta a professionals establerts o persones que ja tenen una experiència significativa en ciència de dades, però si voleu col·laborar d'una altra manera o la vostra empresa vol patrocinar la iniciativa, poseu-vos en contacte amb nosaltres.
 
-TK TK Fill this form Google Form link
+TK TK Open an Issue in GitHub. We need to create Issue templates.
 
 ## Premis
 La iniciativa vol incentivar i reconèixer l'excel·lència i la creativitat en les visualització de dades obertes, així que per animar-vos a tots a participar i presentar les vostres millors idees i projectes, a partir de setembre, donarem **🏅premis mensuals de €500** per reconèixer les millors aportacions.
