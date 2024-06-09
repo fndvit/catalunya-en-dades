@@ -60,6 +60,64 @@ const MAPBOX_TOKEN = "pk.eyJ1IjoiZm5kdml0IiwiYSI6ImNseDR5dDV5dTBmeWMyaXNjemRkbDA
 ```
 
 # Qüestions tècniques
+## Per on començar
+!IMATGE DEL PROJECTE A GITHUB
+
+TK TK Clone the project
+
+```
+npm i
+cd cat-dades
+npm run dev
+```
+
+TK TK Veuràs aixó
+
+<pre data-copy="none"><b class="green">Observable Framework</b> v1.8.0
+↳ <u><a href="http://127.0.0.1:3000/" style="color: inherit;">http://127.0.0.1:3000/</a></u></pre>
+
+### Una nou panell, una nova branca a GitHub, una nova pàgina
+Per enviar la vostra proposta, vosaltres (o nosaltres) haureu creat un *Issue* a *GitHub*. Aquest *Issue* tindrà assignada una **branca primària**.
+
+Per exemple, si heu proposat un panell de dades sobre ['Consum d'energia elèctrica per municipis i sectors de Catalunya'](https://analisi.transparenciacatalunya.cat/Energia/Consum-d-energia-el-ctrica-per-municipis-i-sectors/8idm-becu/about_data):
+
+- N'hi haurà una branca anomenada `consum-electric`,
+- per a cada *feature*, afegireu el que fareu amb el codi, per example una gràfica de barres `consum-electric/barchart`;
+- i si formes part d'un equip, podeu optar per afegir-ne inicials per cadescú `consum-electric/barchart-xgv`.
+
+Sigueu breus, concises i utilitzeu sempre `kebab-case`.
+
+### Estructura del teu projecte
+
+```
+.
+├─ src
+│  ├─ projects
+│  │  └─ nom-projecte
+│  │     └─ data
+│  │        └─ data-a.json
+│  │        └─ data-b.json
+│  │        └─ mapa.json
+│  │        └─ ...
+│  │     └─ index.md
+│  └─ ...
+└─ ...
+```
+
+### Un resum del procés:
+
+- **Clona el repositori**
+- **Canvia a la branca primària del teu projecte** 
+- **Crea una nova pàgina**: Continuant amb l'exemple de dalt seria `project/consum-electric/index.md`
+- **Crea una branca per a la teva feature**: Abans de fer cap canvi extra, crea una nova branca per a la teva *feature* seguint [l'estructura que vam explicar a dalt](#com-col·laborar-i-enviar-pull-requests-(prs)).
+- **Fes els teus canvis i fes *commit*:** Fes els canvis necessaris al codi i fes un commit amb un missatge descriptiu.
+- **Puja els canvis a GitHub**
+- **Crea una *pull request* cap la teva branca de projecte:** Ves al repositori a GitHub i crea una PR des de la teva branca —on has implementat la teva *feature*— cap a la branca primària del teu panell de dades. 
+- **I després una altra cap a `dev`:** Després de la última reunió de [mentoria](participa#mentories), crea una PR desde la branca primària del teu panell de dades cap a la branca `dev`. Afegeix una descripció clara dels canvis realitzats i qualsevol informació rellevant per a la revisió.
+- **Revisió i *merge*:** Sol·licita als revisors que es mirin el teu PR. Fes els canvis sol·licitats si és necessari. Un cop el PR sigui aprovat, podrà ser fusionat a la branca `dev` del repositori original. (Només els mantenidors poden fer PR de `dev` a `main`)
+
+Us recomanem fer servir [*GitHub Desktop*](https://desktop.github.com/) per gestionar l'accés al repositori o directament des de [*Visual Studio Code*](https://code.visualstudio.com/docs/sourcecontrol/github).
+
 ## Gràfics amb Plot
 [*Plot*](https://observablehq.com/plot/what-is-plot) és una biblioteca de *JavaScript* desenvolupada per *Observable* per a la visualització de dades, especialment dissenyada per accelerar l'anàlisi exploratòria de dades. Ofereix una interfície concisa i expressiva que permet crear gràfics sofisticats amb menys codi. *Plot* està construït sobre [d3](https://d3js.org/), però simplifica moltes de les seves operacions per facilitar-ne l'ús.
 
@@ -216,15 +274,15 @@ map.on('load', function () {
 ```
 
 ## Carregadors de dades
-Els carregadors de dades (*data loaders*) permeten generar instantànies de dades pre-processades durant el procés de construcció del projecte. Aquests carregadors poden ser escrits en qualsevol llenguatge de programació i són útils per accedir, transformar i preparar dades per a la seva visualització.
+Els carregadors de dades (*data loaders*) permeten generar instantànies de dades pre-processades durant el procés de construcció del projecte. Poden ser escrits en qualsevol llenguatge de programació i són útils per accedir, transformar i preparar dades per a la seva visualització.
 
 ### Avantatges dels carregadors de dades
-* **Poliglotisme:** Pots utilitzar qualsevol llenguatge de programació que prefereixis, com Python, R, SQL, JavaScript, entre altres. Això facilita que equips diversos treballin amb les eines amb les quals estan més còmodes.
+* **Poliglotisme:** Pots utilitzar qualsevol llenguatge de programació que prefereixis, com *Python*, *R*, *SQL*, *JavaScript*, entre altres. Això facilita que equips diversos treballin amb les eines amb les quals estan més còmodes.
 * **Rendiment:** Els carregadors de dades poden processar grans quantitats de dades en temps de construcció, la qual cosa redueix el temps de càrrega del client. Això resulta en pàgines més ràpides.
 * **Optimització:** Permeten filtrar, agregar i minimitzar les dades enviades al client, millorant la seguretat i privacitat de les dades mostrades.
 
 ### Exemple de Codi: Carregador de Dades en JavaScript
-Suposem que volem carregar dades dels embassaments a Catalunya des d'un fitxer CSV.
+Suposem que volem carregar dades dels embassaments a Catalunya des de [l'API del Portal de Transparència de Catalunya](https://analisi.transparenciacatalunya.cat/Medi-Ambient/Quantitat-d-aigua-als-embassaments-de-les-Conques-/gn9e-3qhr/about_data).
 
 ```js run=false
 const response = await fetch("https://analisi.transparenciacatalunya.cat/resource/gn9e-3qhr.json?$limit=32877");
@@ -256,7 +314,7 @@ const embassaments = json.map((d) => {
 }).sort( (a,b) => a.date - b.date);
 ```
 
-Aquest carregador de dades obté dades des d'una API, les transforma al format adequat i genera un fitxer JSON amb les dades dels embassaments.
+Aquest carregador de dades obté dades des d'una API, les transforma al format adequat i genera un fitxer *JSON* amb les dades dels embassaments.
 
 ### Com utilitzar els carregadors de dades
 Un cop el carregador de dades ha generat el fitxer, pots accedir-hi des del client utilitzant `FileAttachment`.
@@ -273,34 +331,10 @@ embassaments
 
 Per a més informació i exemples sobre com escriure carregadors de dades en diferents llenguatges, pots visitar [la documentació d'*Observable Framework*](https://observablehq.com/framework/loaders).
 
-## Gestió del codi 
-Per mantenir el projectes ordenat i comprensible —donat que es un projecte col·laboratiu— us agraïm que tingueu en compte aquestes bones pràctiques per mantenir el codi ben organitzat i ben comentat, així com una guia pas a pas sobre com crear i enviar *Pull Requests* (PRs).
+## Bones pràctiques
+Per mantenir el projectes ordenat i comprensible —donat que es un projecte col·laboratiu— cal que tingueu en compte aquestes bones pràctiques per mantenir el codi ben organitzat i ben comentat.
 
-### Bones pràctiques per escriure'l
 - **Nomenclatura consistent:** Utilitza noms descriptius i coherents per a variables, funcions i arxius. Això fa que el codi sigui més llegible i fàcil de mantenir.
 - **Comentaris eficients:** Afegeix comentaris només quan sigui necessari per explicar el perquè d'alguna cosa, no el què. Els bons comentaris expliquen les decisions i intencions del codi.
 - **Estructura Clara:** Organitza el codi en blocs lògics i utilitza l'indentació adequada. Divideix el codi en mòduls o fitxers segons la seva funcionalitat.
 - **Refactorització Regular:** Refactoritza el codi regularment per millorar la seva claredat i eficiència sense canviar el seu comportament extern.
-
-### Com col·laborar i enviar *Pull Requests* (PRs)
-Per enviar la vostra proposta, vosaltres (o nosaltres) haureu creat un *Issue* a *GitHub*. Aquest *Issue* tindrà assignada una **branca primària**.
-
-Per exemple, si heu proposat un panell de dades sobre ['Consum d'energia elèctrica per municipis i sectors de Catalunya'](https://analisi.transparenciacatalunya.cat/Energia/Consum-d-energia-el-ctrica-per-municipis-i-sectors/8idm-becu/about_data):
-
-- N'hi haurà una branca anomenada `consum-electric`,
-- per a cada *feature*, afegireu el nom `consum-electric/barchart`;
-- i si formes part d'un equip, podeu optar per afegir-ne inicials per cadescú `consum-electric/barchart-xgv`.
-
-De totes maneres, sigueu breus, concises i utilitzeu sempre `kebab-case`.
-
-Les *Pull Requests* són una part crucial del flux de treball col·laboratiu. Aqui us presentem una guia pas a pas per crear i enviar una PR.
-
-- **Clona el repositori**
-- **Canvia a la branca del teu projecte:** Abans de fer canvis, crea una nova branca per a la teva *feature* seguint [l'estructura que vam explicar a dalt](#com-col·laborar-i-enviar-pull-requests-(prs)). 
-- **Fes els teus canvis i fes *commit*:** Fes els canvis necessaris al codi i fes un commit amb un missatge descriptiu.
-- **Puja els canvis a GitHub**
-- **Crea una *Pull Request* cap la teva branca de projecte:** Ves al repositori a GitHub i crea una PR des de la teva branca —on has implementat la teva *feature*— cap a la branca primària del teu panell de dades. 
-- **I després una altra cap a `dev`:** Després de la última reunió de [mentoria](participa#mentories), crea una PR desde la branca primària del teu panell de dades cap a la branca `dev`. Afegeix una descripció clara dels canvis realitzats i qualsevol informació rellevant per a la revisió.
-- **Revisió i *merge*:** Sol·licita als revisors que es mirin el teu PR. Fes els canvis sol·licitats si és necessari. Un cop el PR sigui aprovat, podrà ser fusionat a la branca `dev` del repositori original. (Només els mantenidors poden fer PR de `dev` a `main`)
-
-Us recomanem fer servir [*GitHub Desktop*](https://desktop.github.com/) per gestionar l'accés al repositori o directament des de [*Visual Studio Code*](https://code.visualstudio.com/docs/sourcecontrol/github).
