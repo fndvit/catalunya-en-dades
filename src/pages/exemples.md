@@ -13,13 +13,13 @@ toc: true
 
 # Per example ...
 ## Visualitzem els embassaments a les conques internes de Catalunya
-L’Agència Catalana de l'Aigua (ACA) ha fet una feina excepcional visualitzant dades crítiques sobre els recursos hídrics. Han implementat una visualització captivadora que mapeja els impactes de la sequera al territori, però considerem que el seu panell de dades sobre els nivells dels embassaments és una oportunitat perduda. 
+L’Agència Catalana de l'Aigua (ACA) ha fet una feina excepcional visualitzant dades crítiques sobre els recursos hídrics. Han implementat una visualització utilissima que [**mapeja**](https://aplicacions.aca.gencat.cat/visseq/estat-actual) els impactes de la sequera al territori, però considerem que [el seu panell de dades sobre els **nivells dels embassaments**](https://aca.gencat.cat/ca/laigua/consulta-de-dades/dades-obertes/visualitzacio-interactiva-dades/estat-embassaments/) és una oportunitat perduda. 
 
 <img src="../img/panell-dades-gene.png" alt="Panell de dades mantingut per l’Agència Catalana de l'Aigua (ACA)" style="width:100%">
 
-En aquesta primera iteració (**https://sequera.fndvit.org/**), hem anat cap a les dades que estaven més a mà, però volem explorar com fer també el mapa —potser el veureu inclòs en properes entregues. (El nostre objectiu final és posar a prova els límits i les  virtuts del Observable per a experiències de dades simples i complexes.)
+En aquesta primera iteració (**https://sequera.fndvit.org/**), hem anat cap a les [dades](https://analisi.transparenciacatalunya.cat/Medi-Ambient/Quantitat-d-aigua-als-embassaments-de-les-Conques-/gn9e-3qhr/about_data) que estaven més a mà, però volem explorar com fer també el mapa —potser el veureu inclòs en properes entregues. (El nostre objectiu final és posar a prova els límits i les  virtuts del Observable per a experiències de dades simples i complexes.)
 
-Quan pensàvem en el redisseny, **vam fer-nos les mateixes preguntes** sobre les dades que en el taulell original, però l**es vam respondre amb gràfics lleugerament diferents**:
+Quan pensàvem en el redisseny, **vam fer-nos les mateixes preguntes** sobre les dades que en el panell original, però l**es vam respondre amb gràfics lleugerament diferents**:
 - Quina és la situació actual (l’estat dels embassaments com a percentatge de la capacitat total)
 - Quins embassaments estan més plens o més buits
 - I quines són les tendències individuals — hem afegit la tendència general per completar i contextualitzar la situació actual.
