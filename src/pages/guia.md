@@ -213,12 +213,10 @@ Els gràfics de dalt són una broma, compte amb les [correlacions espúries](htt
 ---
 **Tampoc oblideu les taules**! Són una eina molt valuosa per presentar dades de manera organitzada i accessible. Quan permeten la cerca, faciliten als usuaris trobar informació específica ràpidament, i enriquides amb *sparklines* poden proporcionar una visió ràpida de les tendències sense necessitat de gràfics separats.
 
-## Guia d'estil
+## Tipografia i edició
 *Observable Framework* ja ofereix tots els elements de disseny que necessiteu per formatar el vostre panell. [Llegiu sobre això aquí.](https://observablehq.com/framework/markdown)
 
-Els estils de lletra ja estan predefinits al projecte. *La iniciativa va de desbloquejar dades obertes mitjançant la visualització, no de genialitats tipogràfiques: no cal afegir nous tipus o estils de lletra.*
-
-### Headings, paragraphs and labels
+Els estils de lletra ja estan predefinits al projecte. (La iniciativa va de desbloquejar dades obertes mitjançant la visualització, no de genialitats tipogràfiques: no cal afegir nous tipus o estils de lletra.)
 
 ---
 
@@ -241,11 +239,21 @@ Text de paràgraf a l'informe
 
 ---
 
-<p class="caption">Text a fonts i notes</p>
+TK TK I need to change the styles to match the ones in *sequera*
+
+<div class="grid grid-cols-4">
+  <div class="card grid-colspan-3">
+    <h1>Títol h1 a dins d'una <em>card</em></h1>
+    <h2>Subtítol h2 a dins d'una <em>card</em></h2>
+    <p>Text normal</p>
+    <p class="caption">Text a fonts i notes</p>
+  </div>
+  <div class="card grid-colspan-1"><h1>Altre h1</h1></div>
+</div>
 
 ---
 
-### Colors
+## Colors
 L'**escala categòrica** s'utilitza per representar dades que cauen en categories discretes i no relacionades entre si. Aquest tipus d'escala és ideal per comparar grups diferents, com ara tipus de productes, noms de departaments, o categories de serveis, on cada categoria és visualment distingida per colors o formes diferents.
 
 ```js
@@ -438,3 +446,9 @@ resize((width) =>
 ```
 
 Com veieu, podeu **crear les escales seqüencials o divergents a partir dels nostres colors a l'escala catagòrica** 😇 —o fer servir els [esquemes de color per defecte](https://observablehq.com/plot/features/scales#color-scales) a *Plot*.
+
+## Disseny inclusiu
+TK TK About ditching checking "accessibility requirements" for a different workflow
+TK TK Rethink your display instead of adding patterns or other stuff 
+TK TK Always ensure contrast 
+TK TK References Amy Cesal and Frank Elavsky
