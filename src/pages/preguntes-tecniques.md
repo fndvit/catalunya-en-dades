@@ -205,7 +205,7 @@ invalidation.then(() => map.remove());
 ```
 
 ### Exemple de codi per a un mapa de coropletes
-Aquest exemple mostra com crear un mapa coroplètic, que fa servir **color per representar la variable estadística al mapa**. En aquest cas es visualitzen dades d'atur per provincia.
+Aquest exemple mostra com crear un mapa coroplètic, que fa servir **color per representar la variable estadística al mapa**. En aquest cas es visualitzen dades d'atur per província.
 
 ```js echo
 const choropleth = display(document.createElement("div"));
