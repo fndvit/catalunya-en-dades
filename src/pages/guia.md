@@ -64,15 +64,15 @@ temperature.map( d=> d.day = new Date(d.date));
 ```
 
 # Una petita guia
-Primer de tot cal reconeixer que el simple fet que hi hagi dades obertes sobre un tema ja és una gran notícia... Doncs el fet de que hi hagi dades acompanyades d'una visualització que ens ajudi a entendre-les i explorar-les és ja notícia increïble!!
+Primer de tot cal reconèixer que el simple fet que hi hagi dades obertes sobre un tema, ja és una gran notícia! Si les dades van acompanyades d'una visualització que ens ajuda a entendre-les i explorar-les, és una notícia increïble!!
 
-Per tant, si la vostra proposta es basa en redissenyar un panell de dades obertes, us recomanem que **seguiu principis que respectin el disseny original alhora que milloreu la seva claredat i la usabilitat**. En fer-ho, honorem la intenció i l'esforç dels dissenyadors originals i defensem un enfocament respectuós i reflexiu de la crítica i la millora.
+Per tant, si la vostra proposta es basa a redissenyar un panell de dades obertes, us recomanem que **seguiu principis que respectin el disseny original alhora que milloreu la seva claredat i la usabilitat**. En fer-ho, honorem la intenció i l'esforç dels dissenyadors originals i defensem un enfocament respectuós i reflexiu de la crítica i la millora.
 
-En què es tradueix això? **Començeu per les mateixes preguntes que el panell o l'informe original, però responeu amb propostes visuals millorades**. Això significa centrar-se en els estats actuals de les dades, la seva distribució, afegir tendències contextuals ... Per exemple, si el original utilitza gràfics de barres, podríeu considerar l'ús de visualitzacions que puguin mostrar múltiples variables simultàniament o transmetre informació més matisada sense aclaparar la gent.
+En què es tradueix això? **Comenceu per les mateixes preguntes que el panell o l'informe original, però responeu amb propostes visuals millorades**. Això significa centrar-se en els estats actuals de les dades, la seva distribució, afegir tendències contextuals, etc. Per exemple, si l'original utilitza gràfics de barres, podríeu considerar l'ús de visualitzacions que puguin mostrar múltiples variables simultàniament o transmetre informació més matisada sense aclaparar la gent.
 
 **Veiem aquests redissenys com una evolució i no com un reemplaçament**, preservant l'essència de l'original alhora que empenyem els límits del que és possible.
 
-## Recomenacions pràctiques
+## Recomanacions pràctiques
 Organitza el panell de dades amb un **fluix narratiu lògic**. Comença amb una visió general o resum a dalt, donant context, i continua amb la informació més detallada a sota. Això ajuda els usuaris a comprendre el context general abans d'endinsar-se en els detalls específics.
 
 ### Títol del panell
@@ -104,7 +104,7 @@ Crida l'atenció a les **mètriques i tendències més importants** utilitzant i
 Evita sobrecarregar les targetes amb massa informació. Cada targeta ha de centrar-se en un punt únic.
 
 ---
-Assegura't que la **relació d'aspecte dels teus gràfics** no distorsiona els patrons de les dades. Gràfics massa amples o massa estrets poden portar a interpretacions errònies. El format 4×3 (apaïsat) o 3×4 (vertical) potser son els més comuns i prudents, però també pots fer servir l'1×1 pels diagrames de dispersió, o formats més extrems: molt vertical si son moltes barres horitzontal apilades, molt apaïsat si es una serie temporal molt llarga i detallada.
+Assegura't que la **relació d'aspecte dels teus gràfics** no distorsiona els patrons de les dades. Gràfics massa amples o massa estrets poden portar a interpretacions errònies. El format 4×3 (apaïsat) o 3×4 (vertical) potser són els més comuns i prudents, però també pots fer servir l'1×1 pels diagrames de dispersió, o formats més extrems: molt vertical si són moltes barres horitzontal apilades, molt apaïsat si és una sèrie temporal molt llarga i detallada.
 <div class="grid grid-cols-4">
   <div class="card example wrong grid-colspan-3">
   ${resize((width) => 
@@ -125,7 +125,7 @@ Assegura't que la **relació d'aspecte dels teus gràfics** no distorsiona els p
 </div>
 
 ---
-Col·loca els **filtres, desplegables i altres elements d'input dins de la mateixa targeta que el gràfic** que modifiquen. Això fa que sigui intuïtiu per als usuaris veure com la interacció amb aquest elements afecta la visualització de dades, fent la experiència més fluida i eficient. Ens 🥰 els panells interactius: permeten als usuaris fer i respondre preguntes, i descobrir històries de manera independent.
+Col·loca els **filtres, desplegables i altres elements d'input dins de la mateixa targeta que el gràfic** que modifiquen. Això fa que sigui intuïtiu per als usuaris veure com la interacció amb aquests elements afecta la visualització de dades, fent l'experiència més fluida i eficient 🥰 En  els panells interactius permeten fer i respondre preguntes, a més de descobrir històries de manera independent.
 
 ---
 Cada gràfic ha de tenir **títol clar i descriptiu**, així com una **llegenda si és necessari**. Els títols ajuden els usuaris a entendre què estem mostrant, mentre que les llegendes expliquen el significat dels colors i altres elements. Aquest context és crucial per a una interpretació precisa de les dades.
@@ -208,13 +208,13 @@ Cada gràfic ha de tenir **títol clar i descriptiu**, així com una **llegenda 
   </div>
 </div>
 
-Els gràfics de dalt són una broma, compte amb les [correlacions espúries](https://www.tylervigen.com/spurious/correlation/5920_per-capita-consumption-of-margarine_correlates-with_the-divorce-rate-in-maine) (mireu el blog d'en Tyler Vigen) i sisplau [no feu servir doble eix](https://blog.datawrapper.de/dualaxis/).
+Els gràfics de dalt són una broma, compte amb les [correlacions espúries](https://www.tylervigen.com/spurious/correlation/5920_per-capita-consumption-of-margarine_correlates-with_the-divorce-rate-in-maine) (mireu el blog d'en Tyler Vigen) i, si us plau, [no feu servir doble eix](https://blog.datawrapper.de/dualaxis/).
 
 ---
-I **no oblideu les taules**! Són una eina molt valuosa per presentar dades de manera organitzada i accessible. Quan permeten la cerca, faciliten als usuaris trobar informació específica ràpidament, i enriquides amb *sparklines* poden proporcionar una visió ràpida de les tendències sense necessitat de gràfics separats.
+**Tampoc oblideu les taules**! Són una eina molt valuosa per presentar dades de manera organitzada i accessible. Quan permeten la cerca, faciliten als usuaris trobar informació específica ràpidament, i enriquides amb *sparklines* poden proporcionar una visió ràpida de les tendències sense necessitat de gràfics separats.
 
-## Guía d'estil
-*Observable Framework* ja ofereix tots els elements de disseny que necessiteu per formatar el vostre panell. [Llegiu sobre aixó aquí.](https://observablehq.com/framework/markdown)
+## Guia d'estil
+*Observable Framework* ja ofereix tots els elements de disseny que necessiteu per formatar el vostre panell. [Llegiu sobre això aquí.](https://observablehq.com/framework/markdown)
 
 Els estils de lletra ja estan predefinits al projecte. *La iniciativa va de desbloquejar dades obertes mitjançant la visualització, no de genialitats tipogràfiques: no cal afegir nous tipus o estils de lletra.*
 
@@ -259,7 +259,7 @@ const rdpu = [chroma(pink).brighten(1.5).hex(), chroma(purple).darken(2).saturat
 const buylrd = [chroma(blue).darken(1.2).saturate(2).hex(),chroma(yellow).brighten(1.8).desaturate(1.8).hex(),chroma(red).darken(1.2).saturate(2).hex()];
 ```
 
-Com veus, com màxim, tens 10 colors. I ja son molts. Si tens més categories, caldries que les combinesis en un grup *"Altres"* o fer servir *small multiples* (o *facets*).
+Com veus, com màxim, tens 10 colors. I ja són molts. Si tens més categories, caldries que les combinesis en un grup *"Altres"* o que fessis servir *small multiples* (o *facets*).
 
 ```js echo
 cat
@@ -280,7 +280,7 @@ resize((width) =>
   }))
 ```
 
-Aquestes **escales seqüencials** s'aplican a dades que tenen un ordre natural o progressiu, típicament quantitats o rangs. Aquesta escala utilitza un gradient de colors, generalment des de colors clars a fosc, per representar l'increment o decrement d'un valor, facilitant la visualització de tendències o patrons dins d'un conjunt de dades.
+Aquestes **escales seqüencials** s'apliquen a dades que tenen un ordre natural o progressiu, típicament quantitats o rangs. Aquesta escala utilitza un gradient de colors, generalment des de colors clars a fosc, per representar l'increment o decrement d'un valor, facilitant la visualització de tendències o patrons dins d'un conjunt de dades.
 
 ```js echo
 blues
@@ -409,7 +409,7 @@ resize((width) =>
 )
 ```
 
-Aquestes **escalas divergents** son útils per visualitzar dades que oscil·len entorn d'un punt mitjà o valor crític, com desviacions o diferències respecte a una mitjana. Utilitza dos colors contrastants que esdevenen més intensos a mesura que s'allunyen del punt central, permetent una interpretació ràpida de les àrees on les dades divergeixen significativament del valor de referència.
+Aquestes **escales divergents** son útils per visualitzar dades que oscil·len entorn d'un punt mitjà o valor crític, com desviacions o diferències respecte a una mitjana. Utilitza dos colors contrastants que esdevenen més intensos a mesura que s'allunyen del punt central, permetent una interpretació ràpida de les àrees on les dades divergeixen significativament del valor de referència.
 
 ```js echo
 buylrd
