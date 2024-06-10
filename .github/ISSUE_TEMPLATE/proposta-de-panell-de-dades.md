@@ -3,7 +3,15 @@ name: Proposta de panell de dades
 about: Idea per a un nou panell de dades
 title: Proposta de ...
 labels: proposta
-assignees: xaquingv
+assignees:
+- xaquingv
+- Kpeiro
+- jumalita
+- laiaverdaguer
+- poldarder
+- LeVarez
+- denissecarvajalbruce
+- MKenz0
 
 ---
 

@@ -80,5 +80,6 @@ TK TK algo guai de nosaltres i l'equip, els premis?
   <div class="card">
     <img src="../img/pol.jpg" alt="Pintada d'en Pol"/>
     <h2>Pol Darder</h2>
+    <p>He’s a Master's student in Data Science, with a degree in game development and experience as a backend developer. He loves to read and tries to cook. When he’s not at home, he’s probably outdoors looking for walls and boulders to climb on.</p>
   </div>
 </div>
