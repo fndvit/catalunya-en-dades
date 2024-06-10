@@ -3,7 +3,7 @@ name: Proposta de panell de dades
 about: Idea per a un nou panell de dades
 title: Proposta de ...
 labels: proposta
-assignees: bytes
+assignees: xaquingv
 ---
 
 **Descriu una mica la teva proposta**
