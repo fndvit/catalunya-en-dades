@@ -19,4 +19,4 @@ A la documentació del projecte trobareu tota la informació sobre la iniciativa
 - [Informació sobre els premis](https://catalunya-en-dades.vercel.app/pages/participa.html#premis)
 - [Una guia d'estil](https://catalunya-en-dades.vercel.app/pages/guia.html)
 - [Qüestions tècniques](https://catalunya-en-dades.vercel.app/pages/preguntes-tecniques.html)
-- [Examples de codi](https://catalunya-en-dades.vercel.app/pages/preguntes-tecniques.html#gr%C3%A0fics-amb-plot)
+- [Exemples de codi](https://catalunya-en-dades.vercel.app/pages/preguntes-tecniques.html#gr%C3%A0fics-amb-plot)
