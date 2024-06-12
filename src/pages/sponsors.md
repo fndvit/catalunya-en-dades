@@ -32,7 +32,7 @@ toc: true
 # Patrocinadors
 Necessitem el teu suport per fer-lo realitat. T'invitem a unir-te a nosaltres com a **sponsor** i formar part d'aquesta emocionant iniciativa. 
 
-### Pots triar entre les següents categories:
+## Tria entre les següents categories
 <div class="grid grid-cols-3">
   <div class="card">
     <img src="../img/marie-neurath.png" alt="Imatge d'una pàgina del llibre"/>
