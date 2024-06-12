@@ -1,11 +1,11 @@
-# Catalunya 👀 en dades
-És una iniciativa  de la [Fundació ViT](https://www.fundaciovit.org/) per **reimaginar la visualització de dades obertes de l'administració catalana** fent servir [*Observable Framework*](https://observablehq.com/framework/), oberta a persones que estigueu aprenent 🧑‍💻📓📈🔍 visualització de dades, amb 🏅 premis mensuals (i un 🏆 gran premi final) a les millors col·laboracions.
+[# Catalunya 👀 en dades](https://catalunya-en-dades.vercel.app/)
+És [una iniciativa](https://catalunya-en-dades.vercel.app/)  de la [Fundació ViT](https://www.fundaciovit.org/) per **reimaginar la visualització de dades obertes de l'administració catalana** fent servir [*Observable Framework*](https://observablehq.com/framework/), oberta a persones que estigueu aprenent 🧑‍💻📓📈🔍 visualització de dades, amb 🏅 premis mensuals (i un 🏆 gran premi final) a les millors col·laboracions.
 
 - Des de ara fins al març del 2025
-- Premis mensuals de €500 i un gran premi final de €2.500
-- Amb suport i mentories per part d'un internacional d'expertes
+- [Premis](https://catalunya-en-dades.vercel.app/pages/participa.html#premis) mensuals de €500 i un gran premi final de €2.500
+- Amb suport i [mentories](https://catalunya-en-dades.vercel.app/pages/participa.html#mentories) per part d'un internacional d'expertes
 
-## Vols participar?
+## [Vols participar?](https://catalunya-en-dades.vercel.app/pages/participa.html)
 La iniciativa està dirigida a persones que encara estan aprenent i desenvolupant les seves habilitats en ciència de dades, comunicació de dades, visualització, disseny d’interfícies i camps relacionats. Això inclou estudiants actuals, persones que s’estan formant de manera autodidacta, i gent que hagi començat recentment a explorar aquest camp.
 
 > [!NOTE]  
@@ -16,7 +16,7 @@ La iniciativa està dirigida a persones que encara estan aprenent i desenvolupan
 > - **Quines dades faràs servir?**: Enllaç a les dades que faràs servir del [Portal de Transparència](https://analisi.transparenciacatalunya.cat/browse?limitTo=datasets) o d’on siguin —si son d'alguna altra administració catalana.
 > - **Formes part d'un equip?**: Si sou un equip, envieu-nos tots els vostres noms d’usuari o si heu creat una organització o un equip a una organització a GitHub i voleu gestionar els usuaris vosaltres mateixos, també podeu.
 
-## Documentació
+[## Documentació](https://catalunya-en-dades.vercel.app/)
 A la documentació del projecte trobareu tota la informació sobre la iniciativa i tot el que es necessita per col·laborar al projecte:
 - [Com participar](https://catalunya-en-dades.vercel.app/pages/participa.html)
 - [Informació sobre els premis](https://catalunya-en-dades.vercel.app/pages/participa.html#premis)
