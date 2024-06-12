@@ -3,6 +3,19 @@ title: Qüestions tècniques
 toc: true
 ---
 
+<style>
+  img {
+    border-radius: 1rem;
+    box-shadow: 0 0 1rem rgba(0,0,0,0.15);
+    max-width: 42rem;
+    width: 100%;
+    transition: all 0.3s;
+  }
+  img:hover {
+    opacity:.7;
+  }
+</style>
+
 ```js
 import chroma from "npm:chroma-js";
  
@@ -61,7 +74,9 @@ const MAPBOX_TOKEN = "pk.eyJ1IjoiZm5kdml0IiwiYSI6ImNseDR5dDV5dTBmeWMyaXNjemRkbDA
 
 # Qüestions tècniques
 ## Per on començar
-!IMATGE DEL PROJECTE A GITHUB
+TK TK Clone the project
+
+<a href="https://github.com/fndvit/catalunya-en-dades" target="_blank"><img src="../img/github.png" alt="Imatge del repositori a GitHub" style="width:100%"></a>
 
 TK TK Clone the project
 
@@ -73,7 +88,7 @@ npm run dev
 
 TK TK Veuràs aixó
 
-<pre data-copy="none"><b class="green">Observable Framework</b> v1.8.0
+<pre class="observablehq-pre-container" data-copy="none"><b class="green">Observable Framework</b> v1.8.0
 ↳ <u><a href="http://127.0.0.1:3000/" style="color: inherit;">http://127.0.0.1:3000/</a></u></pre>
 
 ### Un nou panell, una nova branca a GitHub, una nova pàgina

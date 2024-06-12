@@ -78,6 +78,7 @@ iframe {
 <div class="hero">
   <h1>Catalunya 👀 en dades</h1>
   <h2>És una iniciativa per <b>reimaginar la visualització de dades obertes de l'administració catalana</b> fent servir <em>Observable Framework</em>, oberta a persones que estigueu aprenent 🧑‍💻📓📈🔍 ciència de dades, comunicació, disseny o visualització de dades, amb 🏅 premis mensuals (i un 🏆 gran premi final) a les millors col·laboracions.</h2>
+
   <a href="/pages/participa.html">Col·labora<span style="display: inline-block; margin-left: 0.25rem;">→</span></a>
 </div>
 

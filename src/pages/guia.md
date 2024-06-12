@@ -425,7 +425,7 @@ resize((width) =>
 )
 ```
 
-Aquestes **escales divergents** son útils per visualitzar dades que oscil·len entorn d'un punt mitjà o valor crític, com desviacions o diferències respecte a una mitjana. Utilitza dos colors contrastants que esdevenen més intensos a mesura que s'allunyen del punt central, permetent una interpretació ràpida de les àrees on les dades divergeixen significativament del valor de referència.
+Les **escales divergents** com aquesta son útils per visualitzar dades que oscil·len entorn d'un punt mitjà o valor crític, com desviacions o diferències respecte a una mitjana. Utilitza dos colors contrastants que esdevenen més intensos a mesura que s'allunyen del punt central, permetent una interpretació ràpida de les àrees on les dades divergeixen significativament del valor de referència.
 
 ```js echo
 buylrd

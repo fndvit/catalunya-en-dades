@@ -108,3 +108,6 @@ pre {
   box-shadow: 0 0 .5rem rgba(0,0,0,0.1)
 }
 
+.observablehq-pre-container {
+  margin: 1rem -1rem 1rem 0rem;
+}
