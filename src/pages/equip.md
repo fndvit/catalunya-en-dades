@@ -24,7 +24,11 @@ toc: true
   }
 </style>
 # Sobre el nostre equip
-TK TK algo guai de nosaltres i l'equip, els premis? 
+Aquesta iniciativa, [com totes les de la ViT](https://www.fundaciovit.org/transparency), forma part dels seus principis fundacionals, pensats per promoure l'alfabetisme visual i de dades com a defensa envers la desinformació. 
+
+Som referents en recerca, innovació i difusió de **bones pràctiques** en metodologia, visualització i transparència de les dades obertes per fer-les accessibles a la ciutadania activa interessada. 
+
+I no ens fa vergonya reconèixer que tenim un dels millors equips per a la missió que ens hem proposat, guardonat amb premis de disseny visual de gran prestigi internacional i local al llarg d'anys de trajectòria professional :star2:. La part 'júnior' ja ha demostrat sobradament el seu potencial en [molts dels projectes que la ViT](https://www.fundaciovit.org/what-we-do) realitza per a organitzacions públiques i privades d'arreu del món :muscle:. Us el presentem!
 
 <div class="grid grid-cols-4">
   <div class="card">
