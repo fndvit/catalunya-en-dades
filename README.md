@@ -1,4 +1,4 @@
-[# Catalunya 👀 en dades](https://catalunya-en-dades.vercel.app/)
+# [Catalunya 👀 en dades](https://catalunya-en-dades.vercel.app/)
 És [una iniciativa](https://catalunya-en-dades.vercel.app/)  de la [Fundació ViT](https://www.fundaciovit.org/) per **reimaginar la visualització de dades obertes de l'administració catalana** fent servir [*Observable Framework*](https://observablehq.com/framework/), oberta a persones que estigueu aprenent 🧑‍💻📓📈🔍 visualització de dades, amb 🏅 premis mensuals (i un 🏆 gran premi final) a les millors col·laboracions.
 
 - Des de ara fins al març del 2025
@@ -16,7 +16,7 @@ La iniciativa està dirigida a persones que encara estan aprenent i desenvolupan
 > - **Quines dades faràs servir?**: Enllaç a les dades que faràs servir del [Portal de Transparència](https://analisi.transparenciacatalunya.cat/browse?limitTo=datasets) o d’on siguin —si son d'alguna altra administració catalana.
 > - **Formes part d'un equip?**: Si sou un equip, envieu-nos tots els vostres noms d’usuari o si heu creat una organització o un equip a una organització a GitHub i voleu gestionar els usuaris vosaltres mateixos, també podeu.
 
-[## Documentació](https://catalunya-en-dades.vercel.app/)
+## [Documentació](https://catalunya-en-dades.vercel.app/)
 A la documentació del projecte trobareu tota la informació sobre la iniciativa i tot el que es necessita per col·laborar al projecte:
 - [Com participar](https://catalunya-en-dades.vercel.app/pages/participa.html)
 - [Informació sobre els premis](https://catalunya-en-dades.vercel.app/pages/participa.html#premis)
