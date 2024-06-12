@@ -73,7 +73,7 @@ En què es tradueix això? **Comenceu per les mateixes preguntes que el panell o
 **Veiem aquests redissenys com una evolució i no com un reemplaçament**, preservant l'essència de l'original alhora que empenyem els límits del que és possible.
 
 ## Recomanacions pràctiques
-TK TK Dataviz is accessibility: simple, inclusive design that avoids overload helps everyone regardless of their ability.
+Entendre grans quantitats de dades sense visualitzacions és per a molts, fins i tot inviable. Les [visualitzacions tradueixen les dades](https://data.europa.eu/apps/data-visualisation-guide/data-visualisation-is-accessibility) a elements visuals (amb colors, mides i posicions) i evidencie patrons, tendències i proporcions. En certa manera doncs, la visualització de dades és com una tecnologia d'assistència, per facilitar la comprensibilitat de les dades.
 
 Organitza el panell de dades amb un **fluix narratiu lògic**. Comença amb una visió general o resum a dalt, donant context, i continua amb la informació més detallada a sota. Això ajuda els usuaris a comprendre el context general abans d'endinsar-se en els detalls específics.
 
@@ -106,9 +106,6 @@ Crida l'atenció a les **mètriques i tendències més importants** utilitzant i
 Evita sobrecarregar les targetes amb massa informació. Cada targeta ha de centrar-se en un punt únic.
 
 ---
-TK TK Strokes to increase background/foreground contrast
-
----
 Assegura't que la **relació d'aspecte dels teus gràfics** no distorsiona els patrons de les dades. Gràfics massa amples o massa estrets poden portar a interpretacions errònies. El format 4×3 (apaïsat) o 3×4 (vertical) potser són els més comuns i prudents, però també pots fer servir l'1×1 pels diagrames de dispersió, o formats més extrems: molt vertical si són moltes barres horitzontal apilades, molt apaïsat si és una sèrie temporal molt llarga i detallada.
 <div class="grid grid-cols-4">
   <div class="card example wrong grid-colspan-3">
@@ -130,14 +127,14 @@ Assegura't que la **relació d'aspecte dels teus gràfics** no distorsiona els p
 </div>
 
 ---
-Col·loca els **filtres, desplegables i altres elements d'input dins de la mateixa targeta que el gràfic** que modifiquen. Això fa que sigui intuïtiu per als usuaris veure com la interacció amb aquests elements afecta la visualització de dades, fent l'experiència més fluida i eficient 🥰 En  els panells interactius permeten fer i respondre preguntes, a més de descobrir històries de manera independent.
+Col·loca els **filtres, desplegables i altres elements d'input dins de la mateixa targeta que el gràfic** que modifiquen. Això fa que sigui intuïtiu per als usuaris veure com la interacció amb aquests elements afecta la visualització de dades, fent l'experiència més fluida i eficient 🥰 
 
-TK TK Clear interaction descriptions
+Els elements interactius han de tenir instruccions clares sobre el seu ús per asegurar la seva accessibilitat.
 
 ---
 Cada gràfic ha de tenir **títol clar i descriptiu**, així com una **llegenda si és necessari**. Els títols ajuden els usuaris a entendre què estem mostrant, mentre que les llegendes expliquen el significat dels colors i altres elements. Aquest context és crucial per a una interpretació precisa de les dades.
 
-TK TK Direct labelling; clear titles; ARIA labelling
+Incorporar les etiquetes directament els elements gràfics permet una interpretació més intuïtiva i directa de les dades, eliminant la necessitat de cercar referències en altres parts de la visualització. Utilitzar títols descriptius ajuda els usuaris a comprendre ràpidament el contingut dels gràfics. A més, aplicar etiquetatge ARIA és essencial per garantir que les visualitzacions siguin [accessibles](https://observablehq.com/plot/features/accessibility) per a persones que utilitzen tecnologies d'assistència, proporcionant una experiència inclusiva i comprensible per a tots els usuaris.
 
 <div class="grid grid-cols-4">
   <div class="card example hm grid-colspan-2" style="padding-top:5rem;">
@@ -184,6 +181,8 @@ TK TK Direct labelling; clear titles; ARIA labelling
         width,
         height: width / 2,
         y: {axis: "left", label: "lb de margarina"},
+        ariaLabel: "Correlació entre el consum per càpita de margarina i la taxa de divorcis a Maine, Estats Units",
+        ariaDescription:"Dues línies superposades: una negra que mostra un consum decreixent de margarina i una altra vermella que mostra una taxa de divorcis decreixent de manera similar a Maine, Estats Units. El gràfic és una broma, una correlació espúrea.",
         marks: [
           Plot.axisY(remap.ticks(), {color: "red", anchor: "right", y: remap, tickFormat: remap.tickFormat(), label: "taxa de divorcis"}),
           Plot.lineY(
@@ -194,7 +193,7 @@ TK TK Direct labelling; clear titles; ARIA labelling
               strokeWidth: 2,
               strokeDasharray: [2,4],
               marker: "dot",
-              curve: "monotone-x"
+              curve: "monotone-x",
             }
           ),
           Plot.lineY(
@@ -206,7 +205,7 @@ TK TK Direct labelling; clear titles; ARIA labelling
               stroke: "red",
               strokeWidth: 2,
               marker: "dot",
-              curve: "monotone-x"
+              curve: "monotone-x",
             })
           )
         ]
@@ -220,14 +219,7 @@ TK TK Direct labelling; clear titles; ARIA labelling
 Els gràfics de dalt són una broma, compte amb les [correlacions espúries](https://www.tylervigen.com/spurious/correlation/5920_per-capita-consumption-of-margarine_correlates-with_the-divorce-rate-in-maine) (mireu el blog d'en Tyler Vigen) i, si us plau, [no feu servir doble eix](https://blog.datawrapper.de/dualaxis/).
 
 ---
-**Tampoc oblideu les taules**! Són una eina molt valuosa per presentar dades de manera organitzada i accessible. Quan permeten la cerca, faciliten als usuaris trobar informació específica ràpidament, i enriquides amb *sparklines* poden proporcionar una visió ràpida de les tendències sense necessitat de gràfics separats.
-
-TK TK Tables as accessibility alternative
-
----
-TK TK Materials specifically about accessibility:
-- https://data.europa.eu/apps/data-visualisation-guide/tag/accessibility-and-data-visualisation
-- https://github.com/dataviza11y/resources
+**Tampoc oblideu les taules**! Són una eina molt valuosa per presentar dades de manera organitzada i accessible. Quan permeten la cerca, faciliten als usuaris trobar informació específica ràpidament, i enriquides amb *sparklines* poden proporcionar una visió ràpida de les tendències sense necessitat de gràfics separats. Són una manera alternativa per als usuaris de consumir la informació en una visualització i, en general, els lectors de pantalla naveguen més fàcilment per les taules que per les visualitzacions.
 
 ## Tipografia i edició
 *Observable Framework* ja ofereix tots els elements de disseny que necessiteu per formatar el vostre panell. [Llegiu sobre això aquí.](https://observablehq.com/framework/markdown)
@@ -254,8 +246,6 @@ Els estils de lletra ja estan predefinits al projecte. (La iniciativa va de desb
 Text de paràgraf a l'informe
 
 ---
-
-TK TK I need to change the styles to match the ones in *sequera*
 
 <div class="grid grid-cols-4">
   <div class="card grid-colspan-3">
@@ -284,6 +274,8 @@ const buylrd = [chroma(blue).darken(1.2).saturate(2).hex(),chroma(yellow).bright
 ```
 
 Com veus, com màxim, tens 10 colors. I ja són molts. Si tens més categories, caldries que les combinesis en un grup *"Altres"* o que fessis servir *small multiples* (o *facets*).
+
+També hem afegit un traç més fosc als quadrats per garantir que el contrast entre el fons i la marca sigui suficient.
 
 ```js echo
 cat
