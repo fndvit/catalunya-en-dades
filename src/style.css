@@ -4,10 +4,12 @@
 :root {
   --sans-serif: "neue-haas-grotesk-display", sans-serif;
   --serif: merriweather, serif;
-  --theme-background: #fdfdfd;
-  --theme-background-alt: #f0f0f0;
-  --theme-foreground-muted: #6C6C6C;
-  
+  --theme-background: #f5f5f5;
+  --theme-background-alt: #efefef;
+  --theme-foreground-muted: #767676;
+  --theme-background-faint: #dcdcdc;
+  --theme-foreground-focus: #3f62aa;
+  --theme-foreground-cards: #C0C6CD;
   /* 
   --theme-background: #f3f3f3;
   --theme-background-alt: #f3f3f3;
@@ -42,6 +44,10 @@ main p, main li {
 
 li { font-weight: 500; }
 
+.card {
+  border-color: var(--theme-background-faint);
+}
+
 .card h1, .card h2 { font-weight: 600;}
 .card h3, label { font-weight: 500;}
 
@@ -49,7 +55,7 @@ li { font-weight: 500; }
 .card h2 { 
   font-size: 1.2rem;
   font-weight: 600;
-  color: var(--theme-foreground);
+  color: var(--theme-foreground-alt);
 }
 .card h3 { font-size: 1rem;}
 .card h4 { font-size: .85rem;}
@@ -87,5 +93,18 @@ li { font-weight: 500; }
 .note::before{
   content:"📓 Nota";
   margin-bottom:.5rem;
+}
+
+pre {
+  box-shadow: inset 0 0 .5rem rgba(0,0,0,0.1);
+}
+.observablehq-pre-container::after {
+  background:none;
+}
+
+#observablehq-footer nav a {
+  background-color: white;
+  border: none;
+  box-shadow: 0 0 .5rem rgba(0,0,0,0.1)
 }
 

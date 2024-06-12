@@ -23,12 +23,15 @@ toc: true
     border-radius: 1rem;
   }
 </style>
+
 # Sobre el nostre equip
-Aquesta iniciativa, [com totes les de la ViT](https://www.fundaciovit.org/transparency), forma part dels nostres principis fundacionals, pensats per promoure l'alfabetisme visual i de dades com a defensa envers la desinformació. 
+La [Fundació per a la Visualització i la Transparència](https://www.fundaciovit.org/)(ViT) és una organització sense ànim de lucre que fomenta el coneixement obert i la col·laboració entre col·lectius per avançar en l'ús de les dades obertes, amb finalitats de transparència i retiment de comptes. 
 
 Som referents en recerca, innovació i difusió de **bones pràctiques** en metodologia, visualització i transparència de les dades obertes per fer-les accessibles a la ciutadania activa interessada.
 
-I no ens fa vergonya reconèixer que tenim un dels millors equips per a la missió que ens hem proposat, 🏅 guardonat amb premis de disseny visual de  prestigi internacional i local al llarg d'anys de trajectòria professional 🌟💪. Us el presentem!
+I tenim un dels millors equips per a la missió que ens hem proposat 🤩, guardonat amb premis 🏅 de disseny visual de prestigi internacional i local al llarg d'anys de trajectòria professional 🌟💪. Us el presentem!
+
+---
 
 <div class="grid grid-cols-4">
   <div class="card">

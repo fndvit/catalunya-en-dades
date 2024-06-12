@@ -4,11 +4,20 @@ toc: true
 ---
 
 <style>
-  iframe {
+  img {
+    border-radius: 1rem;
+    box-shadow: 0 0 1rem rgba(0,0,0,0.15);
+    max-width: 60rem;
     width: 100%;
-    height: 540px;
-    border:none;
   }
+  iframe {
+  width: 100%;
+  border:none;
+  height: 36rem;
+  border-radius: 1rem;
+  box-shadow: 0 0 1rem rgba(0,0,0,0.15);
+  pointer-events:none;
+}
 </style>
 
 # Per example ...

@@ -47,14 +47,3 @@ En aquesta reunió parlarem de dubtes, consideracions i problemes específics qu
 En aquesta última reunió revisarem tota la feina feta, enfocant-nos en els últims detalls i ajustos necessaris per completar el projecte. Cal que abans de la reunió hàgiu integrat tot el codi a la branca, assegurant-vos que funcioni correctament.
 
 Una vegada s'hagin fet els ajustos finals necessaris, es farà la *pull request* per incloure l'informe o el panell de dades al projecte.
-
-## Per on començar?
-El millor punt d'inici per explorar els conjunts de dades disponibles és el propi [portal de dades obertes de Catalunya](https://analisi.transparenciacatalunya.cat/browse?limitTo=datasets). N'hi ha 825 conjunts de dades disponibles.
-
-Però si coneixes algun altre conjunt de dades públiques, mantingut per algun organisme català (municipal, comarcal o provincial), endavant.
-
-Idees per als projectes:
-- Reelaborar un panell de dades existent per millorar-ne el disseny i la funcionalitat. Per exemple, el nostre [panell de dades sobre els embassaments](https://sequera.fndvit.org/).
-- Desenvolupar una nova visualització utilitzant un conjunt de dades no explorat anteriorment. TK TK exemple de proposta TK TK.
-- Combinar dades de diverses fonts per trobar correlacions o enriquir la seva utilitat. TK TK example de proposta TK TK.
-- Crear un nou disseny adaptat a les necessitats i preferències d'usuaris finals específics. TK TK exemple de proposta TK TK.
