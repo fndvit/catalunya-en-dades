@@ -3,12 +3,25 @@ title: About the initiative
 toc: true
 ---
 
+<style>
+  iframe {
+    width: 48rem;
+    max-width: 100%;
+    height: 24rem;
+    border:none;
+    border-radius: 1rem;
+    box-shadow: 0 0 1rem rgba(0,0,0,0.15);
+  }
+</style>
+
 # Vols participar?
 La iniciativa està dirigida a **persones que encara estan aprenent i desenvolupant les seves habilitats en ciència de dades, comunicació de dades, visualització, disseny d'interfícies i camps relacionats**. Això inclou estudiants actuals, persones que s'estan formant de manera autodidacta, i gent que hagi començat recentment a explorar aquest camp. D'aquesta manera, volem fomentar la participació d'aquells que estan en les primeres etapes del seu aprenentatge, independentment de l'edat o el camí educatiu seguit, per crear un entorn just i de suport per als nous talents.
 
 La competició no està oberta a professionals establerts o aquells que ja tenen una experiència significativa en ciència de dades. Si voleu col·laborar d'una altra manera, o la vostra empresa/organització vol patrocinar la iniciativa, [poseu-vos en contacte amb nosaltres](mailto:karma@fundaciovit.org).
 
-TK TK Open an Issue in GitHub. We need to create Issue templates.
+Per participar [obre un Issue en GitHub](https://github.com/fndvit/catalunya-en-dades/issues) amb la teva proposta. Hem creat una plantilla ja per que omplis la informació minima que necessitem per valorarla teva proposta.
+
+<iframe scrolling="no" src="https://github.com/fndvit/catalunya-en-dades/issues/new/choose"></iframe>
 
 ## Premis
 La iniciativa vol incentivar i reconèixer l'excel·lència i la creativitat en les visualitzacions de dades obertes. Per animar-vos a tots a participar i presentar les vostres idees i projectes, donarem **🏅premis mensuals de €500** a les millors aportacions, a partir de setembre de 2024.
