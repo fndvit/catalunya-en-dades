@@ -73,6 +73,8 @@ En què es tradueix això? **Comenceu per les mateixes preguntes que el panell o
 **Veiem aquests redissenys com una evolució i no com un reemplaçament**, preservant l'essència de l'original alhora que empenyem els límits del que és possible.
 
 ## Recomanacions pràctiques
+TK TK Dataviz is accessibility: simple, inclusive design that avoids overload helps everyone regardless of their ability.
+
 Organitza el panell de dades amb un **fluix narratiu lògic**. Comença amb una visió general o resum a dalt, donant context, i continua amb la informació més detallada a sota. Això ajuda els usuaris a comprendre el context general abans d'endinsar-se en els detalls específics.
 
 ### Títol del panell
@@ -104,6 +106,9 @@ Crida l'atenció a les **mètriques i tendències més importants** utilitzant i
 Evita sobrecarregar les targetes amb massa informació. Cada targeta ha de centrar-se en un punt únic.
 
 ---
+TK TK Strokes to increase background/foreground contrast
+
+---
 Assegura't que la **relació d'aspecte dels teus gràfics** no distorsiona els patrons de les dades. Gràfics massa amples o massa estrets poden portar a interpretacions errònies. El format 4×3 (apaïsat) o 3×4 (vertical) potser són els més comuns i prudents, però també pots fer servir l'1×1 pels diagrames de dispersió, o formats més extrems: molt vertical si són moltes barres horitzontal apilades, molt apaïsat si és una sèrie temporal molt llarga i detallada.
 <div class="grid grid-cols-4">
   <div class="card example wrong grid-colspan-3">
@@ -127,8 +132,12 @@ Assegura't que la **relació d'aspecte dels teus gràfics** no distorsiona els p
 ---
 Col·loca els **filtres, desplegables i altres elements d'input dins de la mateixa targeta que el gràfic** que modifiquen. Això fa que sigui intuïtiu per als usuaris veure com la interacció amb aquests elements afecta la visualització de dades, fent l'experiència més fluida i eficient 🥰 En  els panells interactius permeten fer i respondre preguntes, a més de descobrir històries de manera independent.
 
+TK TK Clear interaction descriptions
+
 ---
 Cada gràfic ha de tenir **títol clar i descriptiu**, així com una **llegenda si és necessari**. Els títols ajuden els usuaris a entendre què estem mostrant, mentre que les llegendes expliquen el significat dels colors i altres elements. Aquest context és crucial per a una interpretació precisa de les dades.
+
+TK TK Direct labelling; clear titles; ARIA labelling
 
 <div class="grid grid-cols-4">
   <div class="card example hm grid-colspan-2" style="padding-top:5rem;">
@@ -213,6 +222,13 @@ Els gràfics de dalt són una broma, compte amb les [correlacions espúries](htt
 ---
 **Tampoc oblideu les taules**! Són una eina molt valuosa per presentar dades de manera organitzada i accessible. Quan permeten la cerca, faciliten als usuaris trobar informació específica ràpidament, i enriquides amb *sparklines* poden proporcionar una visió ràpida de les tendències sense necessitat de gràfics separats.
 
+TK TK Tables as accessibility alternative
+
+---
+TK TK Materials specifically about accessibility:
+- https://data.europa.eu/apps/data-visualisation-guide/tag/accessibility-and-data-visualisation
+- https://github.com/dataviza11y/resources
+
 ## Tipografia i edició
 *Observable Framework* ja ofereix tots els elements de disseny que necessiteu per formatar el vostre panell. [Llegiu sobre això aquí.](https://observablehq.com/framework/markdown)
 
@@ -283,7 +299,7 @@ resize((width) =>
       range: cat
     },
     marks: [
-      Plot.cell("ABCDEFGHIJ", {x: Plot.identity, fill: Plot.identity, stroke: (d,i) => chroma(catScale[i]).darken(.8).hex() })
+      Plot.cell("ABCDEFGHIJ", {x: Plot.identity, fill: Plot.identity, stroke: (d,i) => chroma.contrast(catScale[i], '#f0f0f0') < 1.5 ? chroma(catScale[i]).darken(1.75).hex() : chroma(catScale[i]).darken(1.2).hex() })
     ]
   }))
 ```
@@ -446,12 +462,3 @@ resize((width) =>
 ```
 
 Com veieu, podeu **crear les escales seqüencials o divergents a partir dels nostres colors a l'escala catagòrica** 😇 —o fer servir els [esquemes de color per defecte](https://observablehq.com/plot/features/scales#color-scales) a *Plot*.
-
-## Disseny inclusiu
-TK TK About ditching checking "accessibility requirements" for a different workflow
-
-TK TK Rethink your display instead of adding patterns or other stuff 
-
-TK TK Always ensure contrast 
-
-TK TK References Amy Cesal and Frank Elavsky
