@@ -1,53 +1,28 @@
 # Catalunya 👀 en dades
 
-This is an [Observable Framework](https://observablehq.com/framework) project. To start the local preview server, run:
+TK TK Definició de la iniciativa
 
-```
-npm run dev
-```
+## Vols participar?
+La iniciativa està dirigida a persones que encara estan aprenent i desenvolupant les seves habilitats en ciència de dades, comunicació de dades, visualització, disseny d’interfícies i camps relacionats. Això inclou estudiants actuals, persones que s’estan formant de manera autodidacta, i gent que hagi començat recentment a explorar aquest camp.
 
-Then visit <http://localhost:3000> to preview your project.
+Per participar [obre un Issue en GitHub](https://github.com/fndvit/catalunya-en-dades/issues) amb la teva proposta. Hem creat una plantilla ja per que omplis la informació minima que necessitem per valorarla teva proposta:
 
-For more, see <https://observablehq.com/framework/getting-started>.
+**Descriu una mica la teva proposta**
+Sumari breu del panell de dades que vols desenvolupar. Un paràgraf i prou 😊
 
-## Project structure
+**Quin tipus de projecte és?**
+Una reelaboració d’un existent, unes dades no visualitzades anteriorment, una combinació de dades per establir correlacions, o un nou disseny adaptat a nous usuaris? 
 
-A typical Framework project looks like this:
+**Quines dades faràs servir?**
+Enllaç a les dades que faràs servir del [Portal de Transparència](https://analisi.transparenciacatalunya.cat/browse?limitTo=datasets) o d’on siguin —si son d'alguna altra administració catalana.
 
-```ini
-.
-├─ src
-│  ├─ components
-│  │  └─ timeline.js           # an importable module
-│  ├─ data
-│  │  ├─ launches.csv.js       # a data loader
-│  │  └─ events.json           # a static data file
-│  ├─ example-dashboard.md     # a page
-│  ├─ example-report.md        # another page
-│  └─ index.md                 # the home page
-├─ .gitignore
-├─ observablehq.config.js      # the project config file
-├─ package.json
-└─ README.md
-```
+**Formes part d'un equip?**
+Si sou un equip, envieu-nos tots els vostres noms d’usuari o si heu creat una organització o un equip a una organització a GitHub i voleu gestionar els usuaris vosaltres mateixos, també podeu.
 
-**`src`** - This is the “source root” — where your source files live. Pages go here. Each page is a Markdown file. Observable Framework uses [file-based routing](https://observablehq.com/framework/routing), which means that the name of the file controls where the page is served. You can create as many pages as you like. Use folders to organize your pages.
-
-**`src/index.md`** - This is the home page for your site. You can have as many additional pages as you’d like, but you should always have a home page, too.
-
-**`src/data`** - You can put [data loaders](https://observablehq.com/framework/loaders) or static data files anywhere in your source root, but we recommend putting them here.
-
-**`src/components`** - You can put shared [JavaScript modules](https://observablehq.com/framework/javascript/imports) anywhere in your source root, but we recommend putting them here. This helps you pull code out of Markdown files and into JavaScript modules, making it easier to reuse code across pages, write tests and run linters, and even share code with vanilla web applications.
-
-**`observablehq.config.js`** - This is the [project configuration](https://observablehq.com/framework/config) file, such as the pages and sections in the sidebar navigation, and the project’s title.
-
-## Command reference
-
-| Command           | Description                                              |
-| ----------------- | -------------------------------------------------------- |
-| `npm install`            | Install or reinstall dependencies                        |
-| `npm run dev`        | Start local preview server                               |
-| `npm run build`      | Build your static site, generating `./dist`              |
-| `npm run deploy`     | Deploy your project to Observable                        |
-| `npm run clean`      | Clear the local data loader cache                        |
-| `npm run observable` | Run commands like `observable help`                      |
+## Documentació
+A la documentació del projecte trobareu tota la informació sobre la iniciativa i tot el que es necessita per col·laborar al projecte:
+- [Com participar](https://catalunya-en-dades.vercel.app/pages/participa.html)
+- [Informació sobre els premis](https://catalunya-en-dades.vercel.app/pages/participa.html#premis)
+- [Una guia d'estil](https://catalunya-en-dades.vercel.app/pages/guia.html)
+- [Qüestions tècniques](https://catalunya-en-dades.vercel.app/pages/preguntes-tecniques.html)
+- [Examples de codi](https://catalunya-en-dades.vercel.app/pages/preguntes-tecniques.html#gr%C3%A0fics-amb-plot)
