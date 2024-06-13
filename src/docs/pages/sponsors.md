@@ -54,7 +54,7 @@ Utilitzem [**Open Collective**](https://opencollective.com/fndvit-cat-en-dades) 
   </div>
   <div class="card">
     <img src="../img/agnes-sinclair-holbrook.png" alt="Detall d'un dels Hull House Maps"/>
-    <h2>Categoria Agnes Sinclair Holbrook</h2>
+    <h2>Agnes Sinclair Holbrook</h2>
     <h3><span class="unit">Contribució:</span> €500</h3>
     <h3><span class="unit">Patrocinis disponibles:</span> 10</h3>
     <p><a href="https://othercartographies.com/Chicago-s-demographic" target="_blank">Agnes Sinclair Holbrook</a> va ser pionera en l’ús de mapes i visualitzacions de dades per promoure reformes socials. Aquesta categoria de donació està destinada a aquells que comparteixen la nostra passió per utilitzar les dades com a eina de canvi positiu.</p>
