@@ -84,7 +84,7 @@ iframe {
 
 <iframe id="iframe" scrolling="no" src="https://sequera.fndvit.org/"></iframe>
 
-Us convidem a seguir-nos per les següents seccions, on trobareu **més detalls sobre el projecte Catalunya en dades**, a més de guies, propostes de participació i anuncis de premis que et seran molt difícil rebutjar 😋
+Us convidem a seguir-nos per les següents seccions, on trobareu **més detalls sobre el projecte Catalunya en dades**, a més de guies, propostes de participació i anuncis de premis que us seran molt difícils rebutjar 😋
 
 <div class="grid grid-cols-4">
   <div class="card">
