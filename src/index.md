@@ -88,28 +88,28 @@ Us convidem a seguir-nos per les següents seccions, on trobaràs **més detalls
 
 <div class="grid grid-cols-4">
   <div class="card">
-    <h2><a href="/pages/iniciativa.html">🚀 La iniciativa</a></h2>
+    <h2><a href="/docs/pages/iniciativa.html">🚀 La iniciativa</a></h2>
   </div>
   <div class="card">
-    <h2><a href="/pages/participa.html">✋ Vols participar?</a></h2>
+    <h2><a href="/docs/pages/participa.html">✋ Vols participar?</a></h2>
   </div>
   <div class="card">
-    <h2><a href="/pages/guia.html">🎨 Una petita guia</a></h2>
+    <h2><a href="/docs/pages/guia.html">🎨 Una petita guia</a></h2>
   </div>
   <div class="card">
-    <h2><a href="/pages/preguntes-tecniques.html">🛠️ Qüestions tècniques</a></h2>
+    <h2><a href="/docs/pages/preguntes-tecniques.html">🛠️ Qüestions tècniques</a></h2>
   </div>
   <div class="card">
-    <h2><a href="/pages/exemples.html">🎯 Un cas d’estudi</a></h2>
+    <h2><a href="/docs/pages/exemples.html">🎯 Un cas d’estudi</a></h2>
   </div>
   <div class="card">
-    <h2><a href="/pages/equip.html">👩‍👩‍👧‍👦 El nostre equip</a></h2>
+    <h2><a href="/docs/pages/equip.html">👩‍👩‍👧‍👦 El nostre equip</a></h2>
   </div>
   <div class="card">
-    <h2><a href="/pages/codi-de-conducta.html">😇 Codi de conducta</a></h2>
+    <h2><a href="/docs/pages/codi-de-conducta.html">😇 Codi de conducta</a></h2>
   </div>
   <div class="card">
-    <h2><a href="/pages/sponsors.html">💎 Sponsors</a></h2>
+    <h2><a href="/docs/pages/sponsors.html">💎 Sponsors</a></h2>
   </div>
 </div>
 

@@ -32,6 +32,8 @@ toc: true
 # Patrocinadors
 Necessitem el teu suport per fer-lo realitat. T'invitem a unir-te a nosaltres com a **sponsor** i formar part d'aquesta emocionant iniciativa. 
 
+Utilitzem [**Open Collective**](https://opencollective.com/fndvit-cat-en-dades) per **gestionar les finances del projecte de manera transparent**, implicar la nostra comunitat i garantir la responsabilitat. Amb aquesta plataforma, oferim una visió clara de les nostres despeses i finançament, permetent als nostres patrocinadors i seguidors veure exactament com les seves contribucions estan tenint un impacte.
+
 ## Tria entre les següents categories
 <div class="grid grid-cols-3">
   <div class="card">
@@ -40,6 +42,7 @@ Necessitem el teu suport per fer-lo realitat. T'invitem a unir-te a nosaltres co
     <h3><span class="unit">Contribució:</span> €2.500</h3>
     <h3><span class="unit">Patrocinis disponibles:</span> 2</h3>
     <p>En honor a la pionera <a href="https://www.marieneurath.org/" target="_blank">Marie Neurath</a>, que va revolucionar la visualització de dades, aquesta categoria de donació està destinada a aquells que vulguin fer una contribució significativa. La teva generositat impulsarà els nostres esforços per oferir formació davantera i recursos formatius d’alta qualitat.</p>
+    <a href="https://opencollective.com/fndvit-cat-en-dades/contribute/backers-76196/checkout?interval=oneTime&amount=2500" target="_blank"><b>Contribueix des de Open Collective</b><span style="display: inline-block; margin-left: 0.25rem;">↗</span></a>
   </div>
   <div class="card">
     <img src="../img/mary-eleanor-spear.png" alt="Pàginas finals del 'Practical Charting Techniques'"/>
@@ -47,6 +50,7 @@ Necessitem el teu suport per fer-lo realitat. T'invitem a unir-te a nosaltres co
     <h3><span class="unit">Contribució:</span> €1.000</h3>
     <h3><span class="unit">Patrocinis disponibles:</span> 5</h3>
     <p>Inspirada en <a href="https://ca.wikipedia.org/wiki/Mary_Eleanor_Spear" target="_blank">Mary Eleanor Spear</a>, una destacada estadística i defensora de la igualtat d’oportunitats, si dones en aquesta categoria estaràs promovent l'accessibilitat i la inclusió en el camp de les dades. La teva contribució ens ajudarà a fomentar la diversitat en l’anàlisi de dades.</p>
+    <a href="https://opencollective.com/fndvit-cat-en-dades/contribute/sponsors-76197/checkout?interval=oneTime&amount=1000" target="_blank"><b>Contribueix des de Open Collective</b><span style="display: inline-block; margin-left: 0.25rem;">↗</span></a>
   </div>
   <div class="card">
     <img src="../img/agnes-sinclair-holbrook.png" alt="Detall d'un dels Hull House Maps"/>
@@ -54,6 +58,7 @@ Necessitem el teu suport per fer-lo realitat. T'invitem a unir-te a nosaltres co
     <h3><span class="unit">Contribució:</span> €500</h3>
     <h3><span class="unit">Patrocinis disponibles:</span> 10</h3>
     <p><a href="https://othercartographies.com/Chicago-s-demographic" target="_blank">Agnes Sinclair Holbrook</a> va ser pionera en l’ús de mapes i visualitzacions de dades per promoure reformes socials. Aquesta categoria de donació està destinada a aquells que comparteixen la nostra passió per utilitzar les dades com a eina de canvi positiu.</p>
+    <a href="https://opencollective.com/fndvit-cat-en-dades/contribute/categoria-agnes-sinclair-holbrook-76198/checkout?interval=oneTime&amount=500" target="_blank"><b>Contribueix des de Open Collective</b><span style="display: inline-block; margin-left: 0.25rem;">↗</span></a>
   </div>
 </div>
 

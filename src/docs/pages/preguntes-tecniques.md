@@ -74,19 +74,19 @@ const MAPBOX_TOKEN = "pk.eyJ1IjoiZm5kdml0IiwiYSI6ImNseDR5dDV5dTBmeWMyaXNjemRkbDA
 
 # Qüestions tècniques
 ## Per on començar
-TK TK Clone the project
+El [projecte el tenim a *GitHub*](https://github.com/fndvit/catalunya-en-dades), per col·laborar eficaçment —i intentar tenir totes les discusions de les propostes allà. 
 
 <a href="https://github.com/fndvit/catalunya-en-dades" target="_blank"><img src="../img/github.png" alt="Imatge del repositori a GitHub" style="width:100%"></a>
 
-TK TK Clone the project
+Clona el projecte. I després ...
 
 ```
 npm i
-cd cat-dades
+cd catalunya-en-dades
 npm run dev
 ```
 
-TK TK Veuràs aixó
+I veuràs aixó ...
 
 <pre class="observablehq-pre-container" data-copy="none"><b class="green">Observable Framework</b> v1.8.0
 ↳ <u><a href="http://127.0.0.1:3000/" style="color: inherit;">http://127.0.0.1:3000/</a></u></pre>
@@ -103,7 +103,6 @@ Per exemple, si heu proposat un panell de dades sobre ['Consum d'energia elèctr
 Sigueu breus, concises i utilitzeu sempre `kebab-case`.
 
 ### Estructura del teu projecte
-TK TK Review what we should do here, does this structure make sense? It keeps all projects contained in folders ... It might be good?
 
 ```
 .

@@ -10,15 +10,30 @@ export default {
     <link rel="stylesheet" href="https://use.typekit.net/vpz4xzt.css" />
   </noscript>
   `,
+  search: true,
   pages: [
-    {name: "La iniciativa", path: "/pages/iniciativa"},
-    {name: "Vols participar?", path: "/pages/participa"},
-    {name: "Una petita guia", path: "/pages/guia"},
-    {name: "Qüestions tècniques", path: "/pages/preguntes-tecniques"},
-    {name: "Un cas d'estudi", path: "/pages/exemples"},
-    {name: "El nostre equip", path: "/pages/equip"},
-    {name: "Codi de conducta", path: "/pages/codi-de-conducta"},
-    {name: "Sponsors", path: "/pages/sponsors"},
+    {
+      name: "Documentació",
+      path: "/docs/",
+      pages: [
+        {name: "La iniciativa", path: "/docs/pages/iniciativa"},
+        {name: "Vols participar?", path: "/docs/pages/participa"},
+        {name: "Una petita guia", path: "/docs/pages/guia"},
+        {name: "Qüestions tècniques", path: "/docs/pages/preguntes-tecniques"},
+        {name: "Un cas d'estudi", path: "/docs/pages/exemples"},
+        {name: "El nostre equip", path: "/docs/pages/equip"},
+        {name: "Codi de conducta", path: "/docs/pages/codi-de-conducta"},
+        {name: "Sponsors", path: "/docs/pages/sponsors"}
+      ]
+    },
+    {
+      name: "Projects",
+      path: "/projects/",
+      open: false,
+      pages: [
+        {name: "Coming soon", path: "/projects/coming-soon"},
+      ]
+    }
   ],
   header:`<style>
 
