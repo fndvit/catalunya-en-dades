@@ -7,7 +7,7 @@ toc: true
   ol { list-style-type: none;}
 </style>
 
-# Reimaginant la visualització de dades obertes a Catalunya
+# Reimagina la visualització de dades obertes a Catalunya
 **Catalunya 👀 en dades** és més que una competició; és una crida a tots els que esteu aprenent 🧑‍💻📓📈🔍 ciència de dades, comunicació, disseny i visualització de dades a participar en la **reinvenció de la visualització de les dades obertes de l'administració catalana**. Està dissenyada per fomentar un entorn col·laboratiu on les idees flueixin lliurement i on les millors propostes siguin recompensades amb 🏅 premis mensuals i un 🏆 gran premi final.
 
 ---
