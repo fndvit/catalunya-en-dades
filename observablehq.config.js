@@ -43,7 +43,7 @@ export default {
       ]
     },
     {
-      name: "Projects",
+      name: "Projectes",
       path: "/projectes/",
       open: false,
       pages: [
