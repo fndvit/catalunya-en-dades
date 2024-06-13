@@ -30,7 +30,7 @@ L'equip de la ViT seleccionarà els guanyadors mensuals; mentre que el premi fin
 Els guanyadors mensuals es convertiran automàticament en finalistes. Els jutges també podran incloure altres presentacions que considerin destacables. Això significa que tindran l'oportunitat de competir pel **🏆 gran premi final de €2.500**.
 
 ## Mentories
-L'equip de la Fundació ViT inclou especialistes en dades obertes, dataviz i disseny interactiu, visualització científica, ètica de la IA, aprenentatge automàtic, etc. i està liderat pels multipremiats experts [Karma Peiró](https://ca.wikipedia.org/wiki/Karma_Peir%C3%B3) i [Xaquín G.V.](https://explorers.nationalgeographic.org/directory/xaquin-veira-gonzalez)
+L'equip de la Fundació ViT inclou especialistes en dades obertes, dataviz i disseny interactiu, visualització científica, ètica de la IA, aprenentatge automàtic, etc. i està liderat pels multipremiats experts [Karma Peiró](https://ca.wikipedia.org/wiki/Karma_Peir%C3%B3), [Xaquín G.V.](https://explorers.nationalgeographic.org/directory/xaquin-veira-gonzalez) i Anton Bardera.
 
 Les mentories són un dels fils principals de l'ADN de la ViT, els projectes d'estudiants del nostre *Master's in Visual Tools to Empower Citizens* han brillat en [concursos internacionals com els de la Society for News Design](https://x.com/josephricafort/status/1792089452166492592).
 
