@@ -25,7 +25,7 @@ Els participants tenen l'oportunitat de [remodelar la manera en què les **dades
 
 La **eina** que farem servir és l'[*Observable Framework*](https://github.com/observablehq/framework), "un generador de llocs web de codi obert i gratuït per a crear informes, aplicacions i panells de dades que combina JavaScript al front-end per a gràfics interactius amb qualsevol llenguatge al back-end per a l'anàlisi de dades".
 
-Més enllà del desenvolupament de projectes, oferim [**mentories**](https://catalunya-en-dades.vercel.app/pages/participa.html#mentories) per guiar els participants a través del seu procés creatiu. Aquestes sessions són conduïdes per experts reconeguts en els camps de les dades obertes, dataviz, i disseny interactiu, assegurant que cada participant no només competeix, sinó que també creix professionalment i personalment.
+Més enllà del desenvolupament de projectes, oferim [**mentories**](./participa#mentories) per guiar els participants a través del seu procés creatiu. Aquestes sessions són conduïdes per experts reconeguts en els camps de les dades obertes, dataviz, i disseny interactiu, assegurant que cada participant no només competeix, sinó que també creix professionalment i personalment.
 
 ## Per on començar?
 El millor punt d'inici per explorar els conjunts de dades disponibles es el [propi portal de dades obertes de Catalunya](https://analisi.transparenciacatalunya.cat/browse?limitTo=datasets). N’hi ha 825 conjunts de dades disponibles. Però si coneixes algun altre conjunt de dades públiques, mantingut per algun organisme català (municipal, comarcal o provincial), endavant.
