@@ -92,7 +92,7 @@ I veuràs aixó ...
 ↳ <u><a href="http://127.0.0.1:3000/" style="color: inherit;">http://127.0.0.1:3000/</a></u></pre>
 
 ### Un nou panell, una nova branca a GitHub, una nova pàgina
-Per enviar la vostra proposta, vosaltres (o nosaltres) haureu creat un *Issue* a *GitHub*. Aquest *Issue* tindrà assignada una **branca primària**.
+Per enviar la vostra proposta, vosaltres (o nosaltres) haureu creat un *Issue* a *GitHub* —com [s'explica a la pàgina de **participació**](./participa). Aquest *Issue* tindrà assignada una **branca primària**.
 
 Per exemple, si heu proposat un panell de dades sobre ['Consum d'energia elèctrica per municipis i sectors de Catalunya'](https://analisi.transparenciacatalunya.cat/Energia/Consum-d-energia-el-ctrica-per-municipis-i-sectors/8idm-becu/about_data):
 
