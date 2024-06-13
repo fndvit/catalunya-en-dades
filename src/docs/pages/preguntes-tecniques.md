@@ -107,14 +107,15 @@ Sigueu breus, concises i utilitzeu sempre `kebab-case`.
 ```
 .
 ├─ src
-│  ├─ projects
+│  ├─ projectes
 │  │  └─ nom-projecte
-│  │     └─ data
-│  │        └─ data-a.json
-│  │        └─ data-b.json
-│  │        └─ mapa.json
-│  │        └─ ...
+│  │     ├─ data
+│  │     │  └─ data-a.json
+│  │     │  └─ data-b.json
+│  │     │  └─ mapa.json
+│  │     │  └─ ...
 │  │     └─ index.md
+│  └─ docs
 │  └─ ...
 └─ ...
 ```
@@ -123,7 +124,7 @@ Sigueu breus, concises i utilitzeu sempre `kebab-case`.
 
 - **Clona el repositori**
 - **Canvia a la branca primària del teu projecte** 
-- **Crea una nova pàgina**: Continuant amb l'exemple de dalt seria `project/consum-electric/index.md`
+- **Crea una nova pàgina**: Continuant amb l'exemple de dalt seria `projectes/consum-electric/index.md`
 - **Crea una branca per a la teva feature**: Abans de fer cap canvi extra, crea una nova branca per a la teva *feature* seguint [l'estructura que vam explicar a dalt](#com-col·laborar-i-enviar-pull-requests-(prs)).
 - **Fes els teus canvis i fes *commit*:** Fes els canvis necessaris al codi i fes un commit amb un missatge descriptiu.
 - **Puja els canvis a GitHub**

@@ -44,10 +44,10 @@ export default {
     },
     {
       name: "Projects",
-      path: "/projects/",
+      path: "/projectes/",
       open: false,
       pages: [
-        {name: "Coming soon", path: "/projects/coming-soon"},
+        {name: "Coming soon", path: "/projectes/coming-soon"},
       ]
     }
   ],
