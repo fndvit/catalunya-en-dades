@@ -11,11 +11,11 @@ export default {
   <meta property="og:description" content="És una iniciativa per reimaginar la visualització de dades obertes de l'administració catalana fent servir Observable Framework, oberta a persones que estigueu aprenent ciència de dades, comunicació, disseny o visualització de dades, amb premis mensuals i un gran premi final a les millors col·laboracions.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://catalunya-en-dades.fndvit.org/">
-  <meta property="og:image" content="https://catalunya-en-dades.fndvit.org/docs/img/social.png">
+  <meta property="og:image" content="/docs/img/social.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Catalunya 👀 en dades">
   <meta name="twitter:description" content="És una iniciativa per reimaginar la visualització de dades obertes de l'administració catalana fent servir Observable Framework, oberta a persones que estigueu aprenent ciència de dades, comunicació, disseny o visualització de dades, amb premis mensuals i un gran premi final a les millors col·laboracions.">
-  <meta name="twitter:image" content="https://catalunya-en-dades.fndvit.org/docs/img/social.png">
+  <meta name="twitter:image" content="/docs/img/social.png">
   <link rel="shortcut icon" type="image/x-icon" href="https://images.squarespace-cdn.com/content/v1/5e5b7eebeb83b746b6481a2d/1604671720103-EPJSELDNWVIPCWI63H7G/ke17ZwdGBToddI8pDm48kNCIUUInZz-JelovUC4TKJ9Zw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZUJFbgE-7XRK3dMEBRBhUpy2nmdcYIRqEQwGN8P7xrL_yE-hs8s0G614KmYuoTh2b5xIcJ7iebeF3-4wt8VfJy4/favicon.ico?format=100w">
   <link rel="preconnect" href="https://use.typekit.net" crossorigin />
   <link rel="preconnect" href="https://p.typekit.net" crossorigin />
