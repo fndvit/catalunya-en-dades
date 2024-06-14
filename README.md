@@ -3,7 +3,7 @@
 
 - Des de ara fins al març del 2025
 - [Premis](https://catalunya-en-dades.fndvit.org/docs/pages/participa.html#premis) mensuals de €500 i un gran premi final de €2.500
-- Amb suport i [mentories](https://catalunya-en-dades.fndvit.org/docs/pages/participa.html#mentories) per part d'un internacional d'expertes
+- Amb suport i [mentories](https://catalunya-en-dades.fndvit.org/docs/pages/participa.html#mentories) per part d'un equip internacional d'expertes
 
 ## [Vols participar?](https://catalunya-en-dades.fndvit.org/docs/pages/participa.html)
 La iniciativa està dirigida a persones que encara estan aprenent i desenvolupant les seves habilitats en ciència de dades, comunicació de dades, visualització, disseny d’interfícies i camps relacionats. Això inclou estudiants actuals, persones que s’estan formant de manera autodidacta, i gent que hagi començat recentment a explorar aquest camp.
