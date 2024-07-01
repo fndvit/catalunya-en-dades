@@ -47,7 +47,8 @@ export default {
       path: "/projectes/",
       open: false,
       pages: [
-        {name: "Coming soon", path: "/projectes/coming-soon"},
+        {name: "Llistat de propostes", path: "/projectes/"},
+        {name: "Embassaments", path: "/projectes/embassaments/"},
       ]
     }
   ],
