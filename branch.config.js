@@ -71,7 +71,9 @@ try {
 
     // Ensure correct closing brackets for "Projectes" and "pages"
     if (!configFileContent.endsWith('  ],')) {
-      configFileContent += '\n  ],';
+      configFileContent += `]
+    }
+  ],`;
     }
 
     fs.writeFileSync(configFilePath, configFileContent, 'utf8');
