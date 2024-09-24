@@ -46,37 +46,21 @@ try {
 
   // Update observablehq.config.js in the new branch
   const configFilePath = path.join(__dirname, 'observablehq.config.js');
-  let configFileContent = fs.readFileSync(configFilePath, 'utf8');
+  const config = require(configFilePath); // Load the config as a JS object
 
-  const newPageEntry = `{name: "${capitalizedBranchName}", path: "/projectes/${lowerCaseBranchName}/"}`;
-  const projectesSectionRegex = /({\s*name:\s*"Projectes",\s*path:\s*".*?",\s*open:\s*false,\s*pages:\s*\[\s*)([^]*?)(\s*]\s*})/;
+  // Find the "Projectes" section and append the new page entry
+  const projectesSection = config.pages.find(section => section.name === "Projectes");
+  
+  if (projectesSection) {
+    // Add the new entry
+    projectesSection.pages.push({
+      name: capitalizedBranchName,
+      path: `/projectes/${lowerCaseBranchName}/`
+    });
 
-  const match = configFileContent.match(projectesSectionRegex);
-
-  if (match) {
-    const existingPages = match[2].trim();
-    const lastPageEntry = existingPages.split('\n').pop().trim();
-
-    // Check if last entry has a comma, and add one if necessary
-    const pagesWithComma = lastPageEntry.endsWith(',')
-      ? existingPages
-      : existingPages + ',';
-
-    const updatedPages = pagesWithComma + `\n        ${newPageEntry}`;
-
-    configFileContent =
-      configFileContent.slice(0, match.index + match[1].length) +
-      updatedPages +
-      configFileContent.slice(match.index + match[0].length);
-
-    // Ensure correct closing brackets for "Projectes" and "pages"
-    if (!configFileContent.endsWith('  ],')) {
-      configFileContent += `]
-    }
-  ],`;
-    }
-
-    fs.writeFileSync(configFilePath, configFileContent, 'utf8');
+    // Write the updated object back to observablehq.config.js
+    const updatedConfig = `export default ${JSON.stringify(config, null, 2)};`;
+    fs.writeFileSync(configFilePath, updatedConfig, 'utf8');
     console.log(`Updated observablehq.config.js with new branch '${capitalizedBranchName}'.`);
   } else {
     console.error("Error: Unable to find 'Projectes' section in config.");
