@@ -6,7 +6,8 @@
     "build": "rimraf dist && observable build",
     "dev": "observable preview",
     "deploy": "observable deploy",
-    "observable": "observable"
+    "observable": "observable",
+    "newbranch": "node branch.config.js"
   },
   "dependencies": {
     "@observablehq/framework": "^1.7.0",
