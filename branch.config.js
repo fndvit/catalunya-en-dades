@@ -46,7 +46,9 @@ try {
 
   // Update observablehq.config.js in the new branch
   const configFilePath = path.join(__dirname, 'observablehq.config.js');
-  const config = require(configFilePath); // Load the config as a JS object
+  const configContent = fs.readFileSync(configFilePath, 'utf8'); // Read the config file as a string
+  const configModule = await import(configFilePath); // Dynamically import the config file as an ES module
+  const config = configModule.default; // Access the default export of the module
 
   // Find the "Projectes" section and append the new page entry
   const projectesSection = config.pages.find(section => section.name === "Projectes");
