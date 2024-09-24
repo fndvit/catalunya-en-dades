@@ -56,15 +56,23 @@ try {
   if (match) {
     const existingPages = match[2].trim();
     const lastPageEntry = existingPages.split('\n').pop().trim();
-    const updatedPages =
-      lastPageEntry.endsWith(',')
-        ? existingPages + `\n        ${newPageEntry},`
-        : existingPages + `,\n        ${newPageEntry}`;
+
+    // Check if last entry has a comma, and add one if necessary
+    const pagesWithComma = lastPageEntry.endsWith(',')
+      ? existingPages
+      : existingPages + ',';
+
+    const updatedPages = pagesWithComma + `\n        ${newPageEntry}`;
 
     configFileContent =
       configFileContent.slice(0, match.index + match[1].length) +
       updatedPages +
       configFileContent.slice(match.index + match[0].length);
+
+    // Ensure correct closing brackets for "Projectes" and "pages"
+    if (!configFileContent.endsWith('  ],')) {
+      configFileContent += '\n  ],';
+    }
 
     fs.writeFileSync(configFilePath, configFileContent, 'utf8');
     console.log(`Updated observablehq.config.js with new branch '${capitalizedBranchName}'.`);
