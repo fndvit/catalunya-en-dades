@@ -88,7 +88,7 @@ Us convidem a seguir-nos per les següents seccions, on trobareu **més detalls 
 
 <div class="grid grid-cols-4">
   <div class="card">
-    <h2><a href="/docs/pages/iniciativa.html">🚀 La iniciativa</a></h2>
+    <h2><a href="/docs/">🚀 La iniciativa</a></h2>
   </div>
   <div class="card">
     <h2><a href="/docs/pages/participa.html">✋ Vols participar?</a></h2>

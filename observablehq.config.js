@@ -21,7 +21,6 @@ export default {
   <link rel="preconnect" href="https://p.typekit.net" crossorigin />
   <link rel="preload" as="style" href="https://use.typekit.net/vpz4xzt.css" />
   <link rel="stylesheet" href="https://use.typekit.net/vpz4xzt.css" media="print" onload="this.media='all'" />
-  <link rel="stylesheet" href="styles.css">
   <noscript>
     <link rel="stylesheet" href="https://use.typekit.net/vpz4xzt.css" />
   </noscript>
@@ -32,7 +31,7 @@ export default {
       name: "Documentació",
       path: "/docs/",
       pages: [
-        {name: "La iniciativa", path: "/docs/pages/iniciativa"},
+        {name: "La iniciativa", path: "/docs/index"},
         {name: "Vols participar?", path: "/docs/pages/participa"},
         {name: "Una petita guia", path: "/docs/pages/guia"},
         {name: "Qüestions tècniques", path: "/docs/pages/preguntes-tecniques"},
@@ -113,5 +112,4 @@ export default {
   // linkify: true, // convert URLs in Markdown to links
   typographer: true, // smart quotes and other typographic improvements
   footer: '',
-  cleanUrls: false
 };
