@@ -36,9 +36,43 @@ const nom_comarca = Generators.input(nom_comarca_input);
 ```
 
 ```js
+const render_interaction_comarca = (index, scales, values, dimensions, context, next) => {
+    const dom_element = next(index, scales, values, dimensions, context);
+    const all_paths = dom_element.querySelectorAll("path");
+    for (let i = 0; i < all_paths.length; i++) {
+        all_paths[i].addEventListener("click", () => {
+            set(nom_comarca_input, nom_comarques[index[i]]);
+        });
+    }
+    return dom_element;
+}
+
+const population_data_single_comarca = population.filter(row => {
+    return nom_comarca == row.nom_comarca;
+}).flatMap(row => {
+    return Array(Object({year: row.year, aggregation: "population_over_65", population: row.population_over_65}),
+        Object({
+            year: row.year,
+            aggregation: "population_below_65",
+            population: row.population - row.population_over_65
+        }))
+}).sort((a, b) => {
+    if (a.aggregation == b.aggregation) {
+        return a.year - b.year;
+    } else {
+        if (a.aggregation == "population_below_65") {
+            return -1;
+        } else {
+            return 1;
+        }
+    }
+});
+```
+
+```js
 
 const plot_catalunya_map_aged_65 = (width) => {
-    return Plot.plot({
+    let plot = Plot.plot({
         projection: {
             type: "conic-conformal",
             domain: comarques_catalunya
@@ -61,14 +95,64 @@ const plot_catalunya_map_aged_65 = (width) => {
                 strokeOpacity: 1.0,
                 strokeWidth: 1,
                 stroke: "black",
-                tip: true
+                tip: true,
+                render: render_interaction_comarca
             })
 
 
         ]
     });
+
+    d3.select(plot)
+        .selectAll("path")
+        .on("mouseover", function () {
+            d3.select(this).attr("stroke-width", 4.0);
+        })
+        .on("mouseout", function () {
+            d3.select(this).attr("stroke-width", 1.0);
+        });
+
+    d3.select(plot)
+        .on("pointerenter", function () {
+            d3.select(plot).selectAll("path").attr("stroke-width", 1.0);
+        })
+        .on("pointerleave", function () {
+            d3.select(plot).selectAll("path").attr("stroke-width", 1.0);
+        });
+    
+    return plot;
+
 };
 
+
+var plot_trend_population_groups_by_comarca = (width) => {
+    return Plot.plot({
+        marginLeft: 50,
+        width: width,
+        y: {
+            grid: true,
+            label: "Població",
+        },
+        color: {
+            domain: ["population_over_65", "population_below_65"],
+            range: ["#ffd754", "#3b5fc0"],
+            legend: true,
+            columns: 1,
+            rows: 2,
+            label: "Age Groups",
+            tickFormat: d => d === "population_below_65" ? "Població entre 0 i 64 anys" : "Població de 65 anys i més"
+        },
+        x: {
+            grid: true,
+            tickFormat: d => d.toString(),
+            label: null
+        },
+        marks: [
+            Plot.areaY(population_data_single_comarca,
+                {x: "year", y: "population", fill: "aggregation"})
+        ]
+    })
+}
 ```
 
 # Gent Gran
@@ -81,6 +165,14 @@ El valor central representa la mitjana d'Espanya, que és del 21% d'aquest indic
 Com a referència addicional, la mediana global se situa en el 10%.
         <figure class="grafic" style="max-width: none;">
             ${resize((width) => plot_catalunya_map_aged_65(width))}
+        </figure>
+    </div>
+    <div class="card grid-colspan-2">
+    Per veure la tendència demogràfica per edat d'una comarca específica, podeu seleccionar el nom de la comarca en les opcions següents o fer clic al mapa.
+            ${nom_comarca_input}
+        <h2>Tendència demogràfica per edat a ${nom_comarca}</h2>
+        <figure class="grafic" style="max-width: none;">
+            ${resize((width) => plot_trend_population_groups_by_comarca(width))}
         </figure>
     </div>
     
