@@ -31,14 +31,14 @@ export default {
       name: "Documentació",
       path: "/docs/",
       pages: [
-        {name: "La iniciativa", path: "/docs/index"},
-        {name: "Vols participar?", path: "/docs/participa"},
-        {name: "Una petita guia", path: "/docs/guia"},
-        {name: "Qüestions tècniques", path: "/docs/preguntes-tecniques"},
-        {name: "Un cas d'estudi", path: "/docs/exemples"},
-        {name: "El nostre equip", path: "/docs/equip"},
-        {name: "Codi de conducta", path: "/docs/codi-de-conducta"},
-        {name: "Sponsors", path: "/docs/sponsors"}
+        {name: "La iniciativa", path: "/docs/"},
+        {name: "Vols participar?", path: "/docs/participa.html"},
+        {name: "Una petita guia", path: "/docs/guia.html"},
+        {name: "Qüestions tècniques", path: "/docs/preguntes-tecniques.html"},
+        {name: "Un cas d'estudi", path: "/docs/exemples.html"},
+        {name: "El nostre equip", path: "/docs/equip.html"},
+        {name: "Codi de conducta", path: "/docs/codi-de-conducta.html"},
+        {name: "Sponsors", path: "/docs/sponsors.html"}
       ]
     },
     {
