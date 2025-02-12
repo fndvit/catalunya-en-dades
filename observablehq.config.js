@@ -32,13 +32,13 @@ export default {
       path: "/docs/",
       pages: [
         {name: "La iniciativa", path: "/docs/index"},
-        {name: "Vols participar?", path: "/docs/pages/participa"},
-        {name: "Una petita guia", path: "/docs/pages/guia"},
-        {name: "Qüestions tècniques", path: "/docs/pages/preguntes-tecniques"},
-        {name: "Un cas d'estudi", path: "/docs/pages/exemples"},
-        {name: "El nostre equip", path: "/docs/pages/equip"},
-        {name: "Codi de conducta", path: "/docs/pages/codi-de-conducta"},
-        {name: "Sponsors", path: "/docs/pages/sponsors"}
+        {name: "Vols participar?", path: "/docs/participa"},
+        {name: "Una petita guia", path: "/docs/guia"},
+        {name: "Qüestions tècniques", path: "/docs/preguntes-tecniques"},
+        {name: "Un cas d'estudi", path: "/docs/exemples"},
+        {name: "El nostre equip", path: "/docs/equip"},
+        {name: "Codi de conducta", path: "/docs/codi-de-conducta"},
+        {name: "Sponsors", path: "/docs/sponsors"}
       ]
     },
     {

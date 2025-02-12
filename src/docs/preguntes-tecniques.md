@@ -76,7 +76,7 @@ const MAPBOX_TOKEN = "pk.eyJ1IjoiZm5kdml0IiwiYSI6ImNseDR5dDV5dTBmeWMyaXNjemRkbDA
 ## Per on començar
 El [projecte el tenim a *GitHub*](https://github.com/fndvit/catalunya-en-dades), per col·laborar eficaçment —i mantenir totes les discussions de les propostes en obert. 
 
-<a href="https://github.com/fndvit/catalunya-en-dades" target="_blank"><img src="../img/github.png" alt="Imatge del repositori a GitHub" style="width:100%"></a>
+<a href="https://github.com/fndvit/catalunya-en-dades" target="_blank"><img src="./img/github.png" alt="Imatge del repositori a GitHub" style="width:100%"></a>
 
 Fes un *fork* el projecte. Entra a la carpeta, instal·la'l amb `npm i` i executa `npm run dev`. Veuràs aixó ...
 
