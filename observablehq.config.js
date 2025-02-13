@@ -111,6 +111,7 @@ export default {
   // search: true, // activate search
   // linkify: true, // convert URLs in Markdown to links
   typographer: true, // smart quotes and other typographic improvements
-  cleanUrls: true,
+  cleanUrls: false,
+  preserveExtension: true,
   footer: '',
 };
