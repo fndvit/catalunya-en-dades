@@ -4,6 +4,15 @@ const comarques_catalunya = FileAttachment("data/comarques_catalunya.json").json
 ````
 
 ```js
+const latest_year = Math.max(...population.map(single_object => single_object.year));
+const total_population_latest_year = population.filter(single_object => single_object.year == latest_year).reduce((accumulative_population, single_object) => single_object.population + accumulative_population, 0);
+const gent_gran_population_latest_year = population.filter(single_object => single_object.year == latest_year).reduce((accumulative_population, single_object) => single_object.population_over_65 + accumulative_population, 0);
+const latest_indicator_average_catalunya = Math.round(gent_gran_population_latest_year * 1000 / total_population_latest_year) / 10.0
+const latest_indicator_average_catalunya_integer = Math.round(latest_indicator_average_catalunya);
+const range_colours_indicator = [...Array(8).keys()].map(i => latest_indicator_average_catalunya_integer - 7 + i * 2)
+```
+
+```js
 const nom_comarques = comarques_catalunya.features.map(d => d.properties.NOMCOMAR);
 ```
 
@@ -15,7 +24,6 @@ function set(input, value) {
 ```
 
 ```js
-const latest_year = Math.max.apply(Math, population.map(row => row.year));
 const comarques_latest_population = Object.fromEntries(
     population
         .filter(row => row.year === latest_year)
@@ -81,10 +89,10 @@ const plot_catalunya_map_aged_65 = (width) => {
             type: "threshold",
             scheme: "buylrd",
             legend: true,
-            pivot: 17.96,
+            pivot: latest_indicator_average_catalunya_integer,
             n: 10,
-            unknown: "black",
-            domain: [14, 16, 18, 20, 22, 24, 26, 30],
+            unknown: "grey",
+            domain: range_colours_indicator,
             label: "Població de 65 anys i més (%)",
         },
         width: width,
@@ -119,7 +127,7 @@ const plot_catalunya_map_aged_65 = (width) => {
         .on("pointerleave", function () {
             d3.select(plot).selectAll("path").attr("stroke-width", 1.0);
         });
-    
+
     return plot;
 
 };
@@ -161,7 +169,7 @@ var plot_trend_population_groups_by_comarca = (width) => {
     <div class="card grid-colspan-2">
         <h2>Població de 65 anys i més (%)</h2>
 El següent mapa de Catalunya mostra cada comarca amb aquest indicador analitzat per a l'any més recent.
-El valor central representa la mitjana d'Espanya, que és del 21% d'aquest indicador.
+El valor central representa la mitjana de Catalunya, que és del ${latest_indicator_average_catalunya}% d'aquest indicador.
 Com a referència addicional, la mediana global se situa en el 10%.
         <figure class="grafic" style="max-width: none;">
             ${resize((width) => plot_catalunya_map_aged_65(width))}
@@ -175,5 +183,5 @@ Com a referència addicional, la mediana global se situa en el 10%.
             ${resize((width) => plot_trend_population_groups_by_comarca(width))}
         </figure>
     </div>
-    
+
 </div>
