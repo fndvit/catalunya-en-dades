@@ -10,6 +10,8 @@ const gent_gran_population_latest_year = population.filter(single_object => sing
 const latest_indicator_average_catalunya = Math.round(gent_gran_population_latest_year * 1000 / total_population_latest_year) / 10.0
 const latest_indicator_average_catalunya_integer = Math.round(latest_indicator_average_catalunya);
 const range_colours_indicator = [...Array(8).keys()].map(i => latest_indicator_average_catalunya_integer - 7 + i * 2)
+const reference_year = population.reduce((closest_year, single_object) => Math.abs(single_object.year - 2000) < Math.abs(closest_year - 2000) ? single_object.year : closest_year , latest_year);
+console.log(reference_year);
 ```
 
 ```js
@@ -29,7 +31,12 @@ const comarques_latest_population = Object.fromEntries(
         .filter(row => row.year === latest_year)
         .map(row => Array(row.nom_comarca, Math.round(row.population_over_65 * 1000.0 / row.population) / 10.0)))
 ```
-
+```js
+const comarques_reference_population = Object.fromEntries(
+    population
+        .filter(row => row.year === reference_year)
+        .map(row => Array(row.nom_comarca, Math.round(row.population_over_65 * 1000.0 / row.population) / 10.0)))
+```
 ```js
 const nom_comarca_input = Inputs.select(
     comarques_catalunya.features.map((d) => d.properties.NOMCOMAR),
