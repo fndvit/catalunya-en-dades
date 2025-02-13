@@ -1,12 +1,12 @@
 ---
-theme: [air, ocean-floor, wide]
-title: Consums d'aigua
+title: Panell de dades del consum d'aigua a Catalunya
 toc: false
+style: ../dashboard.css
 ---
 
 <!--External libs-->
 ```js
-import {Trend} from "components/trend.js";
+import {Trend} from "./components/trend.js";
 import {extent, format, rollup, timeFormat} from "npm:d3";
 ```
 
