@@ -195,8 +195,8 @@ var plot_trend_population_groups_by_comarca = (width) => {
 
 # Gent Gran
 
-<div class="grid grid-cols-4">
-    <div class="card grid-colspan-2">
+<div class="grid grid-cols-3">
+    <div class="card grid-colspan-3">
         ${catalunya_indicator_or_variation_input}
         <h2>${catalunya_indicator_or_variation ? "Percentatge de la població de 65 anys o més": `Variació % població 65 anys o més entre els anys ${latest_year} i ${reference_year}`}</h2>
 ${catalunya_indicator_or_variation ? `El següent mapa de Catalunya mostra cada comarca amb aquest indicador analitzat per a l'any ${latest_year}.
@@ -206,7 +206,9 @@ Com a referència addicional, la mediana global se situa en el 10%.`: `El següe
             ${resize((width) => plot_catalunya_map_aged_65(width))}
         </figure>
     </div>
-    <div class="card grid-colspan-2">
+</div>
+<div class="grid grid-cols-3">
+    <div class="card grid-colspan-1">
     Per veure la tendència demogràfica per edat d'una comarca específica, podeu seleccionar el nom de la comarca en les opcions següents o fer clic al mapa.
             ${nom_comarca_input}
             ${single_comarca_population_input}
