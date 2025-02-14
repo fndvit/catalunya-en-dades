@@ -49,6 +49,7 @@ export default {
       pages: [
         {name: "Llistat de propostes", path: "/projectes/"},
         {name: "Embassaments", path: "/projectes/embassaments/"},
+        {name: "Consum Aigua", path: "/projectes/consum-aigua/"},
       ]
     }
   ],
