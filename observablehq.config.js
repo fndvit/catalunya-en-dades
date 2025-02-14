@@ -21,7 +21,6 @@ export default {
   <link rel="preconnect" href="https://p.typekit.net" crossorigin />
   <link rel="preload" as="style" href="https://use.typekit.net/vpz4xzt.css" />
   <link rel="stylesheet" href="https://use.typekit.net/vpz4xzt.css" media="print" onload="this.media='all'" />
-  <link rel="stylesheet" href="styles.css">
   <noscript>
     <link rel="stylesheet" href="https://use.typekit.net/vpz4xzt.css" />
   </noscript>
@@ -32,14 +31,14 @@ export default {
       name: "Documentació",
       path: "/docs/",
       pages: [
-        {name: "La iniciativa", path: "/docs/pages/iniciativa"},
-        {name: "Vols participar?", path: "/docs/pages/participa"},
-        {name: "Una petita guia", path: "/docs/pages/guia"},
-        {name: "Qüestions tècniques", path: "/docs/pages/preguntes-tecniques"},
-        {name: "Un cas d'estudi", path: "/docs/pages/exemples"},
-        {name: "El nostre equip", path: "/docs/pages/equip"},
-        {name: "Codi de conducta", path: "/docs/pages/codi-de-conducta"},
-        {name: "Sponsors", path: "/docs/pages/sponsors"}
+        {name: "La iniciativa", path: "/docs/"},
+        {name: "Vols participar?", path: "/docs/participa.html"},
+        {name: "Una petita guia", path: "/docs/guia.html"},
+        {name: "Qüestions tècniques", path: "/docs/preguntes-tecniques.html"},
+        {name: "Un cas d'estudi", path: "/docs/exemples.html"},
+        {name: "El nostre equip", path: "/docs/equip.html"},
+        {name: "Codi de conducta", path: "/docs/codi-de-conducta.html"},
+        {name: "Sponsors", path: "/docs/sponsors.html"}
       ]
     },
     {
@@ -113,6 +112,7 @@ export default {
   // search: true, // activate search
   // linkify: true, // convert URLs in Markdown to links
   typographer: true, // smart quotes and other typographic improvements
+  cleanUrls: false,
+  preserveExtension: true,
   footer: '',
-  cleanUrls: false
 };
