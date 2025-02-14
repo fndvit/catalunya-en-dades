@@ -1,6 +1,8 @@
 ```js
 const population = FileAttachment("data/population.json").json();
 const comarques_catalunya = FileAttachment("data/comarques_catalunya.json").json();
+const entities_df = FileAttachment("data/entitats_serveis_establiments_socials.json").json();
+
 ````
 
 ```js
@@ -193,6 +195,206 @@ var plot_trend_population_groups_by_comarca = (width) => {
 }
 ```
 
+```js
+const nom_comarca_services_input = Inputs.select(
+    entities_df.entities_comarca_acumulative.map((d) => d.comarca),
+    {
+        sort: true,
+        unique: true,
+        label: "Nom Comarca",
+        value: "Alt Camp"
+    }
+);
+const nom_comarca_services = Generators.input(nom_comarca_services_input);
+
+const linear_scale_y_axis_input = Inputs.radio(new Map([["Escala lineal", true],
+        ["Escala logarítmica", false]]),
+    {value: true, label: "Escala del gràfic:"});
+const linear_scale_y_axis = Generators.input(linear_scale_y_axis_input);
+
+const service_tag_to_complete = new Map([["Servei de centre de dia", "Servei de centre de dia per a gent gran de caràcter temporal o permanent"],
+    ["Servei de residència assistida", "Servei de residència assistida per a gent gran de caràcter temporal o permanent"],
+    ["Servei de llar residència", "Servei de llar residència per a gent gran de caràcter temporal o permanent"],
+    ["Servei de tutela", "Servei de tutela per a gent gran"],
+    ["Servei d' habitatge tutelat", "Servei d' habitatge tutelat per a gent gran de caràcter temporal o permanent"]]);
+const all_services = Array.from(service_tag_to_complete.entries()).map(k => k[1]);
+
+const serveis_input = Inputs.checkbox(service_tag_to_complete, {
+    value: ["Servei de residència assistida per a gent gran de caràcter temporal o permanent"],
+    label: "Servei"
+})
+const serveis_selected = Generators.input(serveis_input)
+```
+
+```js
+const serveis_to_use = (serveis_selected.length == 0) ? all_services : serveis_selected;
+```
+
+```js
+const target_population = population.filter(row => row.nom_comarca == nom_comarca_services).sort((a, b) => a.year - b.year)
+
+const serveis_by_comarca = entities_df.entities_comarca_acumulative.filter(d => d.comarca == nom_comarca_services);
+const serveis_by_iniciative = entities_df.entities_comarca_qualificacion_acumulative.filter(d => d.comarca == nom_comarca_services & (serveis_to_use.includes(d.tipologia))).sort((a, b) => {
+    if (a.qualificacio == b.qualificacio) {
+        return a.year - b.year;
+    } else {
+        if (a.qualificacio == "null") {
+            return 1;
+        } else {
+            if (b.qualificacio == "null") {
+                return -1;
+            } else {
+                if (a.qualificacio == "Entitat d'iniciativa pública") {
+                    return -1;
+                } else {
+                    if (b.qualificacio == "Entitat d'iniciativa pública") {
+                        return 1;
+                    } else {
+                        return -a.qualificacio.localeCompare(b.qualificacio)
+                    }
+                }
+            }
+        }
+    }
+})
+```
+
+```js
+function fillMissingYears(data) {
+    let filledData = [];
+    let groupedData = {};
+    data.forEach(item => {
+        let key = `${item.tipologia}-${item.comarca}-${item.qualificacio}`;
+        if (!groupedData[key]) groupedData[key] = [];
+        groupedData[key].push(item);
+    });
+    const min_year = Math.min(...data.map(d => d.year));
+    console.log(min_year);
+    Object.values(groupedData).forEach(group => {
+        group.sort((a, b) => a.year - b.year);
+        let lastEntry = null;
+
+        for (let year = min_year; year <= 2024; year++) {
+            let entry = group.find(item => item.year === year);
+            if (entry) {
+                filledData.push(entry);
+                lastEntry = entry;
+            } else {
+                if (lastEntry) {
+                    filledData.push({
+                        tipologia: lastEntry.tipologia,
+                        comarca: lastEntry.comarca,
+                        year: year,
+                        qualificacio: lastEntry.qualificacio,
+                        capacitat: 0,
+                        cumulative_count: lastEntry.cumulative_count
+                    });
+                } else {
+                    filledData.push({
+                        tipologia: group[0].tipologia,
+                        comarca: group[0].comarca,
+                        year: year,
+                        qualificacio: group[0].qualificacio,
+                        capacitat: 0,
+                        cumulative_count: 0
+                    });
+                }
+            }
+        }
+    });
+
+    return filledData;
+}
+```
+
+```js
+const serveis_by_iniciative_filled_missing_years = fillMissingYears(serveis_by_iniciative);
+```
+
+```js
+const plot_comarca_by_serveis = (width) => {
+    return Plot.plot({
+        marginLeft: 50,
+        width: width,
+        y: {
+            type: linear_scale_y_axis ? "linear" : "log",
+            grid: true,
+            label: "Població i capacitat del servei",
+        },
+        color: {
+            domain: ["Població de la comarca de 65 anys i més"].concat(all_services),
+            range: ["#ffd754",
+                "#a160af",
+                "#ff9c38",
+                "#f794b9",
+                "#61b0ff",
+                "#a87a54"],
+            legend: true,
+            columns: 2,
+            label: "Age Groups",
+        },
+        x: {
+            label: null,
+            grid: true,
+            tickFormat: d => d.toString()
+        },
+        marks: [
+            Plot.lineY(serveis_by_comarca,
+                {x: "year", y: "cumulative_count", z: "tipologia", stroke: "tipologia", tip: "x", strokeWidth: 2}),
+            Plot.lineY(target_population, {x: "year", y: d => d.population_over_65, stroke: "#ffd754", strokeWidth: 3})
+        ]
+    })
+};
+
+const plot_services_comarca_by_iniciatives = (width) => {
+    return Plot.plot((() => {
+        const n = 1;
+        const keys = Array.from(d3.union(serveis_by_iniciative_filled_missing_years.map((d) => d.tipologia)));
+        const index = new Map(keys.map((key, i) => [key, i]));
+        const fx = (key) => index.get(key) % n;
+        const fy = (key) => Math.floor(index.get(key) / n);
+        return {
+            height: width,
+            axis: null,
+            y: {
+                insetTop: 10, grid: true,
+                label: "Capacitat Acumulativa del servei"
+            },
+            x: {
+                grid: true,
+                label: null,
+            },
+            fx: {padding: 0.03},
+            color: {
+
+                domain: [
+                    "Entitat privada d'iniciativa mercantil",
+                    "Entitat privada d'iniciativa social",
+                    "Entitat d'iniciativa pública"],
+                range: ["#ed393f", "#5ca34b", "#3b5fc0"],
+                legend: true,
+                columns: 1,
+                rows: 3,
+                label: "Age Groups",
+            },
+            marks: [
+                Plot.areaY(serveis_by_iniciative_filled_missing_years, {
+                    x: "year",
+                    y: "cumulative_count",
+                    fill: "qualificacio",
+                    fx: (d) => fx(d.tipologia),
+                    fy: (d) => fy(d.tipologia)
+                }),
+                Plot.text(keys, {fx, fy, frameAnchor: "top-left", dx: 6, dy: 6}),
+                Plot.frame(),
+                Plot.axisY(),
+                Plot.axisX({tickFormat: d => d.toString()})
+            ]
+        };
+    })());
+}
+```
+
 # Gent Gran
 
 <div class="grid grid-cols-3">
@@ -215,6 +417,21 @@ Com a referència addicional, la mediana global se situa en el 10%.`: `El següe
         <h2>Tendència demogràfica per edat a ${nom_comarca}</h2>
         <figure class="grafic" style="max-width: none;">
             ${resize((width) => plot_trend_population_groups_by_comarca(width))}
+        </figure>
+    </div>
+    <div class="card grid-colspan-1">
+        ${nom_comarca_services_input}
+        ${linear_scale_y_axis_input}
+        <h2>Població i servei</h2>
+        <figure class="grafic" style="max-width: none;">
+            ${resize((width) => plot_comarca_by_serveis(width))}
+        </figure>
+    </div>
+    <div class="card grid-colspan-1">
+        ${serveis_input}
+        <h2>Qualificaciò de los servei</h2>
+        <figure class="grafic" style="max-width: none;">
+            ${resize((width) => plot_services_comarca_by_iniciatives(width))}
         </figure>
     </div>
 
