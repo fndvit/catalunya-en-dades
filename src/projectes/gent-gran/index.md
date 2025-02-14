@@ -4,7 +4,9 @@ const comarques_catalunya = FileAttachment("data/comarques_catalunya.json").json
 const entities_df = FileAttachment("data/entitats_serveis_establiments_socials.json").json();
 
 ````
-
+```js
+const nom_comarques = comarques_catalunya.features.map(d => d.properties.NOMCOMAR);
+```
 ```js
 const latest_year = Math.max(...population.map(single_object => single_object.year));
 const total_population_latest_year = population.filter(single_object => single_object.year == latest_year).reduce((accumulative_population, single_object) => single_object.population + accumulative_population, 0);
@@ -17,7 +19,6 @@ console.log(reference_year);
 ```
 
 ```js
-const nom_comarques = comarques_catalunya.features.map(d => d.properties.NOMCOMAR);
 const catalunya_indicator_or_variation_input = Inputs.radio(new Map([["Percentatge de la població de 65 anys i més", true],
         [`Variació % població 65 anys i més entre els anys ${latest_year} i ${reference_year}`, false]]),
     {value: true, label: "Indicador"});
@@ -68,7 +69,7 @@ const comarques_reference_population = Object.fromEntries(
 
 ```js
 const nom_comarca_input = Inputs.select(
-    comarques_catalunya.features.map((d) => d.properties.NOMCOMAR),
+    nom_comarques,
     {
         sort: true,
         unique: true,
@@ -77,6 +78,9 @@ const nom_comarca_input = Inputs.select(
     }
 );
 const nom_comarca = Generators.input(nom_comarca_input);
+```
+
+```js
 const single_comarca_population_input = Inputs.radio(new Map([["Tendència de la població de 65 anys i més", true],
         ["Tendència de l'indicador de població de 65 anys i més", false]]),
     {value: true, label: null});
@@ -94,7 +98,9 @@ const render_interaction_comarca = (index, scales, values, dimensions, context, 
     }
     return dom_element;
 }
+```
 
+```js
 const population_data_single_comarca = population.filter(row => {
     return nom_comarca == row.nom_comarca;
 }).flatMap(row => {
@@ -163,8 +169,10 @@ const plot_catalunya_map_aged_65 = (width) => {
 
 };
 
+```
 
-var plot_trend_population_groups_by_comarca = (width) => {
+```js
+const plot_trend_population_groups_by_comarca = (width) => {
     return Plot.plot({
         marginLeft: 50,
         width: width,
