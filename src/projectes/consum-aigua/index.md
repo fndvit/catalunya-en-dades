@@ -432,22 +432,18 @@ function lineChart(width, selectorMapa, comarcaProvinciaSeleccionada) {
   const data = (selectorMapa === "Comarcal") 
     ? consum_daigua_per_comarca_data.filter(d => d.Comarca === comarcaProvinciaSeleccionada) 
     : consum_daigua_per_provincia_data.filter(d => d["Província"] === comarcaProvinciaSeleccionada);
-
-  // Ensure "Any" is a number
   const parsedData = data.map(d => ({
     ...d,
-    Any: +d.Any // Convert to number (force type coercion)
+    Any: +d.Any
   }));
 
-  // Get max "Total" value for setting the y-axis range
   const maxTotal = Math.max(...parsedData.map(d => d.Total));
-
   return Plot.plot({
     width,
     marginLeft: 80,
     color: {
       domain: ["Domèstic xarxa", "Activitats econòmiques i fonts pròpies"],
-      range: ["#377eb8", "#74add1"], // ✅ Shades of blue
+      range: ["#377eb8", "#74add1"],
       legend: true
     },
     marks: [
@@ -472,8 +468,8 @@ function lineChart(width, selectorMapa, comarcaProvinciaSeleccionada) {
     y: { 
       label: "Consum (m³)", 
       grid: true, 
-      domain: [0, maxTotal], // ✅ Ensures y-axis starts at 0 and goes up to max "Total"
-      ticks: 6 // ✅ Adjusts the number of tick marks for better readability
+      domain: [0, maxTotal],
+      ticks: 6
     }
   });
 }
