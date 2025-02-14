@@ -76,9 +76,9 @@ const MAPBOX_TOKEN = "pk.eyJ1IjoiZm5kdml0IiwiYSI6ImNseDR5dDV5dTBmeWMyaXNjemRkbDA
 ## Per on començar
 El [projecte el tenim a *GitHub*](https://github.com/fndvit/catalunya-en-dades), per col·laborar eficaçment —i mantenir totes les discussions de les propostes en obert. 
 
-<a href="https://github.com/fndvit/catalunya-en-dades" target="_blank"><img src="../img/github.png" alt="Imatge del repositori a GitHub" style="width:100%"></a>
+<a href="https://github.com/fndvit/catalunya-en-dades" target="_blank"><img src="./img/github.png" alt="Imatge del repositori a GitHub" style="width:100%"></a>
 
-Clona el projecte. Entra a la carpeta, instal·la'l amb `npm i` i executa `npm run dev`. Veuràs aixó ...
+Fes un *fork* el projecte. Entra a la carpeta, instal·la'l amb `npm i` i executa `npm run dev`. Veuràs aixó ...
 
 <pre class="observablehq-pre-container" data-copy="none"><b class="green">Observable Framework</b> v1.8.0
 ↳ <u><a href="http://127.0.0.1:3000/" style="color: inherit;">http://127.0.0.1:3000/</a></u></pre>
@@ -114,7 +114,7 @@ Sigueu breus, concises i utilitzeu sempre `kebab-case`.
 
 ### Un resum del procés:
 
-- **Clona el repositori**
+- **Fes un *fork* del repositori**
 - **Canvia a la branca primària del teu projecte** 
 - **Crea una nova pàgina**: Continuant amb l'exemple de dalt seria `projectes/consum-electric/index.md`
 - **Crea una branca per a la teva feature**: Abans de fer cap canvi extra, crea una nova branca per a la teva *feature* seguint [l'estructura que vam explicar a dalt](#com-col·laborar-i-enviar-pull-requests-(prs)).
