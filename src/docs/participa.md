@@ -17,7 +17,7 @@ La iniciativa està dirigida a **persones que encara estan aprenent i desenvolup
 
 Per participar [**obre un Issue en GitHub**](https://github.com/fndvit/catalunya-en-dades/issues) amb la teva proposta. Hem creat una plantilla ja per que omplis la informació minima que necessitem per valorarla teva proposta.
 
-<img src="../img/github-issues.png" alt="Captura de pantalla dels GitHub issues al repositori" style="width:100%">
+<img src="./img/github-issues.png" alt="Captura de pantalla dels GitHub issues al repositori" style="width:100%">
 
 La competició no està oberta a professionals establerts o aquells que ja tenen una experiència significativa en ciència de dades. Si voleu col·laborar d'una altra manera, o la vostra empresa/organització vol patrocinar la iniciativa, [poseu-vos en contacte amb nosaltres](mailto:karma@fundaciovit.org).
 

@@ -47,7 +47,7 @@ toc: true
 
 ```js
 import chroma from "npm:chroma-js";
-const temperature = FileAttachment("../data/temperature.json").json();
+const temperature = FileAttachment("./data/temperature.json").json();
 
 const margarine = [8.2,7,6.5,5.3,5.2,4,4.6,4.5,4.2,3.7,];
 const divorces = [5,4.7,4.6,4.4,4.3,4.1,4.2,4.2,4.2,4.1,];

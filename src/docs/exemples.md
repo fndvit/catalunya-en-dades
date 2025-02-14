@@ -24,7 +24,7 @@ toc: true
 ## Visualitzem els embassaments a les conques internes de Catalunya
 L’Agència Catalana de l'Aigua (ACA) ha fet una feina excepcional visualitzant dades crítiques sobre els recursos hídrics. Han implementat una visualització utilissima que [**mapeja**](https://aplicacions.aca.gencat.cat/visseq/estat-actual) els impactes de la sequera al territori, però considerem que [el seu panell de dades sobre els **nivells dels embassaments**](https://aca.gencat.cat/ca/laigua/consulta-de-dades/dades-obertes/visualitzacio-interactiva-dades/estat-embassaments/) és una oportunitat perduda. 
 
-<img src="../img/panell-dades-gene.png" alt="Panell de dades mantingut per l’Agència Catalana de l'Aigua (ACA)" style="width:100%">
+<img src="./img/panell-dades-gene.png" alt="Panell de dades mantingut per l’Agència Catalana de l'Aigua (ACA)" style="width:100%">
 
 En aquesta primera iteració (**https://sequera.fndvit.org/**), hem anat cap a les [dades](https://analisi.transparenciacatalunya.cat/Medi-Ambient/Quantitat-d-aigua-als-embassaments-de-les-Conques-/gn9e-3qhr/about_data) que estaven més a mà, però volem explorar com fer també el mapa —potser el veureu inclòs en properes entregues. (El nostre objectiu final és posar a prova els límits i les  virtuts del Observable per a experiències de dades simples i complexes.)
 
@@ -39,7 +39,7 @@ En modificar l'aproximació de l'ACA a la visualització de les dades dels embas
 
 Hem afegit un gràfic de barres apilades d’amplada variable (bé... l’alçada en aquest cas), també conegut com a **gràfic de Marimekko**, per representar els nivells dels embassaments. Això permet representar capacitat i nivells al mateix temps, per veure quins són els embassaments principals i com estan de plens o buits. Mostrar les dues variables alhora dona una altra perspectiva respecte als gràfics de barres tradicionals. A més, som molt *fans* d’aquest tipus de visualització —igual que dels beeswarms. Però és que ... digueu-nos, **com visualitzaríeu la realitat que mostrem a sota 👇👇👇** d'una altra manera?
 
-<img src="../img/gots-aigua.jpg" alt="Gots de mides molt diferent ples d'aigua blava simbolitzant la capacitat i nivel dels diferents embassaments" style="width:100%">
+<img src="./img/gots-aigua.jpg" alt="Gots de mides molt diferent ples d'aigua blava simbolitzant la capacitat i nivel dels diferents embassaments" style="width:100%">
 
 En aquest exemple però, ja podem anticipar **algunes millores futures**:
 - Incorporar dades de la Confederació Hidrogràfica de l'Ebre (un dels projectes treballat al Màster en “Eines Visuals per Empoderar la Ciutadania” ja tenia aquesta funcionalitat).
