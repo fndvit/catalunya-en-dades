@@ -258,7 +258,7 @@ function mapaChart(width, selectorMapa, selectorConsum, selectYear) {
         color: {
           type: "quantile",
           scheme: "Blues",
-          label: `${selectorConsum} d'Aigua (${selectYear}) [${unit}]`,
+          label: `${selectorConsum} d'aigua (${selectYear}) [${unit}]`,
           tickFormat: d => (isTotal || isOtherType) ? (d).toFixed(1) : d.toFixed(0),
           legend: true,
         },
@@ -298,7 +298,7 @@ function mapaChart(width, selectorMapa, selectorConsum, selectYear) {
         color: {
           type: "quantile",
           scheme: "Blues",
-          label: `${selectorConsum} d'Aigua (${selectYear}) [${unit}]`,
+          label: `${selectorConsum} d'aigua (${selectYear}) [${unit}]`,
           tickFormat: d => (isTotal || isOtherType) ? (d).toFixed(1) : d.toFixed(0),
           legend: true,
         },
@@ -372,7 +372,7 @@ function barChart(width, selectorMapa, selectorConsum) {
 
   return Plot.plot({
     width,
-    height: top10Data.length * 43,
+    height: 360,
     marginTop: 0,
     marginLeft: 140,
     marginRight: 40,
@@ -387,7 +387,7 @@ function barChart(width, selectorMapa, selectorConsum) {
       tickSize: 0
     },
     x: {
-      label: selectorConsum === "Consum Total" ? "Consum Total (M m³)" : "Consum Domèstic per Càpita (L/persona/dia)", 
+      label: selectorConsum === "Consum Total" ? "Consum total (M m³)" : "Consum domèstic per càpita (L/persona/dia)", 
       grid: true,
       tickSize: 0,
       tickPadding: 2,
@@ -402,11 +402,13 @@ function barChart(width, selectorMapa, selectorConsum) {
         sort: { y: "x", reverse: true, limit: 10 },
         stroke: selectorConsum === "Consum Total" ? d => d.Total*3 : d => d["Consum domèstic per càpita"]*3,
         tip: true,
+        insetTop:3,
+        insetBottom:3,
         title: d => {
           const location = selectorMapa === "Comarcal" ? `Comarca: ${d.Comarca}` : `Província: ${d["Província"]}`;
           const value = selectorConsum === "Consum Total" 
-            ? `Consum Total: ${(d.Total / 1e6).toFixed(2)} M m³` 
-            : `Consum Domèstic Per Càpita: ${d["Consum domèstic per càpita"].toFixed(0)} L/persona/dia`;
+            ? `Consum total: ${(d.Total / 1e6).toFixed(2)} M m³` 
+            : `Consum domèstic per càpita: ${d["Consum domèstic per càpita"].toFixed(0)} L/persona/dia`;
           return `${location}\n${value}`;
         }
       })
@@ -440,6 +442,7 @@ function lineChart(width, selectorMapa, comarcaProvinciaSeleccionada) {
   const maxTotal = Math.max(...parsedData.map(d => d.Total));
   return Plot.plot({
     width,
+    height:300,
     marginLeft: 80,
     color: {
       domain: ["Domèstic xarxa", "Activitats econòmiques i fonts pròpies"],
@@ -481,103 +484,103 @@ const agregaProvincia = Inputs.checkbox([""], {label: "Agrega per província"});
 const agregaProvinciaValue = Generators.input(agregaProvincia);
 ```
 ```js
-const tableSearch = Inputs.search(agregaProvinciaValue.length == 1 ? consum_daigua_per_provincia_data : consum_daigua_per_comarca_data);
+const tableSearch = Inputs.search(agregaProvinciaValue.length == 1 ? consum_daigua_per_provincia_data : consum_daigua_per_comarca_data, {placeholder: `Entra un nom de ${agregaProvinciaValue.length == 1 ? "província" : "comarca"}`});
 const tableSearchValue = view(tableSearch);
 ```
+<style>
+  .big-number-header {
+    height: 2.4rem;
+     max-width: 11rem;
+  }
+  .light {
+    font-weight: 500;
+  }
+  .small {
+    line-height:2rem;
+  }
+</style>
 
 <div class="grid grid-cols-4">
   <div class="grid-colspan-3">
     <h1>Consum d'aigua a Catalunya</h1>
+    <h2>Dades actualitzades a TK TK</h2>
   </div>
   <div class="grid-colspan-1">
-    <h3 class="text-lg font-semibold">Selecciona l'any desitjat</h3>
+    <h5 class="light">Selecciona l'any</h5>
     ${selectYearInput}   
   </div>
 </div>
 
-<div class="grid grid-cols-4 gap-4 p-4">  
+<div class="grid grid-cols-4">  
   <!-- Consum Mitjà Anual a Catalunya -->
-  <div class="card p-4 text-center">
-    <h2 class="text-lg font-semibold">Consum Mitjà Anual a Catalunya</h2>
-    <span class="big text-2xl font-bold">    ${Number(consumMitjaAny.toFixed(0)).toLocaleString('ca-ES')} m³</span>
+  <div class="card">
+    <h3 class="big-number-header">Consum mitjà anual a Catalunya</h3>
+    <span class="big grid-colspan-4">${Number(consumMitjaAny.toFixed(0)).toLocaleString('ca-ES')} m³</span>
   </div>  
   <!-- Total Consum d'Aigua (selectYear) -->
-  <div class="card p-4 flex flex-col justify-between">
-    <div class="grid grid-cols-4 items-center">
-      <h2 class="grid-colspan-3" text-lg font-semibold">Total Consum d'Aigua (${selectYear})</h2>
-    </div>
-    <div class="text-center mt-2">
-      <span class="big text-2xl font-bold">${totalConsumCatalunya.toLocaleString('ca-ES')} m³</span>
+  <div class="card">
+      <h3 class="big-number-header">Consum d'aigua total al ${selectYear}</h3>
+      <span class="big grid-colspan-4">${totalConsumCatalunya.toLocaleString('ca-ES')} m³</span><br>
       ${Trend(diferenciaPercent.toFixed(2))}
-      <span class="muted text-sm block">% respecte la mitjana anual</span>
-    </div>
+      <span class="muted text-sm block"> punts % respecte la mitjana anual</span>
   </div>  
 
   <!-- Consum Domèstic Per Capita Mitjà Anual a Catalunya -->
-  <div class="card p-4 text-center">
-    <h2 class="text-lg font-semibold">Consum Domèstic Per Capita Mitjà Anual a Catalunya</h2>
-    <span class="big text-2xl font-bold">      ${Number(consumPerCapitaMitjaAny.toFixed(0)).toLocaleString('ca-ES')} m³</span>
+  <div class="card">
+    <h3 class="big-number-header">Consum domèstic mitjà anual per capita</h3>
+    <span class="big grid-colspan-4">${Number(consumPerCapitaMitjaAny.toFixed(0)).toLocaleString('ca-ES')} m³</span>
     
   </div>  
   <!-- Total Consum Domèstic Per Capita d'Aigua (selectYear) -->
-  <div class="card p-4 flex flex-col justify-between">
-    <div class="grid grid-cols-4 items-center">
-      <h2 class="grid-colspan-3" text-lg font-semibold">Total Consum Domèstic Per Capita d'Aigua (${selectYear})</h2>
-    </div>
-    <div class="text-center mt-2">
-      <span class="big text-2xl font-bold">${totalConsumPerCapitaCatalunya.toLocaleString('ca-ES')} m³</span>
+  <div class="card">
+      <h3 class="big-number-header">Consum domèstic d'aigua per capita al ${selectYear}</h3>
+      <span class="big grid-colspan-4">${totalConsumPerCapitaCatalunya.toLocaleString('ca-ES')} m³</span><br>
       ${Trend(diferenciaPercent_1.toFixed(2))}
-      <span class="muted text-sm block">% respecte la mitjana anual</span>
-    </div>
-  </div> 
+      <span class="muted text-sm block">punts % respecte la mitjana anual</span>
+      </div>
 </div>
 
 <div>
   <div class="grid grid-cols-2">
     <!--Mapa-->
-    <div class="card">
-      <h1>Mapa Comarcal de Consums d'Aigua (${selectYear})</h1>
-      <h2>${selectorConsum} 
+    <div class="card grid-rowspan-2">
+      <h2>Distribució del consum d'aigua al territori al ${selectYear}</h2>
+      <h3>${selectorConsum} 
       ${selectorMapa == "Comarcal" ? "per comarca" : "per província"}
-      </h2>      
+      </h3>      
       ${selectorConsumInput}
       ${selectorMapaInput}    
       ${resize((width) => mapaChart(width, selectorMapa, selectorConsum, selectYear))}
     </div>   
-    <div class="grid grid-rows-2"> 
-      <!--Bar chart-->
       <div class="card">
-        <h1>Top ${selectorMapa == "Comarcal" ? "10 Comarques" : "Províncies"}</h1>
-        <h2>Segons ${selectorConsum == "Consum Total" ? "consum total" : "consum domèstic per càpita"}</h2>
+        <h2>${selectorMapa == "Comarcal" ? "Les 10 comarques amb més consum d'aigua" : "Consum d'aigua per província"}</h2>
+        <h3>${selectorConsum == "Consum Total" ? "Consum total" : "Consum domèstic per càpita"}</h3>
         ${resize((width) => barChart(width, selectorMapa, selectorConsum))}
       </div> 
       <!--Line chart-->
       <div class="card">
         ${comarcaProvinciaSeleccionadaInput}
-        ${resize((width) => lineChart(width, selectorMapa, comarcaProvinciaSeleccionada))}
-      </div>                     
+        ${resize((width) => lineChart(width, selectorMapa, comarcaProvinciaSeleccionada))}                 
     </div>
   </div>  
 </div>
 
 <!--Taula de dades-->
 <div class="card">
-  <div>
-    <h1>Consum d'Aigua</h1>
-    <h2>Filtra per ${agregaProvinciaValue.length == 1 ? "Província" : "Comarca"}</h2>
+    <h2>Consulta la taula per ${agregaProvinciaValue.length == 1 ? "província" : "comarca"}</h2>
     ${agregaProvincia}
-    <p>Entra un nom de ${agregaProvinciaValue.length == 1 ? "província" : "comarca"}:</p>
     ${display(tableSearch)}
-  </div>
-  ${display(Inputs.table(tableSearchValue, {
-    columns: [      
-      agregaProvinciaValue.length == 1 ? "Província" : "Comarca",
-      "Any", 
-      "Població", 
-      "Domèstic xarxa", 
-      "Activitats econòmiques i fonts pròpies", 
-      "Consum domèstic per càpita", 
-      "Total"
-    ]
-  }))}  
+    ${display(Inputs.table(tableSearchValue, {
+      columns: [      
+        agregaProvinciaValue.length == 1 ? "Província" : "Comarca",
+        "Any", 
+        "Població", 
+        "Domèstic xarxa", 
+        "Activitats econòmiques i fonts pròpies", 
+        "Consum domèstic per càpita", 
+        "Total"
+      ]
+    }))}  
 </div>
+
+<p class="notes">Panell de dades dissenyat i desenvolupat per <b>Sergi Felip Ribas</b> <br> Aquest panell reimagina la visualització del <a href="https://aca.gencat.cat/ca/laigua/consulta-de-dades/dades-obertes/visualitzacio-interactiva-dades/Consum-aigua-comarques-catalunya/">Consum d’aigua per comarques a Catalunya</a> de l'Agència Catalana de l'Aigua, reutilitzant les <a href="https://analisi.transparenciacatalunya.cat/Medi-Ambient/Consum-d-aigua-a-Catalunya-per-comarques/2gws-ubmt/about_data">dades obertes disponibles</a> al portal de Transparència.</p>

@@ -3,7 +3,7 @@ import {html} from "npm:htl";
 export function Trend(
   value,
   {
-    locale = "en-US",
+    locale = "ca-ES",
     format,
     positive = "green",
     negative = "red",
