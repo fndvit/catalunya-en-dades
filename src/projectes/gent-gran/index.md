@@ -16,8 +16,8 @@ console.log(reference_year);
 
 ```js
 const nom_comarques = comarques_catalunya.features.map(d => d.properties.NOMCOMAR);
-const catalunya_indicator_or_variation_input = Inputs.radio(new Map([["Percentatge de la població de 65 anys i més", true],
-        [`Variació % població 65 anys y més entre els anys ${latest_year} i ${reference_year}`, false]]),
+const catalunya_indicator_or_variation_input = Inputs.radio(new Map([["Percentatge de la població de 65 anys o més", true],
+        [`Variació % població 65 anys o més entre els anys ${latest_year} i ${reference_year}`, false]]),
     {value: true, label: "Indicador"});
 const catalunya_indicator_or_variation = Generators.input(catalunya_indicator_or_variation_input);
 ```
@@ -31,7 +31,7 @@ const color_catalunya_map = catalunya_indicator_or_variation ? {
     n: 10,
     unknown: "grey",
     domain: range_colours_indicator,
-    label: "Percentatge de la població de 65 anys i més",
+    label: "Percentatge de la població de 65 anys o més",
 } : {
     type: "diverging",
     scheme: "buylrd",
@@ -39,7 +39,7 @@ const color_catalunya_map = catalunya_indicator_or_variation ? {
     pivot: 0,
     n: 10,
     unknown: "grey",
-    label: "Variació % població 65 anys y més, 2023 vs 2001",
+    label: "Variació % població 65 anys o més, 2023 vs 2001",
 };
 ```
 
@@ -75,6 +75,10 @@ const nom_comarca_input = Inputs.select(
     }
 );
 const nom_comarca = Generators.input(nom_comarca_input);
+const single_comarca_population_input = Inputs.radio(new Map([["Tendència de la població de 65 anys o més", true],
+        ["Tendència de l'indicador de població de 65 anys o més", false]]),
+    {value: true, label: null});
+const single_comarca_population = Generators.input(single_comarca_population_input);
 ```
 
 ```js
@@ -95,14 +99,14 @@ const population_data_single_comarca = population.filter(row => {
     return Array(Object({year: row.year, aggregation: "population_over_65", population: row.population_over_65}),
         Object({
             year: row.year,
-            aggregation: "population_below_65",
-            population: row.population - row.population_over_65
+            aggregation: "indicator_elderly",
+            population: Math.round(row.population_over_65 * 1000.0 / row.population)/10.0 
         }))
 }).sort((a, b) => {
     if (a.aggregation == b.aggregation) {
         return a.year - b.year;
     } else {
-        if (a.aggregation == "population_below_65") {
+        if (a.aggregation == "population_over_65") {
             return -1;
         } else {
             return 1;
@@ -164,16 +168,16 @@ var plot_trend_population_groups_by_comarca = (width) => {
         width: width,
         y: {
             grid: true,
-            label: "Població",
+            label: single_comarca_population ? "Població de 65 anys o més": "Percentatge de la població de 65 anys o més",
         },
         color: {
-            domain: ["population_over_65", "population_below_65"],
-            range: ["#ffd754", "#3b5fc0"],
+            domain: single_comarca_population ? ["population_over_65"] : ["indicator_elderly"],
+            range: single_comarca_population ? ["#ffd754"] : ["#3b5fc0"],
             legend: true,
             columns: 1,
             rows: 2,
-            label: "Age Groups",
-            tickFormat: d => d === "population_below_65" ? "Població entre 0 i 64 anys" : "Població de 65 anys i més"
+            label: null,
+            tickFormat: d => d === "population_over_65" ? "Població de 65 anys o més" : "Percentatge de la població de 65 anys o més"
         },
         x: {
             grid: true,
@@ -181,8 +185,9 @@ var plot_trend_population_groups_by_comarca = (width) => {
             label: null
         },
         marks: [
-            Plot.areaY(population_data_single_comarca,
-                {x: "year", y: "population", fill: "aggregation"})
+            Plot.lineY(population_data_single_comarca.filter(row => row.aggregation == (single_comarca_population? "population_over_65" : "indicator_elderly")),
+                {x: "year", y: "population", strokeWidth: 4, stroke: "aggregation"}),
+            Plot.ruleY([0])
         ]
     })
 }
@@ -193,7 +198,7 @@ var plot_trend_population_groups_by_comarca = (width) => {
 <div class="grid grid-cols-4">
     <div class="card grid-colspan-2">
         ${catalunya_indicator_or_variation_input}
-        <h2>${catalunya_indicator_or_variation ? "Percentatge de la població de 65 anys i més": `Variació % població 65 anys y més entre els anys ${latest_year} i ${reference_year}`}</h2>
+        <h2>${catalunya_indicator_or_variation ? "Percentatge de la població de 65 anys o més": `Variació % població 65 anys o més entre els anys ${latest_year} i ${reference_year}`}</h2>
 ${catalunya_indicator_or_variation ? `El següent mapa de Catalunya mostra cada comarca amb aquest indicador analitzat per a l'any ${latest_year}.
 El valor central representa la mitjana de Catalunya, que és del ${latest_indicator_average_catalunya}% d'aquest indicador.
 Com a referència addicional, la mediana global se situa en el 10%.`: `El següent mapa de Catalunya mostra la variació percentual de la població de 65 anys o més a cada comarca entre els anys ${latest_year} i ${reference_year}.`}
@@ -204,6 +209,7 @@ Com a referència addicional, la mediana global se situa en el 10%.`: `El següe
     <div class="card grid-colspan-2">
     Per veure la tendència demogràfica per edat d'una comarca específica, podeu seleccionar el nom de la comarca en les opcions següents o fer clic al mapa.
             ${nom_comarca_input}
+            ${single_comarca_population_input}
         <h2>Tendència demogràfica per edat a ${nom_comarca}</h2>
         <figure class="grafic" style="max-width: none;">
             ${resize((width) => plot_trend_population_groups_by_comarca(width))}
