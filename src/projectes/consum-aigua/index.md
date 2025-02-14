@@ -10,19 +10,19 @@ import {Trend} from "./components/trend.js";
 import {extent, format, rollup, timeFormat} from "npm:d3";
 ```
 
+<!--Consum daigua per província-->
+```js
+const consum_daigua_per_comarca_data = FileAttachment("data/consum_aigua_dades.json").json();
+```
+
 <!--Comarques geo -->
 ```js
-const comarques_catalunya = FileAttachment("data/comarques_catalunya.json").json();
+const comarques_catalunya = FileAttachment("data/divisions-administratives-v2r1-comarques-1000000-20240705.json").json();
 ```
 
 <!--Províncies geo -->
 ```js
-const provincies_catalunya = FileAttachment("data/provincies_catalunya.json").json();
-```
-
-<!--Consum daigua per província-->
-```js
-const consum_daigua_per_comarca_data = FileAttachment("data/consum_d_aigua_a_catalunya_per_comarques.csv").csv();
+const provincies_catalunya = FileAttachment("data/divisions-administratives-v2r1-provincies-1000000-20240705.json").json();
 ```
 
 <!--Comarques per província-->
@@ -391,15 +391,16 @@ function barChart(width, selectorMapa, selectorConsum) {
       grid: true,
       tickSize: 0,
       tickPadding: 2,
-      domain: [0, maxValue * 1.1], // Extend slightly for spacing
+      domain: [0, maxValue * 1.1],
       nice: true
     },
     marks: [
       Plot.barX(top10Data, {
-        x: selectorConsum === "Consum Total" ? d => d.Total / 1e6 : "Consum domèstic per càpita", // Convert to M m³
+        x: selectorConsum === "Consum Total" ? d => d.Total / 1e6 : "Consum domèstic per càpita",
         y: selectorMapa === "Comarcal" ? "Comarca" : "Província",
-        fill: selectorConsum === "Consum Total" ? d => d.Total : d => d["Consum domèstic per càpita"], // ✅ Dynamically color by value
+        fill: selectorConsum === "Consum Total" ? d => d.Total : d => d["Consum domèstic per càpita"],
         sort: { y: "x", reverse: true, limit: 10 },
+        stroke: selectorConsum === "Consum Total" ? d => d.Total*3 : d => d["Consum domèstic per càpita"]*3,
         tip: true,
         title: d => {
           const location = selectorMapa === "Comarcal" ? `Comarca: ${d.Comarca}` : `Província: ${d["Província"]}`;
@@ -489,11 +490,11 @@ const tableSearchValue = view(tableSearch);
 ```
 
 <div class="grid grid-cols-4">
-  <div class="card grid-colspan-3">
+  <div class="grid-colspan-3">
     <h1>Consum d'aigua a Catalunya</h1>
   </div>
-  <div class="card grid-colspan-1">
-    <h2 class="text-lg font-semibold">Selecciona l'any desitjat</h2>
+  <div class="grid-colspan-1">
+    <h3 class="text-lg font-semibold">Selecciona l'any desitjat</h3>
     ${selectYearInput}   
   </div>
 </div>
@@ -502,7 +503,7 @@ const tableSearchValue = view(tableSearch);
   <!-- Consum Mitjà Anual a Catalunya -->
   <div class="card p-4 text-center">
     <h2 class="text-lg font-semibold">Consum Mitjà Anual a Catalunya</h2>
-    <span class="big text-2xl font-bold">${consumMitjaAny.toFixed(0)} m³</span>
+    <span class="big text-2xl font-bold">    ${Number(consumMitjaAny.toFixed(0)).toLocaleString('ca-ES')} m³</span>
   </div>  
   <!-- Total Consum d'Aigua (selectYear) -->
   <div class="card p-4 flex flex-col justify-between">
@@ -510,7 +511,7 @@ const tableSearchValue = view(tableSearch);
       <h2 class="grid-colspan-3" text-lg font-semibold">Total Consum d'Aigua (${selectYear})</h2>
     </div>
     <div class="text-center mt-2">
-      <span class="big text-2xl font-bold">${totalConsumCatalunya.toFixed(0)} m³</span>
+      <span class="big text-2xl font-bold">${totalConsumCatalunya.toLocaleString('ca-ES')} m³</span>
       ${Trend(diferenciaPercent.toFixed(2))}
       <span class="muted text-sm block">% respecte la mitjana anual</span>
     </div>
@@ -519,7 +520,8 @@ const tableSearchValue = view(tableSearch);
   <!-- Consum Domèstic Per Capita Mitjà Anual a Catalunya -->
   <div class="card p-4 text-center">
     <h2 class="text-lg font-semibold">Consum Domèstic Per Capita Mitjà Anual a Catalunya</h2>
-    <span class="big text-2xl font-bold">${consumPerCapitaMitjaAny.toFixed(0)} m³</span>
+    <span class="big text-2xl font-bold">      ${Number(consumPerCapitaMitjaAny.toFixed(0)).toLocaleString('ca-ES')} m³</span>
+    
   </div>  
   <!-- Total Consum Domèstic Per Capita d'Aigua (selectYear) -->
   <div class="card p-4 flex flex-col justify-between">
@@ -527,7 +529,7 @@ const tableSearchValue = view(tableSearch);
       <h2 class="grid-colspan-3" text-lg font-semibold">Total Consum Domèstic Per Capita d'Aigua (${selectYear})</h2>
     </div>
     <div class="text-center mt-2">
-      <span class="big text-2xl font-bold">${totalConsumPerCapitaCatalunya.toFixed(0)} m³</span>
+      <span class="big text-2xl font-bold">${totalConsumPerCapitaCatalunya.toLocaleString('ca-ES')} m³</span>
       ${Trend(diferenciaPercent_1.toFixed(2))}
       <span class="muted text-sm block">% respecte la mitjana anual</span>
     </div>

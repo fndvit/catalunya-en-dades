@@ -15,7 +15,8 @@
     "d3-time-format": "^4.1.0",
     "fs": "^0.0.1-security",
     "json2csv": "^6.0.0-alpha.2",
-    "node-fetch": "^3.3.2"
+    "node-fetch": "^3.3.2",
+    "shpjs": "^6.1.0"
   },
   "devDependencies": {
     "rimraf": "^5.0.5"
