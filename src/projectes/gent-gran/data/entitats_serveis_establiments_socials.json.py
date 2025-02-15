@@ -38,18 +38,34 @@ entities_service_target_df['qualificacio'] = entities_service_target_df['qualifi
 entitats_comarca_df = entities_service_target_df.groupby(['tipologia', 'comarca', 'inscripcio', 'qualificacio'])['capacitat'].sum().reset_index()
 entitats_comarca_df['year'] = pd.to_datetime(entitats_comarca_df['inscripcio']).dt.year
 
-grouped_entitats_comarca_qualificacion_df = entitats_comarca_df.groupby(['tipologia', 'comarca', 'year', 'qualificacio'])['capacitat'].sum().reset_index()
+minimum_year = entitats_comarca_df['year'].min()
+maximum_year = entitats_comarca_df['year'].max()
+all_years = pd.DataFrame({'year': range(minimum_year, maximum_year + 1)})
+
+grouped_entitats_comarca_qualificacion_df = entitats_comarca_df[entitats_comarca_df['capacitat'] > 0].groupby(['tipologia', 'comarca', 'year', 'qualificacio'])['capacitat'].sum().reset_index()
 grouped_entitats_comarca_qualificacion_df = grouped_entitats_comarca_qualificacion_df.sort_values(by=['comarca', 'tipologia', 'qualificacio', 'year'])
 grouped_entitats_comarca_qualificacion_df['cumulative_count'] = grouped_entitats_comarca_qualificacion_df.groupby(['comarca', 'tipologia', 'qualificacio'])['capacitat'].cumsum()
+all_comarca_and_qualifications = grouped_entitats_comarca_qualificacion_df[['comarca', 'tipologia', 'qualificacio']].drop_duplicates()
+all_comarca_and_qualifications = all_comarca_and_qualifications.merge(all_years, how='cross')
+grouped_entitats_comarca_qualificacion_full_range_df = all_comarca_and_qualifications.merge(grouped_entitats_comarca_qualificacion_df, on=['comarca', 'tipologia', 'qualificacio', 'year'], how='left')
+grouped_entitats_comarca_qualificacion_full_range_df['cumulative_count'] = grouped_entitats_comarca_qualificacion_full_range_df.groupby(['comarca', 'tipologia', 'qualificacio'])['cumulative_count'].ffill()
+grouped_entitats_comarca_qualificacion_full_range_df.fillna(0, inplace=True)
+grouped_entitats_comarca_qualificacion_df = grouped_entitats_comarca_qualificacion_full_range_df[['comarca', 'tipologia', 'qualificacio', 'year', 'cumulative_count']].sort_values(by=['comarca', 'tipologia', 'qualificacio', 'year'])
 
-grouped_entitats_comarca_df = entitats_comarca_df.groupby(['tipologia', 'comarca', 'year'])['capacitat'].sum().reset_index()
+
+grouped_entitats_comarca_df = entitats_comarca_df[entitats_comarca_df['capacitat'] > 0].groupby(['tipologia', 'comarca', 'year'])['capacitat'].sum().reset_index()
 grouped_entitats_comarca_df = grouped_entitats_comarca_df.sort_values(by=['comarca', 'tipologia', 'year'])
 grouped_entitats_comarca_df['cumulative_count'] = grouped_entitats_comarca_df.groupby(['comarca', 'tipologia'])['capacitat'].cumsum()
 
+all_comarca_and_types = grouped_entitats_comarca_df[['comarca', 'tipologia']].drop_duplicates()
+all_comarca_and_types = all_comarca_and_types.merge(all_years, how='cross')
+grouped_entities_full_year_range = all_comarca_and_types.merge(grouped_entitats_comarca_df, on=['comarca', 'tipologia', 'year'], how='left')
+grouped_entities_full_year_range['cumulative_count'] = grouped_entities_full_year_range.groupby(['comarca', 'tipologia'])['cumulative_count'].ffill()
+grouped_entities_full_year_range = grouped_entities_full_year_range[~grouped_entities_full_year_range['cumulative_count'].isnull()][['comarca', 'tipologia', 'year', 'cumulative_count']].sort_values(by=['comarca', 'tipologia', 'year'])
 entities_capacity = {
     'entities_gent_gran': entities_service_target_df.to_dict(orient='records'),
     'entities_comarca_qualificacion_acumulative': grouped_entitats_comarca_qualificacion_df.to_dict(orient='records'),
-    'entities_comarca_acumulative': grouped_entitats_comarca_df.to_dict(orient='records'),
+    'entities_comarca_acumulative': grouped_entities_full_year_range.to_dict(orient='records'),
 }
 
 json.dump(entities_capacity, sys.stdout)
