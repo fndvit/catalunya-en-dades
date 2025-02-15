@@ -571,12 +571,6 @@ reverse: true
     height: 2.4rem;
      max-width: 11rem;
   }
-  .light {
-    font-weight: 500;
-  }
-  .small {
-    line-height:2rem;
-  }
 </style>
 
 # Gent Gran
