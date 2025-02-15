@@ -25,16 +25,28 @@ const sign_difference_reference = (latest_indicator_average_catalunya_integer > 
 
 ```js
 const ratio_attention_residence = entities_df.entities_comarca_acumulative.filter(d => (d.tipologia == "Servei de residència assistida per a gent gran de caràcter temporal o permanent")).map(entity => {
-    const population_register = population.find(pop => (pop.year == entity.year) && (entity.comarca == pop.nom_comarca));
-    if ((population_register != null) &&
-        (population_register.population_over_65 > 0) &&
+    const population_by_year = population.filter(pop => entity.comarca == pop.nom_comarca).sort((a,b) => a.year - b.year);
+    var population_to_use = null;
+    for (var i = 0; i < population_by_year.length; i++) {
+        if(population_by_year[i].year == entity.year) {
+            population_to_use = population_by_year[i].population_over_65;
+        }else{
+            if(i + 1 < population_by_year.length){
+                if((population_by_year[i].year < entity.year) && (population_by_year[i + 1].year > entity.year)) {
+                    population_to_use = (entity.year - population_by_year[i].year)*(population_by_year[i+1].population_over_65 - population_by_year[i].population_over_65)/(population_by_year[i+1].year - population_by_year[i].year) + population_by_year[i].population_over_65; 
+                }
+            }
+        }
+    }
+    
+    if ((population_to_use != null) &&
         (entity.cumulative_count > 0)) {
         return Object({
                 year: entity.year,
                 comarca: entity.comarca,
                 places: entity.cumulative_count,
-                population_over_65: population_register.population_over_65,
-                ratio: Math.round(1000 * entity.cumulative_count / population_register.population_over_65) / 10.0
+                population_over_65: population_to_use,
+                ratio: Math.round(1000 * entity.cumulative_count / population_to_use) / 10.0
             },
         );
     } else {
@@ -243,7 +255,7 @@ const all_services = Array.from(service_tag_to_complete.entries()).map(k => k[1]
 const target_population = population.filter(row => row.nom_comarca == nom_comarca).sort((a, b) => a.year - b.year)
 
 const serveis_by_comarca = entities_df.entities_comarca_acumulative.filter(d => d.comarca == nom_comarca);
-
+const ratio_cobertura_residence_selected = ratio_attention_residence.filter(d => d.comarca == nom_comarca);
 ```
 
 ```js
@@ -254,6 +266,7 @@ const max_year_serveis = Math.max(...serveis_by_comarca.map(row => row.year));
 ```js
 const all_available_services_unordered = [...new Set(serveis_by_comarca.map(row => row.tipologia))];
 const all_available_services = all_services.filter(row => all_available_services_unordered.includes(row));
+
 ```
 
 ```js
@@ -269,6 +282,12 @@ const serveis_input = Inputs.select(services_available_tag_to_complete, {
     label: "Servei"
 })
 const serveis_selected = Generators.input(serveis_input)
+```
+
+```js
+const serveis_residence_ratio_input = Inputs.radio(new Map([["Tots els  serveis", true], ["Taxa de cobertura de residència per a gent gran", false]]),
+    {value: true, label: null});
+const serveis_residence_ratio = Generators.input(serveis_residence_ratio_input)
 ```
 
 ```js
@@ -338,7 +357,7 @@ const plot_comarca_by_serveis = (width) => {
         y: {
             type: "linear",
             grid: true,
-            label: "Capacitat acumulativa del servei",
+            label: "Places acumulativa del servei",
         },
         color: {
             domain: all_services,
@@ -362,7 +381,38 @@ const plot_comarca_by_serveis = (width) => {
         ]
     })
 };
+```
 
+```js
+const plot_comarca_by_cobertura = (width) => {
+    return Plot.plot({
+        marginLeft: 50,
+        width: width,
+        y: {
+            type: "linear",
+            grid: true,
+            label: "Taxa de cobertura (%)",
+        },
+        color: {
+            legend: false,
+            columns: 1,
+        },
+        x: {
+            label: null,
+            grid: true,
+            tickFormat: d => d.toString(),
+            domain: [min_year_serveis, max_year_serveis]
+        },
+        marks: [
+            Plot.lineY(ratio_cobertura_residence_selected,
+                {
+                    x: "year", y: "ratio", stroke: "#ff9c38", strokeWidth: 2
+                })
+        ]
+    })
+};
+```
+```js
 const plot_services_comarca_by_iniciatives = (width) => {
     return Plot.plot({
         axis: null,
@@ -421,11 +471,20 @@ const plot_legend_trend_population = (width) => {
 
 ```js
 const plot_legend_trend_services = (width) => {
-    return Plot.legend({
+    return serveis_residence_ratio ? Plot.legend({
         width: width,
         color: {
             domain: all_available_services,
             range: all_available_services.map(row => colour_by_service.get(row)),
+            legend: false,
+            columns: 1,
+            label: null,
+        }
+    }): Plot.legend({
+        width: width,
+        color: {
+            domain: ["Taxa de cobertura de residència per a gent gran (%)"],
+            range: ["#ff9c38"],
             legend: false,
             columns: 1,
             label: null,
@@ -523,20 +582,22 @@ ${catalunya_indicator_or_variation_input}
     <h2 class="grid-colspan-2"> Tendència de la població de 65 anys i més i els serveis d'assistència per comarca. </h2>
     <div class="grid-colspan-1" style="align-self: center;">${nom_comarca_input}</div>
 </div>
+
 <div class="grid grid-cols-3">
     <div class="grid-colspan-1">
-        <h2>Tendència demogràfica per edat a ${nom_comarca}</h2>
+        <h2>Tendència de la població de 65 anys i més</h2>
             ${single_comarca_population_input}
             ${resize((width) => plot_legend_trend_population(width))}
     </div>
     <div class="grid-colspan-1">
         <h2>Serveis d'assistència</h2>
-        ${resize((width) => plot_legend_trend_services(width))}
+            ${serveis_residence_ratio_input}
+            ${resize((width) => plot_legend_trend_services(width))}
     </div>
     <div class="grid-colspan-1">
         <h2>Qualificaciò de los servei</h2>
-        ${serveis_input}
-        ${resize((width) => plot_legend_trend_iniciative(width))} 
+            ${serveis_input}
+            ${resize((width) => plot_legend_trend_iniciative(width))} 
     </div>
 </div>
 <div class="grid grid-cols-3">
@@ -547,7 +608,7 @@ ${catalunya_indicator_or_variation_input}
     </div>
     <div class="card grid-colspan-1">
         <figure class="grafic" style="max-width: none;">
-            ${resize((width) => plot_comarca_by_serveis(width))}
+            ${resize((width) => serveis_residence_ratio ? plot_comarca_by_serveis(width) : plot_comarca_by_cobertura(width))}
         </figure>
     </div>
     <div class="card grid-colspan-1">
