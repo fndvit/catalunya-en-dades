@@ -2,7 +2,6 @@
 const population = FileAttachment("data/population.json").json();
 const comarques_catalunya = FileAttachment("data/comarques_catalunya.json").json();
 const entities_df = FileAttachment("data/entitats_serveis_establiments_socials.json").json();
-
 ````
 
 ```js
@@ -20,14 +19,49 @@ const reference_year = population.reduce((closest_year, single_object) => Math.a
 ```
 
 ```js
-const catalunya_indicator_or_variation_input = Inputs.radio(new Map([["Percentatge de la població de 65 anys i més", true],
-        [`Variació % població 65 anys i més entre els anys ${latest_year} i ${reference_year}`, false]]),
-    {value: true, label: "Indicador"});
+const ratio_attention_residence = entities_df.entities_comarca_acumulative.filter(d => (d.tipologia == "Servei de residència assistida per a gent gran de caràcter temporal o permanent")).map(entity => {
+    const population_register = population.find(pop => (pop.year == entity.year) && (entity.comarca == pop.nom_comarca));
+    if ((population_register != null) &&
+        (population_register.population_over_65 > 0) &&
+        (entity.cumulative_count > 0)) {
+        return Object({
+                year: entity.year,
+                comarca: entity.comarca,
+                places: entity.cumulative_count,
+                population_over_65: population_register.population_over_65,
+                ratio: Math.round(1000 * entity.cumulative_count / population_register.population_over_65) / 10.0
+            },
+        );
+    } else {
+        return null;
+    }
+}).filter(row => row != null).sort((a, b) => a.year - b.year);
+const ratio_attention_latest_year = Object.fromEntries(ratio_attention_residence.filter(d => d.year == latest_year).map(row => [row.comarca, row.ratio]));
+```
+
+```js
+const catalunya_indicator_or_variation_input = Inputs.radio(new Map([["Percentatge de la població de 65 anys i més", 1],
+        [`Variació % població 65 anys i més entre els anys ${latest_year} i ${reference_year}`, 2],
+        [`Taxa de cobertura de residència per a gent gran`, 3]]),
+    {value: 1, label: "Indicador"});
 const catalunya_indicator_or_variation = Generators.input(catalunya_indicator_or_variation_input);
 ```
 
 ```js
-const color_catalunya_map = catalunya_indicator_or_variation ? {
+const all_title_map_by_indicator = ["Percentatge de la població de 65 anys i més",
+    `Variació % població 65 anys i més entre els anys ${latest_year} i ${reference_year}`,
+    "Porcentatge taxa de cobertura de residència per a gent gran"];
+const all_messages_by_indicator = [`El següent mapa de Catalunya mostra cada comarca amb aquest indicador analitzat per a l'any ${latest_year}.
+El valor central representa la mitjana de Catalunya, que és del ${latest_indicator_average_catalunya}% d'aquest indicador.
+Com a referència addicional, la mediana global se situa en el 10%.`,
+    `El següent mapa de Catalunya mostra la variació percentual de la població de 65 anys i més a cada comarca entre els anys ${latest_year} i ${reference_year}.`,
+    "La taxa de cobertura de s'obté a partir del quocient entre el total de població de 65 anys i més i el total oferta de places. S'expressa en tant per cent"];
+const title_map_by_indicator = all_title_map_by_indicator[catalunya_indicator_or_variation - 1];
+const messages_by_indicator = all_messages_by_indicator[catalunya_indicator_or_variation - 1];
+```
+
+```js
+const color_catalunya_map = catalunya_indicator_or_variation == 1 ? {
     type: "threshold",
     scheme: "buylrd",
     legend: true,
@@ -35,16 +69,22 @@ const color_catalunya_map = catalunya_indicator_or_variation ? {
     n: 10,
     unknown: "grey",
     domain: range_colours_indicator,
-    label: "Percentatge de la població de 65 anys i més",
-} : {
+} : (catalunya_indicator_or_variation == 2 ? {
     type: "diverging",
     scheme: "buylrd",
     legend: true,
     pivot: 0,
     n: 10,
     unknown: "grey",
-    label: "Variació % població 65 anys i més, 2023 vs 2001",
-};
+} : {
+    type: "threshold",
+    domain: [2, 4, 6],
+    scheme: "blues",
+    legend: true,
+    pivot: 4.11,
+    n: 10,
+    unknown: "grey",
+});
 ```
 
 ```js
@@ -136,7 +176,9 @@ const plot_catalunya_map_aged_65 = (width) => {
         width: width,
         marks: [
             Plot.geo(comarques_catalunya, {
-                fill: (d) => comarques_latest_population[d.properties.NOMCOMAR] - (catalunya_indicator_or_variation ? 0 : comarques_reference_population[d.properties.NOMCOMAR]),
+                fill: (d) => catalunya_indicator_or_variation == 1 ? comarques_latest_population[d.properties.NOMCOMAR] :
+                    (catalunya_indicator_or_variation == 2 ? comarques_latest_population[d.properties.NOMCOMAR] - comarques_reference_population[d.properties.NOMCOMAR] :
+                        ratio_attention_latest_year[d.properties.NOMCOMAR]),
                 title: d => d.properties.NOMCOMAR,
                 strokeOpacity: 1.0,
                 strokeWidth: 1,
@@ -173,40 +215,8 @@ const plot_catalunya_map_aged_65 = (width) => {
 ```
 
 ```js
-const plot_trend_population_groups_by_comarca = (width) => {
-    return Plot.plot({
-        marginLeft: 50,
-        width: width,
-        y: {
-            grid: true,
-            label: single_comarca_population ? "Població de 65 anys i més" : "Percentatge de la població de 65 anys i més",
-        },
-        color: {
-            domain: single_comarca_population ? ["population_over_65"] : ["indicator_elderly"],
-            range: single_comarca_population ? ["#ffd754"] : ["#3b5fc0"],
-            legend: false,
-            columns: 1,
-            rows: 2,
-            label: null,
-            tickFormat: d => d === "population_over_65" ? "Població de 65 anys i més" : "Percentatge de la població de 65 anys i més"
-        },
-        x: {
-            grid: true,
-            tickFormat: d => d.toString(),
-            label: null
-        },
-        marks: [
-            Plot.lineY(population_data_single_comarca.filter(row => row.aggregation == (single_comarca_population ? "population_over_65" : "indicator_elderly")),
-                {x: "year", y: "population", strokeWidth: 4, stroke: "aggregation"}),
-            Plot.ruleY([0])
-        ]
-    })
-}
-```
-
-```js
-const service_tag_to_complete = new Map([["Servei de centre de dia", "Servei de centre de dia per a gent gran de caràcter temporal o permanent"],
-    ["Servei de residència assistida", "Servei de residència assistida per a gent gran de caràcter temporal o permanent"],
+const service_tag_to_complete = new Map([["Servei de residència assistida", "Servei de residència assistida per a gent gran de caràcter temporal o permanent"],
+    ["Servei de centre de dia", "Servei de centre de dia per a gent gran de caràcter temporal o permanent"],
     ["Servei de llar residència", "Servei de llar residència per a gent gran de caràcter temporal o permanent"],
     ["Servei de tutela", "Servei de tutela per a gent gran"],
     ["Servei d' habitatge tutelat", "Servei d' habitatge tutelat per a gent gran de caràcter temporal o permanent"]]);
@@ -218,13 +228,18 @@ const colour_by_service = new Map([["Servei de centre de dia per a gent gran de 
 const all_services = Array.from(service_tag_to_complete.entries()).map(k => k[1]);
 ```
 
-
 ```js
 const target_population = population.filter(row => row.nom_comarca == nom_comarca).sort((a, b) => a.year - b.year)
 
 const serveis_by_comarca = entities_df.entities_comarca_acumulative.filter(d => d.comarca == nom_comarca);
 
 ```
+
+```js
+const min_year_serveis = Math.min(...serveis_by_comarca.map(row => row.year));
+const max_year_serveis = Math.max(...serveis_by_comarca.map(row => row.year));
+```
+
 ```js
 const all_available_services_unordered = [...new Set(serveis_by_comarca.map(row => row.tipologia))];
 const all_available_services = all_services.filter(row => all_available_services_unordered.includes(row));
@@ -233,7 +248,7 @@ const all_available_services = all_services.filter(row => all_available_services
 ```js
 const services_available_tag_to_complete = new Map(
     [...service_tag_to_complete]
-        .filter(([k, v]) => all_available_services.includes(v) )
+        .filter(([k, v]) => all_available_services.includes(v))
 );
 ```
 
@@ -272,6 +287,39 @@ const serveis_by_iniciative = entities_df.entities_comarca_qualificacion_acumula
 ```
 
 ```js
+const plot_trend_population_groups_by_comarca = (width) => {
+    return Plot.plot({
+        marginLeft: 50,
+        width: width,
+        y: {
+            grid: true,
+            label: single_comarca_population ? "Població de 65 anys i més" : "Percentatge de la població de 65 anys i més",
+        },
+        color: {
+            domain: single_comarca_population ? ["population_over_65"] : ["indicator_elderly"],
+            range: single_comarca_population ? ["#ffd754"] : ["#3b5fc0"],
+            legend: false,
+            columns: 1,
+            rows: 2,
+            label: null,
+            tickFormat: d => d === "population_over_65" ? "Població de 65 anys i més" : "Percentatge de la població de 65 anys i més"
+        },
+        x: {
+            grid: true,
+            tickFormat: d => d.toString(),
+            label: null,
+            domain: [min_year_serveis, max_year_serveis]
+        },
+        marks: [
+            Plot.lineY(population_data_single_comarca.filter(row => (row.aggregation == (single_comarca_population ? "population_over_65" : "indicator_elderly")) & (row.year >= min_year_serveis)),
+                {x: "year", y: "population", strokeWidth: 4, stroke: "aggregation"}),
+            Plot.ruleY([0])
+        ]
+    })
+}
+```
+
+```js
 const plot_comarca_by_serveis = (width) => {
     return Plot.plot({
         marginLeft: 50,
@@ -291,12 +339,15 @@ const plot_comarca_by_serveis = (width) => {
         x: {
             label: null,
             grid: true,
-            tickFormat: d => d.toString()
+            tickFormat: d => d.toString(),
+            domain: [min_year_serveis, max_year_serveis]
         },
         marks: [
             Plot.lineY(serveis_by_comarca,
-                {x: "year", y: "cumulative_count", z: "tipologia", stroke: "tipologia", strokeWidth: 2,
-                curve: "step-after"})
+                {
+                    x: "year", y: "cumulative_count", z: "tipologia", stroke: "tipologia", strokeWidth: 2,
+                    curve: "step-after"
+                })
         ]
     })
 };
@@ -312,6 +363,7 @@ const plot_services_comarca_by_iniciatives = (width) => {
         x: {
             grid: true,
             label: null,
+            domain: [min_year_serveis, max_year_serveis]
         },
         color: {
             domain: [
@@ -331,6 +383,7 @@ const plot_services_comarca_by_iniciatives = (width) => {
                 fill: "qualificacio",
                 curve: "step-after"
             }),
+            
             Plot.axisY(),
             Plot.axisX({tickFormat: d => d.toString()})
         ]
@@ -369,18 +422,22 @@ const plot_legend_trend_services = (width) => {
     });
 }
 ```
+
 ```js
 const all_iniciatives_ordered = ["Entitat privada d'iniciativa mercantil", "Entitat privada d'iniciativa social", "Entitat d'iniciativa pública"];
 ```
+
 ```js
-const map_inciative_color = new Map([["Entitat privada d'iniciativa mercantil","#ed393f"],
-                                     ["Entitat privada d'iniciativa social","#5ca34b"],
-                                     ["Entitat d'iniciativa pública","#3b5fc0"]])
+const map_inciative_color = new Map([["Entitat privada d'iniciativa mercantil", "#ed393f"],
+    ["Entitat privada d'iniciativa social", "#5ca34b"],
+    ["Entitat d'iniciativa pública", "#3b5fc0"]])
 ```
+
 ```js
 const available_iniciative = [...new Set(serveis_by_iniciative.map(row => row.qualificacio))];
 const domain_iniciatives = all_iniciatives_ordered.filter(row => available_iniciative.includes(row));
 ```
+
 ```js
 const plot_legend_trend_iniciative = (width) => {
     return Plot.legend({
@@ -395,14 +452,13 @@ const plot_legend_trend_iniciative = (width) => {
     });
 }
 ```
+
 # Gent Gran
 
 <div class="grid grid-cols-3">
     <div class="card grid-colspan-3">
-        <h2>${catalunya_indicator_or_variation ? "Percentatge de la població de 65 anys i més": `Variació % població 65 anys i més entre els anys ${latest_year} i ${reference_year}`}</h2>
-${catalunya_indicator_or_variation ? `El següent mapa de Catalunya mostra cada comarca amb aquest indicador analitzat per a l'any ${latest_year}.
-El valor central representa la mitjana de Catalunya, que és del ${latest_indicator_average_catalunya}% d'aquest indicador.
-Com a referència addicional, la mediana global se situa en el 10%.`: `El següent mapa de Catalunya mostra la variació percentual de la població de 65 anys i més a cada comarca entre els anys ${latest_year} i ${reference_year}.`}
+        <h2>${title_map_by_indicator}</h2>
+${messages_by_indicator}
 <br/>
 <br/>
 ${catalunya_indicator_or_variation_input}
