@@ -522,6 +522,50 @@ const plot_legend_trend_iniciative = (width) => {
     });
 }
 ```
+```js
+const table_population = Inputs.table(population, {
+columns: ["year","nom_comarca", "population_over_65","population"],
+header: {
+    year: "Any",
+    nom_comarca: "Nom Comarca",
+    population_over_65: "Població de 65 anys i més",
+    population: "Població Comarca"
+},
+format: {
+    population_over_65: x => x.toLocaleString('ca-ES'),
+    population: x => x.toLocaleString('ca-ES'),
+    year: x => x.toString()
+},
+rows: 12,
+sort: "year",
+reverse: true
+})
+
+```
+```js
+const table_entitats = Inputs.table(entities_df.entities_gent_gran, {
+columns: ['registre', 'nom', 'tipologia', 'inscripcio', 'capacitat', 'adreca', 'municipi', 'comarca', 'qualificacio'],
+header: {
+    registre: "Número de registre",
+    nom: "Nom del servei",
+    tipologia: "Tipologia del servei",
+    inscripcio: "Data d'inscripció",
+    capacitat: "Capacitat del servei",
+    adreca: "Adreça del servei",
+    municipi: "Municipi",
+    comarca: "Comarca",
+    qualificacio: "Qualificació de l'entitat",
+},
+format: {
+    capacitat: x => x.toLocaleString('ca-ES'),
+    inscripcio: x => d3.timeFormat("%x")(new Date(x)),
+},
+rows: 12,
+sort: "comarca",
+reverse: true
+})
+
+```
 <style>
   .big-number-header {
     height: 2.4rem;
@@ -617,4 +661,10 @@ ${catalunya_indicator_or_variation_input}
         </figure>
     </div>
 
+</div>
+<div class="card" style="padding: 0;">
+${table_population}
+</div>
+<div class="card" style="padding: 0;">
+${table_entitats}
 </div>
