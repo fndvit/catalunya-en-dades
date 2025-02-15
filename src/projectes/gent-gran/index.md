@@ -668,3 +668,5 @@ ${table_population}
 <div class="card" style="padding: 0;">
 ${table_entitats}
 </div>
+
+<p class="notes">Aquest panell de dades reimagina la visualització de <a href="https://dretssocials.gencat.cat/ca/ambits_tematics/serveis_socials/estadistiques/mapaserveissocials/visualitzaciogentgran/">Mapa de Serveis Socials de Catalunya - Atenció especialitzada - Gent gran (L'enllaç no funciona; febrer de 2025)</a>, <a href="https://dretssocials.gencat.cat/ca/ambits_tematics/serveis_socials/estadistiques/mapaserveissocials/2023/">Gent - gran: un resum alternatiu de les dades</a>. Reutilitzant les <a href="https://www.idescat.cat/dades/obertes/censph?lang=en">dades de Cens de població i habitatges</a> i <a href="https://analisi.transparenciacatalunya.cat/Societat-benestar/Registre-d-entitats-serveis-i-establiments-socials/ivft-vegh/about_data"> Registre d’entitats, serveis i establiments socials (serveis socials bàsics i especialitzats)</a> al portal de Transparència.</p>
