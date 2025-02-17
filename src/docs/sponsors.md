@@ -37,7 +37,7 @@ Utilitzem [**Open Collective**](https://opencollective.com/fndvit-cat-en-dades) 
 ## Tria entre les següents categories
 <div class="grid grid-cols-3">
   <div class="card">
-    <img src="../img/marie-neurath.png" alt="Imatge d'una pàgina del llibre"/>
+    <img src="./img/marie-neurath.png" alt="Imatge d'una pàgina del llibre"/>
     <h2>Marie Neurath</h2>
     <h3><span class="unit">Contribució:</span> €2.500</h3>
     <h3><span class="unit">Patrocinis disponibles:</span> 2</h3>
@@ -45,7 +45,7 @@ Utilitzem [**Open Collective**](https://opencollective.com/fndvit-cat-en-dades) 
     <a href="https://opencollective.com/fndvit-cat-en-dades/contribute/backers-76196/checkout?interval=oneTime&amount=2500" target="_blank"><b>Contribueix des d’Open Collective</b><span style="display: inline-block; margin-left: 0.25rem;">↗</span></a>
   </div>
   <div class="card">
-    <img src="../img/mary-eleanor-spear.png" alt="Pàginas finals del 'Practical Charting Techniques'"/>
+    <img src="./img/mary-eleanor-spear.png" alt="Pàginas finals del 'Practical Charting Techniques'"/>
     <h2>Mary Eleanor Spear</h2>
     <h3><span class="unit">Contribució:</span> €1.000</h3>
     <h3><span class="unit">Patrocinis disponibles:</span> 5</h3>
@@ -53,7 +53,7 @@ Utilitzem [**Open Collective**](https://opencollective.com/fndvit-cat-en-dades) 
     <a href="https://opencollective.com/fndvit-cat-en-dades/contribute/sponsors-76197/checkout?interval=oneTime&amount=1000" target="_blank"><b>Contribueix des d’Open Collective</b><span style="display: inline-block; margin-left: 0.25rem;">↗</span></a>
   </div>
   <div class="card">
-    <img src="../img/agnes-sinclair-holbrook.png" alt="Detall d'un dels Hull House Maps"/>
+    <img src="./img/agnes-sinclair-holbrook.png" alt="Detall d'un dels Hull House Maps"/>
     <h2>Agnes Sinclair Holbrook</h2>
     <h3><span class="unit">Contribució:</span> €500</h3>
     <h3><span class="unit">Patrocinis disponibles:</span> 10</h3>
