@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "clean": "rimraf src/.observablehq/cache",
-    "build": "observable build",
+    "build": "./build.sh",
     "dev": "observable preview",
     "deploy": "observable deploy",
     "observable": "observable",
