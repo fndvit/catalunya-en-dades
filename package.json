@@ -6,8 +6,7 @@
     "build": "./build.sh",
     "dev": "observable preview",
     "deploy": "observable deploy",
-    "observable": "observable",
-    "install": "pip install -r requirements.txt"
+    "observable": "observable"
   },
   "dependencies": {
     "@observablehq/framework": "^1.7.0",
