@@ -8,11 +8,23 @@ style: ../dashboard.css
 ```js
 import {Trend} from "./components/trend.js";
 import {extent, format, rollup, timeFormat} from "npm:d3";
+
 ```
 
 <!--Consum daigua per província-->
 ```js
-const consum_daigua_per_comarca_data = FileAttachment("data/consum_aigua_dades.json").json();
+const consum_daigua_json = FileAttachment("data/consum_aigua_dades.json").json();
+const consum_daigua_per_comarca_data = consum_daigua_json.then(d => d.data); 
+const lastUpdated = consum_daigua_json.then(d => d.metadata.lastUpdated);
+
+```
+
+```js
+const lastUpdatedFormatted = new Date(lastUpdated).toLocaleDateString("ca-ES", { 
+  year: "numeric", 
+  month: "long", 
+  day: "numeric" 
+});
 ```
 
 <!--Comarques geo -->
@@ -503,7 +515,7 @@ const tableSearchValue = view(tableSearch);
 <div class="grid grid-cols-4">
   <div class="grid-colspan-3">
     <h1>Consum d'aigua a Catalunya</h1>
-    <h2>Dades actualitzades a TK TK</h2>
+    <h2>Dades actualitzades a ${lastUpdatedFormatted}</h2>
   </div>
   <div class="grid-colspan-1">
     <h5 class="light">Selecciona l'any</h5>
@@ -571,6 +583,14 @@ const tableSearchValue = view(tableSearch);
     ${agregaProvincia}
     ${display(tableSearch)}
     ${display(Inputs.table(tableSearchValue, {
+      format:{
+        "Any": d => String(d),
+        "Població" : d => d.toLocaleString('ca-ES'), 
+        "Domèstic xarxa" : d => d.toLocaleString('ca-ES'), 
+        "Activitats econòmiques i fonts pròpies" : d => d.toLocaleString('ca-ES'), 
+        "Consum domèstic per càpita" : d => d.toLocaleString('ca-ES'), 
+        "Total" : d => d.toLocaleString('ca-ES')
+      },
       columns: [      
         agregaProvinciaValue.length == 1 ? "Província" : "Comarca",
         "Any", 

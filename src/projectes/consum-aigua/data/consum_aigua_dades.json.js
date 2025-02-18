@@ -2,6 +2,8 @@ const response = await fetch("https://analisi.transparenciacatalunya.cat/resourc
 if (!response.ok) throw new Error(`fetch failed: ${response.status}`);
 const data = await response.json();
 
+const lastUpdated = new Date().toISOString();
+
 const comarquesShortNames = ({
     "ALT CAMP, L'" : "Alt Camp",
     "ALT EMPORDÀ, L'" : "Alt Empordà",
@@ -68,4 +70,9 @@ const historic = data.map((d) => {
         "Total": total 
     };});
 
-process.stdout.write(JSON.stringify(historic));
+const output = {
+    metadata: { lastUpdated },
+    data: historic
+};
+
+process.stdout.write(JSON.stringify(output));
