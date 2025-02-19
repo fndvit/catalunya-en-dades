@@ -32,8 +32,11 @@ const dataUrl = "https://analisi.transparenciacatalunya.cat/resource/8idm-becu.j
       
     });
 
+    // Filtrar los elementos donde 'consum_kwh' no sea nulo o undefined
+    const filteredData = data.filter(item => item.consum_kwh !== null && item.consum_kwh !== undefined);
+
     // Mostrar el resultat com JSON
-    process.stdout.write(JSON.stringify(data, null, 2));
+    process.stdout.write(JSON.stringify(filteredData, null, 2));
 
   } catch (error) {
     console.error("Error:", error);
