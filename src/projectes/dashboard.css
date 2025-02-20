@@ -107,3 +107,13 @@ main h2 {
   border: none;
   box-shadow: 0 0 .5rem rgba(0,0,0,0.1)
 }
+
+#observablehq-sidebar {
+  padding: 0 8px 16px 8px;
+  visibility: hidden;
+}
+
+#observablehq-search-results {
+  width: 100%;
+  left: 0;
+}

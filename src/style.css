@@ -122,3 +122,13 @@ pre {
 .observablehq-pre-container {
   margin: 1rem -1rem 1rem 0rem;
 }
+
+#observablehq-sidebar {
+  padding: 0 8px 16px 8px;
+  visibility: hidden;
+}
+
+#observablehq-search-results {
+  width: 100%;
+  left: 0;
+}
