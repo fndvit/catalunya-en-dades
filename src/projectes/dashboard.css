@@ -111,6 +111,7 @@ main h2 {
 #observablehq-sidebar {
   padding: 0 8px 16px 8px;
   visibility: hidden;
+  width: 272px;
 }
 
 #observablehq-search-results {
