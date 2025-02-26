@@ -1638,6 +1638,18 @@ function generateKMeansBreaks(data, numClusters) {
         });
 ```
 
+```js
+  const agregaProvincia = Inputs.checkbox([""], {label: "Agrega per província"});
+  const agregaProvinciaValue = Generators.input(agregaProvincia);
+
+  const tableSearch = Inputs.search(
+    agregaProvinciaValue.length == 1 ? consum_energia_electrica_data : consum_energia_electrica_data, 
+    {placeholder: `Entra un nom de ${agregaProvinciaValue.length == 1 ? "província" : "comarca"}`}
+  );
+
+  const tableSearchValue = view(tableSearch);
+```
+
 <div class="grid grid-cols-4">
   <div class="grid-colspan-3">
     <h1>Consum d’energia elèctrica per municipis i sectors de Catalunya</h1>
@@ -1727,6 +1739,25 @@ function generateKMeansBreaks(data, numClusters) {
   </div>
   <div id="chartMun" class="col-span-2" style="height: 250px;"></div> <!-- Columna derecha para el gráfico con altura ajustada -->
 </div>
+
+<!-- Taula de energia elèctrica -->
+<div class="card">
+  <h2>Consulta la taula per ${agregaProvinciaValue.length == 1 ? "provincia" : "comarca"}</h2>
+  ${agregaProvincia}${display(tableSearch)}${display(Inputs.table(tableSearchValue, {
+    format: {
+      "Any": d => String(d), // Mostrar el año como texto
+      "Consum KWh": d => d.toLocaleString('ca-ES'), // Mostrar consumo con separador de miles
+      "Descripció sector": d => d, // Mostrar descripción de sector tal como está
+    },
+    columns: [
+      agregaProvinciaValue.length == 1 ? "provincia" : "comarca", // Alterna entre provincia o comarca
+      "any", // Año
+      "descripcio_sector", // Descripción del sector
+      "consum_kwh", // Consumo en kWh
+    ]
+  }))}  
+</div>
+
 
 
 <p class="notes">Desenvolupat per en <strong>Marc Serrano Touil</strong>. Aquest panell de dades és una nova visualització del consum d’energia elèctrica per municipis i sectors de Catalunya</a> de l'${attribution}, utilitzant les <a href="https://analisi.transparenciacatalunya.cat/Energia/Consum-d-energia-el-ctrica-per-municipis-i-sectors/8idm-becu/about_data">dades obertes disponibles</a> al portal de Transparència. Tota la informació es comparteix sota la llicència 
