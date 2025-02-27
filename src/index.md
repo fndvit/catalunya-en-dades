@@ -79,7 +79,7 @@ iframe {
   <h1>Catalunya 👀 en dades</h1>
   <h2>És una iniciativa per <b>reimaginar la visualització de dades obertes de l'administració catalana</b> fent servir l'<em>Observable Framework</em>. La participació és oberta a tothom que estigui aprenent 🧑‍💻📓📈🔍 ciència de dades, comunicació, disseny o visualització de dades, amb 🏅 premis mensuals (i un 🏆 gran premi final) a les millors col·laboracions.</h2>
 
-  <a href="/docs/pages/participa.html">Col·labora<span style="display: inline-block; margin-left: 0.25rem;">→</span></a>
+  <a href="/docs/participa">Col·labora<span style="display: inline-block; margin-left: 0.25rem;">→</span></a>
 </div>
 
 <iframe id="iframe" scrolling="no" src="https://sequera.fndvit.org/"></iframe>
