@@ -118,3 +118,13 @@ main h2 {
   width: 100%;
   left: 0;
 }
+
+#observablehq-header {
+  left: calc( var(--observablehq-inset-left) + 2rem);
+  right: calc(var(--observablehq-inset-right) + 2rem);
+}
+
+body {
+  margin: 0;
+  max-width: none;
+}
